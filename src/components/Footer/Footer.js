@@ -16,9 +16,14 @@ const Footer = () => {
       </div>
       <div className="footer__container">
         <h2 className="footer__title">Contact</h2>
-        <p className="footer__content">info@movieit.com</p>
+        <a
+          href="mailto:info@movieit.com"
+          className="footer__content footer__content--email"
+        >
+          info@movieit.com
+        </a>
       </div>
-      <div className="footer_container">
+      <div className="footer__container">
         <h2 className="footer__title">Hours</h2>
         <div className="footer__content">
           <span className="footer__content--time">Monday - Friday</span>
