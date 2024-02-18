@@ -1,0 +1,30 @@
+@use '../../styles/partials/variable' as *;
+@use '../../styles/partials/mixin' as *;
+
+.search-container {
+    width: 100%;
+    position: relative;
+    
+    &__search {
+      width: 100%;
+      border: 1px solid $movieit-black;
+      border-radius: 20px;
+      font-size: 1.6rem;
+      @include paddings(1rem, 1.5rem);
+    }
+    
+    &__search-icon {
+      position: absolute;
+      height: 3.6rem;
+      top:0.3rem;
+      right: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+    
+      &:active {
+        background-color: $movieit-dark-grey;
+        box-shadow: 0px 0px 10px $movieit-black;
+      }
+    }
+
+}

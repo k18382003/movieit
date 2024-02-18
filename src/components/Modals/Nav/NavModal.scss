@@ -1,0 +1,75 @@
+@use '../../../styles/partials/mixin' as *;
+@use '../../../styles/partials/variable' as *;
+
+.nav-modal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $movieit-white;
+  height: 100vh;
+  @include paddings(2rem, $mobile);
+  position: fixed;
+  top: 0;
+
+  &__close {
+    width: 100%;
+
+    img {
+      position: relative;
+      right: -90%;
+      cursor: pointer;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    text-align: center;
+    padding-top: 1rem;
+
+    & * {
+      text-decoration: none;
+    }
+  }
+
+  &__item {
+    @include paddings(1rem, 0);
+    color: $movieit-black;
+    font-size: 2rem;
+    font-weight: $bold;
+    border-bottom: 1px solid $movieit-light-grey;
+
+    &:hover {
+      color: $movieit-dark-grey;
+      transform: translateY(-5px);
+      transition: transform 1s;
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  button {
+    margin-top: 1.5rem;
+  }
+
+  &__button {
+    color: white;
+
+    &--signup {
+      background-color: $movieit-red;
+    }
+
+    &--signin {
+      background-color: $movieit-black;
+    }
+  }
+
+  &__search-bar {
+    margin-top: 2rem;
+  }
+}

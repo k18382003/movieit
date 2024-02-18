@@ -1,0 +1,70 @@
+@use '../../styles/partials/variable' as *;
+@use '../../styles/partials/mixin' as *;
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $movieit-dark-grey;
+  @include paddings(2rem, $mobile);
+
+  @include tablet {
+    &__brand-list {
+      display: flex;
+    }
+
+    &__list {
+      padding-left: 2.5rem;
+      list-style-type: none;
+      & * {
+        text-decoration: none;
+      }
+    }
+
+    &__item {
+      line-height: 3.2rem;
+      margin-right: 1.8rem;
+      font-size: 1.8rem;
+      font-weight: $demi;
+      color: $movieit-white;
+
+      &:hover {
+        color: $movieit-black;
+        transform: translateY(-5px);
+        transition: transform 1s;
+      }
+
+      &:active {
+        border-bottom: 2px solid $movieit-black;
+      }
+    }
+  }
+
+  &__search-bar {
+    display: none;
+
+    @include tablet {
+      display: block;
+      width: 30%;
+    }
+  }
+
+  &__brand {
+    width: 12rem;
+  }
+
+  &__list {
+    display: none;
+
+    @include tablet {
+      display: flex;
+    }
+  }
+
+  &__collapse {
+    cursor: pointer;
+    @include tablet {
+      display: none;
+    }
+  }
+}
