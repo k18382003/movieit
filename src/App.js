@@ -1,8 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <BrowserRouter></BrowserRouter>
+    </>
+  );
 }
 
 export default App;

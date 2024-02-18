@@ -1,0 +1,10 @@
+@use './variable' as *;
+
+/* Protest Guerrilla */
+@font-face {
+  font-family: 'Protest Guerrilla';
+  src: url('../../assets/fonts/ProtestGuerrilla-Regular.woff2') format('woff2'),
+    url('../../assets/fonts/ProtestGuerrilla-Regular.woff') format('woff'),
+    url('../../assets/fonts/ProtestGuerrilla-Regular.ttf') format('ttf');
+  font-weight: $regular;
+}
