@@ -169,13 +169,14 @@
       font-size: 9rem;
       font-family: 'Bauhaus93', Arial, Helvetica, sans-serif;
       padding-bottom: 2rem;
+      text-align: center;
     }
 
     &__signup-button {
       color: $movieit-white;
       background-color: $movieit-red;
       font-weight: $demi;
-      width: 50%;
+      width: 40%;
       border-radius: 20px;
       margin: 0 auto;
     }
