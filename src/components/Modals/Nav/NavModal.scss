@@ -11,6 +11,7 @@
   @include paddings(2rem, $mobile);
   position: fixed;
   top: 0;
+  z-index: 999;
 
   &__close {
     width: 100%;
