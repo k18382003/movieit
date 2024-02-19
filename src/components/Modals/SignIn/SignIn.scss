@@ -1,0 +1,118 @@
+@use '../../../styles/partials/mixin' as *;
+@use '../../../styles/partials/variable' as *;
+
+.sign-in {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $movieit-white;
+  height: 100vh;
+  @include paddings(2rem, $mobile);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  border-radius: 20px;
+
+  @include tablet {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__top-container {
+    border-bottom: 3px solid $movieit-grey;
+  }
+
+  &__brand {
+    display: block;
+    width: 12rem;
+    @include paddings(3rem, 0);
+    margin: 0 auto;
+  }
+
+  &__close {
+    width: 100%;
+
+    img {
+      position: absolute;
+      right: $mobile;
+      cursor: pointer;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 35rem;
+    border-bottom: 3px solid $movieit-grey;
+
+    @include tablet {
+      align-items: center;
+      padding: 2rem 0;
+      height: auto;
+    }
+  }
+
+  &__input {
+    @include paddings(2rem, 1.5rem);
+    font-size: 2rem;
+    background-color: $movieit-light-grey;
+    border-radius: 20px;
+    border: none;
+
+    @include tablet {
+      font-size: 1.6rem;
+      @include paddings(1rem, 1.5rem);
+      width: 60%;
+      margin: 1rem 0;
+      border-radius: 10px;
+    }
+
+    &::placeholder {
+      color: $movieit-white;
+    }
+  }
+
+  &__button {
+    background-color: $movieit-red;
+    color: white;
+    border-radius: 20px;
+
+    @include tablet {
+      width: 20rem;
+    }
+  }
+
+  &__alternative {
+    padding-top: 2rem;
+
+    &-content {
+      font-size: 1.4rem;
+      font-weight: $demi;
+      text-align: center;
+      padding-bottom: 2rem;
+
+      @include tablet {
+        padding-bottom: 1rem;
+      }
+    }
+
+    &-icons {
+      display: flex;
+      justify-content: center;
+      img {
+        display: block;
+        padding: 0 1.5rem;
+        cursor: pointer;
+
+        @include tablet {
+          width: 6rem;
+        }
+      }
+    }
+  }
+}

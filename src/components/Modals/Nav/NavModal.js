@@ -5,15 +5,22 @@ import './NavModal.scss';
 import SearchBar from '../../SerachBar/SearchBar';
 import { useState } from 'react';
 import SignUp from '../SignUp/SignUp';
+import SignIn from '../SignIn/SignIn';
 
 const NavModal = ({ showModal }) => {
   const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+
   const closeNav = () => {
     showModal();
   };
 
   const showSignUpForm = () => {
     setShowSignUp(!showSignUp);
+  };
+
+  const showSignInFrom = () => {
+    setShowSignIn(!showSignIn);
   };
 
   return (
@@ -53,10 +60,12 @@ const NavModal = ({ showModal }) => {
           <Button
             buttonText="SIGN IN"
             UniqueStyleClass={'nav-modal__button nav-modal__button--signin'}
+            onClick={showSignInFrom}
           />
         </div>
       </section>
       {showSignUp && <SignUp showModal={setShowSignUp} />}
+      {showSignIn && <SignIn showModal={showSignInFrom} />}
     </>
   );
 };
