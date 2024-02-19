@@ -5,11 +5,22 @@ import brand from '../../assets/images/MovieIt-white.svg';
 import NavModal from '../../components/Modals/Nav/NavModal';
 import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
+import SignIn from '../../components/Modals/SignIn/SignIn';
+import SignUp from '../../components/Modals/SignUp/SignUp';
 
 const WelcomePage = () => {
   const [show, setShow] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+
   const showModal = () => {
     setShow(!show);
+  };
+  const showSignInForm = () => {
+    setShowSignIn(!showSignIn);
+  };
+  const showSignUpForm = () => {
+    setShowSignUp(!showSignUp);
   };
 
   return (
@@ -32,12 +43,14 @@ const WelcomePage = () => {
               UniqueStyleClass={
                 'welcome-mobile__button welcome-mobile__button--signup'
               }
+              onClick={setShowSignUp}
             />
             <Button
               buttonText="SIGN IN"
               UniqueStyleClass={
                 'welcome-mobile__button welcome-mobile__button--signin'
               }
+              onClick={setShowSignIn}
             />
           </div>
         </div>
@@ -63,15 +76,22 @@ const WelcomePage = () => {
             <Button
               buttonText={'SING IN'}
               UniqueStyleClass={'welcome-tablet__signin-button'}
+              onClick={setShowSignIn}
             />
           </div>
         </div>
         <div className="welcome-tablet__title-container">
           <h1 className="welcome-tablet__title">Let's Movie It</h1>
-          <Button buttonText={'SIGN UP'} UniqueStyleClass={'welcome-tablet__signup-button'} />
+          <Button
+            buttonText={'SIGN UP'}
+            UniqueStyleClass={'welcome-tablet__signup-button'}
+            onClick={setShowSignUp}
+          />
         </div>
       </main>
       {show && <NavModal showModal={showModal} />}
+      {showSignIn && <SignIn showModal={setShowSignIn} />}
+      {showSignUp && <SignUp showModal={setShowSignUp} />}
     </>
   );
 };
