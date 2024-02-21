@@ -7,6 +7,7 @@ import left from '../../assets/icons/swipe-left.png';
 import invitation from '../../assets/icons/send-invitation.png';
 import right from '../../assets/icons/swipe-right.png';
 import './ProfileCard.scss';
+import Metrics from './Metrics/Metrics';
 
 const ProfileCard = () => {
   const tempData = {
@@ -69,6 +70,7 @@ const ProfileCard = () => {
         <img src={invitation} />
         <img src={right} />
       </div>
+      {/* <Metrics /> */}
     </section>
   );
 };

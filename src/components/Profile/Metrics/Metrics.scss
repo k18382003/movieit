@@ -1,0 +1,31 @@
+@use '../../../styles/partials/mixin' as *;
+@use '../../../styles/partials/variable' as *;
+
+.metrics {
+  @include paddings(0, $mobile);
+
+  @include tablet {
+    padding: 0 0;
+  }
+
+  &__title {
+    border-top: 1px solid $movieit-grey;
+    padding: 2rem 0;
+    font-size: 2rem;
+
+    @include tablet {
+      margin-top: 2rem;
+      padding-top: 1rem;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    @include tablet {
+      justify-content: space-between;
+    }
+  }
+}

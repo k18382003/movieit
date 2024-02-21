@@ -1,0 +1,23 @@
+@use '../../../styles/partials/variable' as *;
+@use '../../../styles/partials/mixin' as *;
+
+.metrics-data {
+  background-color: $movieit-light-pink;
+  text-align: center;
+  padding: 1rem;
+  width: 12rem;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px $movieit-grey;
+  margin: 1rem 0;
+
+  
+  &__number {
+    font-size: 2rem;
+    font-weight: $demi;
+  }
+
+  &__description {
+    padding-top: 0.5rem;
+    color: $movieit-white;
+  }
+}
