@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import SignIn from '../../components/Modals/SignIn/SignIn';
 import SignUp from '../../components/Modals/SignUp/SignUp';
 
-const WelcomePage = () => {
+const WelcomePage = ({ setShowNavFooter }) => {
+  setShowNavFooter(false);
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -90,8 +91,8 @@ const WelcomePage = () => {
         </div>
       </main>
       {show && <NavModal showModal={showModal} />}
-      {showSignIn && <SignIn showModal={setShowSignIn} />}
-      {showSignUp && <SignUp showModal={setShowSignUp} />}
+      {showSignIn && <SignIn showModal={showSignInForm} />}
+      {showSignUp && <SignUp showModal={showSignUpForm} />}
     </>
   );
 };
