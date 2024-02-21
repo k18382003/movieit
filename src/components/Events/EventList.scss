@@ -1,0 +1,126 @@
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variable' as *;
+
+.eventlist {
+  @include paddings(2rem, $mobile);
+
+  @include tablet {
+    @include paddings(2rem, $tablet);
+  }
+
+  @include desktop {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  &__greeting {
+    padding-bottom: 1.6rem;
+    font-size: 2.2rem;
+  }
+
+  &__title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  &__my-events-button {
+    background-color: $movieit-dark-grey;
+    border-radius: 20px;
+    color: $movieit-white;
+    padding: 0.5rem 1.5rem;
+  }
+
+  &__load-more {
+    padding-top: 2rem;
+    color: $movieit-blue;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__tablet-outter-container {
+    display: flex;
+  }
+
+  &__tablet-container {
+    display: none;
+
+    @include tablet {
+      display: block;
+      border-right: 1px solid $movieit-grey;
+      padding-right: 1.6rem;
+    }
+  }
+
+  &__tablet-list-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    @include paddings(0rem, 1.6rem);
+  }
+
+  &__next-event-text {
+    font-size: 1.4rem;
+    font-weight: $demi;
+    padding-bottom: 1.5rem;
+  }
+
+  &__next-event-outter-onatiner {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  &__next-event-image {
+    width: 80%;
+    margin: 0 auto;
+    height: 10rem;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+  }
+
+  &__next-event-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 2rem;
+  }
+
+  &__next-event-showtime {
+    color: $movieit-dark-red;
+    font-size: 1.6rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &__next-event-moviename {
+    color: $movieit-black;
+    font-size: 1.7rem;
+    font-weight: $demi;
+    padding-bottom: 0.5rem;
+  }
+
+  &__next-event-cinema {
+    color: $movieit-black;
+  }
+
+  &__next-event-cinema-ppl {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__ppl-going {
+    color: $movieit-grey;
+  }
+}
+
+.react-calendar {
+  border: none !important;
+  width: 25rem !important;
+}

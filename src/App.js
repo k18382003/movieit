@@ -6,6 +6,9 @@ import ProfileCard from './components/Profile/ProfileCard';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import { useState } from 'react';
+import EventList from './components/Events/EventList';
+import MyEvents from './components/Events/MyEvent';
+import 'react-calendar/dist/Calendar.css';
 
 function App() {
   const [showNavFooter, setShowNavFooter] = useState(true);
@@ -21,6 +24,8 @@ function App() {
           />
           <Route path="/profile/:id" element={<ProfileCard />} />
           <Route path="/profile/edit" element={<ProfileEditForm />} />
+          <Route path="/events" element={<EventList />} />
+          <Route path="/myevents" element={<MyEvents />} />
         </Routes>
         {showNavFooter && <Footer />}
       </BrowserRouter>

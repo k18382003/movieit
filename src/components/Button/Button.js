@@ -4,7 +4,7 @@ const Button = ({ buttonText, onClick, buttonIcon, UniqueStyleClass }) => {
   return (
     <>
       <button
-        className={UniqueStyleClass}
+        className={`my-button ${UniqueStyleClass}`}
         style={{
           backgroundImage: `url(${buttonIcon})`,
         }}

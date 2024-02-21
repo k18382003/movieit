@@ -1,0 +1,55 @@
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variable' as *;
+
+.myevent {
+  @include paddings(2rem, $mobile);
+
+  &__greeting {
+    padding-bottom: 1.6rem;
+    font-size: 2.2rem;
+  }
+
+  &__title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  &__event-text {
+    font-size: 1.4rem;
+    font-weight: $demi;
+
+    &--host {
+      padding-bottom: 2rem;
+    }
+
+    &--invited {
+      padding-bottom: 2rem;
+    }
+  }
+
+  &__all-events-button {
+    background-color: $movieit-dark-grey;
+    border-radius: 20px;
+    color: $movieit-white;
+    padding: 0.5rem 1.5rem;
+  }
+
+  &__ppl-going {
+    color: $movieit-grey;
+  }
+
+  &__event-container {
+    border-bottom: 3px solid $movieit-grey;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__load-more {
+    padding-top: 2rem;
+    color: $movieit-blue;
+    text-align: center;
+    cursor: pointer;
+  }
+}
