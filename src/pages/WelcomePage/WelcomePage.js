@@ -26,7 +26,7 @@ const WelcomePage = ({ setShowNavFooter }) => {
 
   return (
     <>
-      <main className="welcome-mobile">
+      <section className="welcome-mobile">
         <div className="welcome-mobile__overlay"></div>
         <img
           className="welcome-mobile__collapse"
@@ -55,8 +55,8 @@ const WelcomePage = ({ setShowNavFooter }) => {
             />
           </div>
         </div>
-      </main>
-      <main className="welcome-tablet">
+      </section>
+      <section className="welcome-tablet">
         <div className="welcome-tablet__ovelay">
           <div className="welcome-tablet__nav-container">
             <div className="welcome-tablet__brand-list">
@@ -89,7 +89,7 @@ const WelcomePage = ({ setShowNavFooter }) => {
             onClick={setShowSignUp}
           />
         </div>
-      </main>
+      </section>
       {show && <NavModal showModal={showModal} />}
       {showSignIn && <SignIn showModal={showSignInForm} />}
       {showSignUp && <SignUp showModal={showSignUpForm} />}
