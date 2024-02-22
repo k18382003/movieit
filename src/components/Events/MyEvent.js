@@ -1,4 +1,5 @@
 import Button from '../Button/Button';
+import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
 import './MyEvent.scss';
 
@@ -79,27 +80,42 @@ const MyEvents = () => {
           UniqueStyleClass={'myevent__all-events-button'}
         />
       </div>
-      <div className="myevent__event-container">
+      <div className="myevent__event-container myevent__event-container--next-event">
         <EventItem movie={tempData[0]} />
         <p className="myevent__ppl-going">2 ppl going</p>
       </div>
-      <div className="myevent__event-container">
-        <p className="myevent__event-text myevent__event-text--host">
-          Events You Host
-        </p>
-        {tempData1.map((movie) => {
-          return <EventItem movie={movie} />;
-        })}
+      <div className="myevent__tablet-outter-container">
+        <CalendarWithNextEvent movie={tempData[0]} />
+        <div className="myevent__tablet-inner-container">
+          <div className="myevent__tablet-inner-event-container">
+            <div className="myevent__event-container">
+              <p className="myevent__event-text myevent__event-text--host">
+                Events You Host
+              </p>
+              {tempData1.map((movie) => {
+                return (
+                  <EventItem movie={movie} uniqueStyle={'event-item-myevent'} />
+                );
+              })}
+              <p className="myevent__load-more">Load More</p>
+            </div>
+            <div className="myevent__event-container">
+              <p className="myevent__event-text myevent__event-text--invited">
+                Events Be Invited
+              </p>
+              {tempData2.map((movie) => {
+                return (
+                  <EventItem movie={movie} uniqueStyle={'event-item-myevent'} />
+                );
+              })}
+              <p className="myevent__load-more">Load More</p>
+            </div>
+          </div>
+          <div className="myevent__past-event-container">
+            <p className="myevent__past-event">Past Events</p>
+          </div>
+        </div>
       </div>
-      <div className="myevent__event-container">
-        <p className="myevent__event-text myevent__event-text--invited">
-          Events Be Invited
-        </p>
-        {tempData2.map((movie) => {
-          return <EventItem movie={movie} />;
-        })}
-      </div>
-      <p className="myevent__load-more">Load More</p>
     </section>
   );
 };

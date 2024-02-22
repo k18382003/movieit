@@ -1,9 +1,9 @@
 import batman from '../../assets/images/Batman.png';
 import './EventItem.scss';
 
-const EventItem = ({ movie }) => {
+const EventItem = ({ movie, uniqueStyle }) => {
   return (
-    <div className={`event-item`}>
+    <div className={`event-item ${uniqueStyle}`}>
       <div
         className="event-item__image"
         style={{ backgroundImage: `url(${batman})` }}

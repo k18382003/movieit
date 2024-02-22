@@ -1,7 +1,6 @@
-import Calendar from 'react-calendar';
 import Button from '../Button/Button';
+import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
-import batman from '../../assets/images/Batman.png';
 import './EventList.scss';
 
 const EventList = () => {
@@ -49,35 +48,10 @@ const EventList = () => {
         />
       </div>
       <div className="eventlist__tablet-outter-container">
-        <div className="eventlist__tablet-container">
-          <Calendar calendarType="US" locale="en-GB" />
-          <div className="eventlist__next-event-outter-onatiner">
-            <h2 className="eventlist__next-event-text">Next Event</h2>
-            <div className={'eventlist__nexte-event-inner-container'}>
-              <div
-                className="eventlist__next-event-image"
-                style={{ backgroundImage: `url(${batman})` }}
-              ></div>
-              <div className="eventlist__next-event-info">
-                <p className="eventlist__next-event-showtime">
-                  {tempData[0].showtime}
-                </p>
-                <p className="eventlist__next-event-moviename">
-                  {tempData[0].moviename}
-                </p>
-                <div className="eventlist__next-event-cinema-ppl">
-                  <p className="eventlist__next-event-cinema">
-                    {tempData[0].cinema}
-                  </p>
-                  <p className="eventlist__ppl-going">2 ppl going</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CalendarWithNextEvent movie={tempData[0]} />
         <div className="eventlist__tablet-list-container">
-          {tempData.map((movie) => {
-            return <EventItem movie={movie} />;
+          {tempData.map((movie, index) => {
+            return <EventItem key={index} movie={movie} />;
           })}
           <p className="eventlist__load-more">Load More</p>
         </div>

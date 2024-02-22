@@ -1,0 +1,70 @@
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variable' as *;
+
+.calendar-event {
+  &__tablet-container {
+    display: none;
+
+    @include tablet {
+      display: block;
+      border-right: 1px solid $movieit-grey;
+      padding-right: 1.6rem;
+    }
+  }
+
+  &__next-event-text {
+    font-size: 1.4rem;
+    font-weight: $demi;
+    padding-bottom: 1.5rem;
+  }
+
+  &__next-event-outter-onatiner {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  &__next-event-image {
+    width: 80%;
+    margin: 0 auto;
+    height: 10rem;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+  }
+
+  &__next-event-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 2rem;
+  }
+
+  &__next-event-showtime {
+    color: $movieit-dark-red;
+    font-size: 1.6rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &__next-event-moviename {
+    color: $movieit-black;
+    font-size: 1.7rem;
+    font-weight: $demi;
+    padding-bottom: 0.5rem;
+  }
+
+  &__next-event-cinema {
+    color: $movieit-black;
+  }
+
+  &__next-event-cinema-ppl {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__ppl-going {
+    color: $movieit-grey;
+  }
+}
