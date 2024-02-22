@@ -1,0 +1,208 @@
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variable' as *;
+
+.event-detail {
+  @include paddings(2rem, 0);
+
+  @include tablet {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+
+    &__tablet-left {
+      width: 40%;
+    }
+
+    &__tablet-right {
+      width: 60%;
+    }
+  }
+
+  @include desktop {
+    width: 60%;
+  }
+
+  &__movie-name {
+    font-size: 2.4rem;
+    @include paddings(0, $mobile);
+    padding-bottom: 1.6rem;
+  }
+
+  &__host-by {
+    font-size: 1.4rem;
+    color: $movieit-grey;
+    @include paddings(0, $mobile);
+    padding-bottom: 1.6rem;
+  }
+
+  &__movie-image {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 1.6rem;
+
+    @include tablet {
+      padding: 0 1.6rem;
+    }
+  }
+
+  &__info {
+    @include paddings(0, $mobile);
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid $movieit-grey;
+
+    @include tablet {
+      border: none;
+    }
+  }
+
+  &__data {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+
+  &__icon {
+    padding-right: 1rem;
+    width: 4rem;
+  }
+
+  &__content {
+    font-size: 1.4rem;
+
+    &--showtime {
+      font-size: 1.8rem;
+      font-weight: $demi;
+    }
+
+    &--attendee {
+      font-weight: $demi;
+    }
+  }
+
+  &__attend-max-attend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__max-attend {
+    background-color: $movieit-red;
+    padding: 1rem 1.5rem;
+    font-size: 1.4rem;
+    color: $movieit-white;
+    border-radius: 20px;
+  }
+
+  &__extra-info-container {
+    display: flex;
+    @include paddings(1.6rem, $mobile);
+    justify-content: space-between;
+    margin-bottom: 2.4rem;
+  }
+
+  &__extra-info {
+    &--left {
+      flex-grow: 1;
+      padding-right: 2rem;
+
+      @include tablet {
+        padding-left: 4rem;
+      }
+    }
+
+    &--right {
+      flex-grow: 4;
+    }
+
+    &--title {
+      font-size: 1.4rem;
+      font-weight: $demi;
+      padding-bottom: 0.8rem;
+    }
+
+    &--host-photo {
+      width: 8rem;
+      height: 8rem;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+    }
+
+    &--note {
+      font-size: 1.3rem;
+      border: 1px solid $movieit-black;
+      height: 8rem;
+      padding: 0.4rem 0.4rem;
+      border-radius: 10px;
+      overflow: scroll;
+    }
+  }
+
+  &__action-icon {
+    display: flex;
+    margin: 0 auto;
+    cursor: pointer;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__who-is-going {
+    display: none;
+
+    @include tablet {
+      display: block;
+      padding-left: 5.6rem;
+
+      &--title {
+        font-size: 1.4rem;
+        font-weight: $demi;
+        padding-bottom: 0.8rem;
+      }
+
+      &--attendees-container {
+        margin-top: 1rem;
+        @include paddings(1rem, 2rem);
+        border: 2px solid $movieit-grey;
+        border-radius: 20px;
+        display: flex;
+        overflow-x: scroll;
+      }
+
+      &--attendees-img {
+        width: 6rem;
+      }
+
+      &--individual-container {
+        padding-right: 1.5rem;
+      }
+    }
+  }
+
+  &__button-container {
+    padding-top: 2rem;
+    padding-bottom: 1.6rem;
+    padding-left: 5.6rem;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    padding: 1rem 2.5rem;
+    margin-left: 2rem;
+
+    &--invite {
+      background-color: $movieit-green;
+      color: $movieit-white;
+    }
+
+    &--cancel {
+      background-color: $movieit-red;
+      color: $movieit-white;
+    }
+  }
+}
