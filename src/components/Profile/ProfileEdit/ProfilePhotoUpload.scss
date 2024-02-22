@@ -4,12 +4,8 @@
 .profile-photo-upload {
   border-bottom: 3px $movieit-grey solid;
   width: 100%;
-  @include paddings(2rem, $mobile);
-
-  @include tablet {
-    width: 60%;
-    margin: 0 auto;
-  }
+  @include paddings(1rem, $mobile);
+  margin-bottom: 2rem;
 
   &__container {
     @include paddings(1.5rem, 1.5rem);

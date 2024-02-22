@@ -3,6 +3,7 @@ import Button from '../../Button/Button';
 import { MultiSelect } from 'react-multi-select-component';
 import './ProfileEditForm.scss';
 import { genres, snacks, days } from '../DropDownData';
+import ProfilePhotoUpload from './ProfilePhotoUpload';
 
 const ProfileEditForm = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -11,6 +12,8 @@ const ProfileEditForm = () => {
 
   return (
     <form className="profile-form">
+      <p className="profile-form__label">Photo Upload</p>
+      <ProfilePhotoUpload />
       <div className="profile-form__input-container--tablet">
         <div className="profile-form__input-container">
           <label className="profile-form__label" htmlFor="username">
