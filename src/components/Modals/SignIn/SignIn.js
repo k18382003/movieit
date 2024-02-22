@@ -4,10 +4,28 @@ import close from '../../../assets/icons/close.png';
 import facebook from '../../../assets/icons/color_facebook.png';
 import google from '../../../assets/icons/google.png';
 import Button from '../../Button/Button';
+import { useState } from 'react';
+const { BASE_API_URL } = process.env;
 
 const SignIn = ({ showModal }) => {
+  const [signInData, setsignInData] = useState({
+    email: '',
+    password: '',
+  });
   const closeForm = () => {
     showModal();
+  };
+
+  const handleChange = (e) => {
+    setsignInData({
+      ...signInData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    console.log(signInData);
   };
 
   return (
@@ -18,12 +36,19 @@ const SignIn = ({ showModal }) => {
         </div>
         <img className="sign-in__brand" src={brand} alt="MovieIt" />
       </div>
-      <form className="sign-in__form">
-        <input className="sign-in__input" placeholder="email" />
+      <form className="sign-in__form" onSubmit={handleSignUp}>
+        <input
+          className="sign-in__input"
+          placeholder="email"
+          name="email"
+          onChange={handleChange}
+        />
         <input
           className="sign-in__input"
           placeholder="password"
           type="password"
+          name="password"
+          onChange={handleChange}
         />
         <Button buttonText="SIGN IN" UniqueStyleClass={'sign-in__button'} />
       </form>

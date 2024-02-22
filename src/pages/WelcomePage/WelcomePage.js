@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './WelcomePage.scss';
 import collapseNav from '../../assets/icons/collapse-nav.png';
 import brand from '../../assets/images/MovieIt-white.svg';
@@ -9,10 +9,13 @@ import SignIn from '../../components/Modals/SignIn/SignIn';
 import SignUp from '../../components/Modals/SignUp/SignUp';
 
 const WelcomePage = ({ setShowNavFooter }) => {
-  setShowNavFooter(false);
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+
+  useEffect(() => {
+    setShowNavFooter();
+  }, []);
 
   const showModal = () => {
     setShow(!show);
