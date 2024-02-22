@@ -3,9 +3,9 @@
 
 .profile-card {
   width: 100%;
-  padding-top: 2rem;
 
   @include tablet {
+    padding-top: 2rem;
     width: 50%;
     max-width: 80rem;
     margin: 0 auto;
