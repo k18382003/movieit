@@ -130,13 +130,17 @@
       border-radius: 50%;
     }
 
-    &--note {
+    &--note-container {
+      overflow: hidden;
       font-size: 1.3rem;
       border: 1px solid $movieit-black;
-      height: 8rem;
       padding: 0.4rem 0.4rem;
       border-radius: 10px;
-      overflow: scroll;
+    }
+
+    &--note {
+      height: 8rem;
+      overflow-y: scroll;
     }
   }
 
@@ -163,11 +167,15 @@
         padding-bottom: 0.8rem;
       }
 
+      &--attendees-outter-container {
+        border: 2px solid $movieit-grey;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
       &--attendees-container {
         margin-top: 1rem;
         @include paddings(1rem, 2rem);
-        border: 2px solid $movieit-grey;
-        border-radius: 20px;
         display: flex;
         overflow-x: scroll;
       }
@@ -183,12 +191,16 @@
   }
 
   &__button-container {
-    padding-top: 2rem;
-    padding-bottom: 1.6rem;
-    padding-left: 5.6rem;
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
+    display: none;
+
+    @include tablet {
+      padding-top: 2rem;
+      padding-bottom: 1.6rem;
+      padding-left: 5.6rem;
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+    }
   }
 
   &__button {

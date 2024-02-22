@@ -64,67 +64,71 @@ const EventDetail = () => {
           </div>
           <div className="event-detail__extra-info event-detail__extra-info--right">
             <p className="event-detail__extra-info--title">Notes</p>
-            <div className="event-detail__extra-info--note">
-              {tempData.notes}
+            <div className="event-detail__extra-info--note-container">
+              <div className="event-detail__extra-info--note">
+                {tempData.notes}
+              </div>
             </div>
           </div>
         </div>
         <div className="event-detail__who-is-going">
           <p className="event-detail__who-is-going--title">Who is going</p>
-          <div className="event-detail__who-is-going--attendees-container">
-            <div className="event-detail__who-is-going--individual-container">
-              <img
-                className="event-detail__who-is-going--attendees-img"
-                src={attendees}
-              />
-              <p className="event-detail__who-is-going--attendees-name">
-                Alice
-              </p>
-            </div>
-            <div className="event-detail__who-is-going--individual-container">
-              <img
-                className="event-detail__who-is-going--attendees-img"
-                src={attendees}
-              />
-              <p className="event-detail__who-is-going--attendees-name">
-                Alice
-              </p>
-            </div>
-            <div className="event-detail__who-is-going--individual-container">
-              <img
-                className="event-detail__who-is-going--attendees-img"
-                src={attendees}
-              />
-              <p className="event-detail__who-is-going--attendees-name">
-                Alice
-              </p>
-            </div>
-            <div className="event-detail__who-is-going--individual-container">
-              <img
-                className="event-detail__who-is-going--attendees-img"
-                src={attendees}
-              />
-              <p className="event-detail__who-is-going--attendees-name">
-                Alice
-              </p>
-            </div>
-            <div className="event-detail__who-is-going--individual-container">
-              <img
-                className="event-detail__who-is-going--attendees-img"
-                src={attendees}
-              />
-              <p className="event-detail__who-is-going--attendees-name">
-                Alice
-              </p>
-            </div>
-            <div className="event-detail__who-is-going--individual-container">
-              <img
-                className="event-detail__who-is-going--attendees-img"
-                src={attendees}
-              />
-              <p className="event-detail__who-is-going--attendees-name">
-                Alice
-              </p>
+          <div className="event-detail__who-is-going--attendees-outter-container">
+            <div className="event-detail__who-is-going--attendees-container">
+              <div className="event-detail__who-is-going--individual-container">
+                <img
+                  className="event-detail__who-is-going--attendees-img"
+                  src={attendees}
+                />
+                <p className="event-detail__who-is-going--attendees-name">
+                  Alice
+                </p>
+              </div>
+              <div className="event-detail__who-is-going--individual-container">
+                <img
+                  className="event-detail__who-is-going--attendees-img"
+                  src={attendees}
+                />
+                <p className="event-detail__who-is-going--attendees-name">
+                  Alice
+                </p>
+              </div>
+              <div className="event-detail__who-is-going--individual-container">
+                <img
+                  className="event-detail__who-is-going--attendees-img"
+                  src={attendees}
+                />
+                <p className="event-detail__who-is-going--attendees-name">
+                  Alice
+                </p>
+              </div>
+              <div className="event-detail__who-is-going--individual-container">
+                <img
+                  className="event-detail__who-is-going--attendees-img"
+                  src={attendees}
+                />
+                <p className="event-detail__who-is-going--attendees-name">
+                  Alice
+                </p>
+              </div>
+              <div className="event-detail__who-is-going--individual-container">
+                <img
+                  className="event-detail__who-is-going--attendees-img"
+                  src={attendees}
+                />
+                <p className="event-detail__who-is-going--attendees-name">
+                  Alice
+                </p>
+              </div>
+              <div className="event-detail__who-is-going--individual-container">
+                <img
+                  className="event-detail__who-is-going--attendees-img"
+                  src={attendees}
+                />
+                <p className="event-detail__who-is-going--attendees-name">
+                  Alice
+                </p>
+              </div>
             </div>
           </div>
         </div>
