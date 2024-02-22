@@ -1,0 +1,131 @@
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variable' as *;
+
+.event-create {
+  width: 100%;
+  @include paddings(2rem, $mobile);
+
+  @include tablet {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  &__photo-upload-container {
+    width: 100%;
+    background-color: $movieit-grey;
+  }
+
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    @include tablet {
+      width: 40%;
+      &--tablet {
+        display: flex;
+        justify-content: space-between;
+
+        &--aboutme {
+          flex-direction: row-reverse;
+          height: 20rem;
+        }
+      }
+    }
+  }
+
+  &__label {
+    font-size: 1.8rem;
+    color: $movieit-dark-grey;
+    padding-bottom: 1rem;
+  }
+
+  &__input {
+    background-color: $movieit-light-grey;
+    border: none;
+    border-radius: 10px;
+    font-size: 2rem;
+    padding: 1rem;
+
+    &--about {
+      height: 100%;
+    }
+
+    &:focus {
+      outline: none !important;
+      border: 1px solid $movieit-blue !important;
+    }
+
+    &--notes {
+        height: 10rem;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    font-size: 2rem;
+  }
+
+  &__button-outter-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include tablet {
+      display: none;
+    }
+
+    &--tablet {
+      display: none;
+
+      @include tablet {
+        display: block;
+      }
+    }
+  }
+
+  &__button-inner-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+  }
+
+  &__button {
+    width: 45%;
+    color: $movieit-white;
+
+    &--redo {
+      background-color: $movieit-grey;
+    }
+
+    &--cancel {
+      background-color: $movieit-dark-red;
+    }
+
+    &--save {
+      width: 100%;
+      background-color: $movieit-black;
+    }
+  }
+
+  &__bottom-right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+/*Dropdown menue*/
+.rmsc.option {
+  --rmsc-main: #0019f0;
+  --rmsc-hover: #f1f3f5;
+  --rmsc-selected: #e2e6ea !important;
+  --rmsc-border: none;
+  --rmsc-gray: #aaa;
+  --rmsc-bg: #d6dbe8 !important;
+  --rmsc-p: 1rem; /* Spacing */
+  --rmsc-radius: 10px; /* Radius */
+  --rmsc-h: 4.5rem; /* Height */
+}

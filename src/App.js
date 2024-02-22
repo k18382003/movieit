@@ -10,28 +10,30 @@ import EventList from './components/Events/EventList';
 import MyEvents from './components/Events/MyEvent';
 import 'react-calendar/dist/Calendar.css';
 import EventDetail from './components/Events/EventDetails';
+import EventCreate from './components/Events/EventCreate';
 
 function App() {
   const [showNavFooter, setShowNavFooter] = useState(true);
 
   return (
-      <BrowserRouter>
-        {showNavFooter && <Nav />}
-        <main>
-          <Routes>
-            <Route
-              path="/"
-              element={<WelcomePage setShowNavFooter={setShowNavFooter} />}
-            />
-            <Route path="/profile/:id" element={<ProfileCard />} />
-            <Route path="/profile/edit" element={<ProfileEditForm />} />
-            <Route path="/events" element={<EventList />} />
-            <Route path="/events/:eventId" element={<EventDetail />} />
-            <Route path="/myevents" element={<MyEvents />} />
-          </Routes>
-        </main>
-        {showNavFooter && <Footer />}
-      </BrowserRouter>
+    <BrowserRouter>
+      {showNavFooter && <Nav />}
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<WelcomePage setShowNavFooter={setShowNavFooter} />}
+          />
+          <Route path="/profile/:id" element={<ProfileCard />} />
+          <Route path="/profile/edit" element={<ProfileEditForm />} />
+          <Route path="/events" element={<EventList />} />
+          <Route path="/events/:eventId" element={<EventDetail />} />
+          <Route path="/events/add" element={<EventCreate />} />
+          <Route path="/myevents" element={<MyEvents />} />
+        </Routes>
+      </main>
+      {showNavFooter && <Footer />}
+    </BrowserRouter>
   );
 }
 
