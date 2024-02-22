@@ -11,6 +11,8 @@ import MyEvents from './components/Events/MyEvent';
 import 'react-calendar/dist/Calendar.css';
 import EventDetail from './components/Events/EventDetails';
 import EventCreate from './components/Events/EventCreate';
+import MessageList from './components/Message/MessageList';
+import MessagePage from './pages/MessagePage/MessagePage';
 
 function App() {
   const [showNavFooter, setShowNavFooter] = useState(true);
@@ -30,6 +32,7 @@ function App() {
           <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/events/add" element={<EventCreate />} />
           <Route path="/myevents" element={<MyEvents />} />
+          <Route path="/messages" element={<MessagePage />} />
         </Routes>
       </main>
       {showNavFooter && <Footer />}

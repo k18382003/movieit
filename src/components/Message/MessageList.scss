@@ -1,0 +1,13 @@
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variable' as *;
+
+.message-list {
+  width: 100%;
+  @include paddings(2rem, $mobile);
+
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+}
