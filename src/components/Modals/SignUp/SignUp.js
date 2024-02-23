@@ -56,16 +56,29 @@ const SignUp = ({ showModal, showSignIn }) => {
         </div>
         <img className="sign-up__brand" src={brand} alt="MovieIt" />
       </div>
-      <form className="sign-up__form">
-        <input className="sign-up__input" placeholder="username" />
-        <input className="sign-up__input" placeholder="email" />
+      <form className="sign-up__form" onSubmit={handleSignUp}>
+        <input
+          className="sign-up__input"
+          placeholder="username"
+          name="username"
+          onChange={handleChange}
+        />
+        <input
+          className="sign-up__input"
+          placeholder="email"
+          name="email"
+          onChange={handleChange}
+        />
         <input
           className="sign-up__input"
           placeholder="password"
           type="password"
+          name="password"
+          onChange={handleChange}
         />
         <Button buttonText="SIGN UP" UniqueStyleClass={'sign-up__button'} />
       </form>
+      {errMsg && <p className="error-msg">{errMsg}</p>}
       <div className="sign-up__alternative">
         <p className="sign-up__alternative-content">OR</p>
         <p className="sign-up__alternative-content">Sign up with</p>
