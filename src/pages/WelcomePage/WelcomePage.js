@@ -95,7 +95,9 @@ const WelcomePage = ({ setShowNavFooter }) => {
       </section>
       {show && <NavModal showModal={showModal} />}
       {showSignIn && <SignIn showModal={showSignInForm} />}
-      {showSignUp && <SignUp showModal={showSignUpForm} />}
+      {showSignUp && (
+        <SignUp showModal={showSignUpForm} showSignIn={setShowSignIn} />
+      )}
     </>
   );
 };

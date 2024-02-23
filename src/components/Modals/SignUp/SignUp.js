@@ -4,10 +4,48 @@ import close from '../../../assets/icons/close.png';
 import facebook from '../../../assets/icons/color_facebook.png';
 import google from '../../../assets/icons/google.png';
 import Button from '../../Button/Button';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+const { REACT_APP_API_BASE_PATH } = process.env;
 
-const SignUp = ({ showModal }) => {
+const SignUp = ({ showModal, showSignIn }) => {
+  const [signUpData, setsignUpData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [errMsg, setErrMsg] = useState();
+  const navigate = useNavigate();
+
   const closeForm = () => {
     showModal();
+  };
+
+  const handleChange = (e) => {
+    setsignUpData({
+      ...signUpData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${REACT_APP_API_BASE_PATH}/account/signup`,
+        signUpData
+      );
+      closeForm();
+      showSignIn(true);
+    } catch (error) {
+      if (error.response?.status === 400) {
+        setErrMsg(`${error.response?.data?.message}`);
+      } else {
+        setErrMsg('System error! Please contact our techical support.');
+        console.log(error);
+      }
+    }
   };
 
   return (
