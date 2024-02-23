@@ -5,13 +5,18 @@ import facebook from '../../../assets/icons/color_facebook.png';
 import google from '../../../assets/icons/google.png';
 import Button from '../../Button/Button';
 import { useState } from 'react';
-const { BASE_API_URL } = process.env;
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+const { REACT_APP_API_BASE_PATH } = process.env;
 
 const SignIn = ({ showModal }) => {
+  const navigate = useNavigate();
   const [signInData, setsignInData] = useState({
     email: '',
     password: '',
   });
+  const [errMsg, setErrMsg] = useState();
+
   const closeForm = () => {
     showModal();
   };
@@ -23,9 +28,25 @@ const SignIn = ({ showModal }) => {
     });
   };
 
-  const handleSignUp = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    console.log(signInData);
+    try {
+      const response = await axios.post(
+        `${REACT_APP_API_BASE_PATH}/account/signin`,
+        signInData
+      );
+      sessionStorage.setItem('JWTtoken', response.data.token);
+      navigate('/profile/edit/1');
+    } catch (error) {
+      if (error.response?.status === 401) {
+        setErrMsg('Password is not correct');
+      } else if (error.response?.status === 400) {
+        setErrMsg(`${error.response?.data?.message}`);
+      } else {
+        setErrMsg('System error! Please contact our techical support.');
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -36,7 +57,7 @@ const SignIn = ({ showModal }) => {
         </div>
         <img className="sign-in__brand" src={brand} alt="MovieIt" />
       </div>
-      <form className="sign-in__form" onSubmit={handleSignUp}>
+      <form className="sign-in__form" onSubmit={handleSignIn}>
         <input
           className="sign-in__input"
           placeholder="email"
@@ -52,6 +73,7 @@ const SignIn = ({ showModal }) => {
         />
         <Button buttonText="SIGN IN" UniqueStyleClass={'sign-in__button'} />
       </form>
+      {errMsg && <p className="error-msg">{errMsg}</p>}
       <div className="sign-in__alternative">
         <p className="sign-in__alternative-content">OR</p>
         <p className="sign-in__alternative-content">Sign in with</p>
