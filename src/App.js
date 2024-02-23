@@ -14,6 +14,9 @@ import EventCreate from './components/Events/EventCreate';
 
 function App() {
   const [showNavFooter, setShowNavFooter] = useState(true);
+  const handleShowState = () => {
+    setShowNavFooter(false);
+  };
 
   return (
     <BrowserRouter>
@@ -22,7 +25,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<WelcomePage setShowNavFooter={setShowNavFooter} />}
+            element={<WelcomePage setShowNavFooter={handleShowState} />}
           />
           <Route path="/profile/:id" element={<ProfileCard />} />
           <Route path="/profile/edit" element={<ProfileEditForm />} />
@@ -30,6 +33,7 @@ function App() {
           <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/events/add" element={<EventCreate />} />
           <Route path="/myevents" element={<MyEvents />} />
+          {/* <Route path="/messages" element={<MessagePage />} /> */}
         </Routes>
       </main>
       {showNavFooter && <Footer />}

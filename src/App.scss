@@ -1,3 +1,5 @@
+@use './styles/partials/variable' as *;
+
 * {
   margin: 0;
   padding: 0;
@@ -24,4 +26,9 @@ main {
 
 textarea {
   resize: vertical;
+}
+
+.error-msg {
+  margin: 1rem auto;
+  color: $error-red;
 }
