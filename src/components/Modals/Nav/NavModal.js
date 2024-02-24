@@ -34,12 +34,12 @@ const NavModal = ({ showModal }) => {
             <Link>
               <li className="nav-modal__item">Home</li>
             </Link>
-            <Link>
+            {/* <Link>
               <li className="nav-modal__item">About</li>
             </Link>
             <Link>
               <li className="nav-modal__item">Contact</li>
-            </Link>
+            </Link> */}
             <Link>
               <li className="nav-modal__item">Profile</li>
             </Link>

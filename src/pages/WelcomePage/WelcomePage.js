@@ -68,14 +68,14 @@ const WelcomePage = ({ setShowNavFooter }) => {
                 alt="MovieIt"
                 className="welcome-tablet__nav-brand"
               />
-              <ul className="welcome-tablet__nav-list">
+              {/* <ul className="welcome-tablet__nav-list">
                 <Link>
                   <li className="welcome-tablet__nav-item">About</li>
                 </Link>
                 <Link>
                   <li className="welcome-tablet__nav-item">Contact</li>
                 </Link>
-              </ul>
+              </ul> */}
             </div>
             <Button
               buttonText={'SING IN'}
