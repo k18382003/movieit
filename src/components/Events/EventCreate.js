@@ -2,6 +2,7 @@ import { MultiSelect } from 'react-multi-select-component';
 import ProfilePhotoUpload from '../Profile/ProfileEdit/ProfilePhotoUpload';
 import Button from '../Button/Button';
 import './EventCreate.scss';
+import { useEffect } from 'react';
 
 const EventCreate = ({ setShowNavFooter }) => {
   useEffect(() => {

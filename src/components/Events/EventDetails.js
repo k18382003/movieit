@@ -7,6 +7,7 @@ import batman from '../../assets/images/Batman.png';
 import attendees from '../../assets/images/temp-attendees.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
+import { useEffect } from 'react';
 
 const EventDetail = ({ setShowNavFooter }) => {
   useEffect(() => {

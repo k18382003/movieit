@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Button from '../Button/Button';
 import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
