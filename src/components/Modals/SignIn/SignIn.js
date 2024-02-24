@@ -35,7 +35,7 @@ const SignIn = ({ showModal }) => {
         `${REACT_APP_API_BASE_PATH}/account/signin`,
         signInData
       );
-      sessionStorage.setItem('JWTtoken', response.data.token);
+      localStorage.setItem('JWTtoken', response.data.token);
       navigate('/profile/edit');
     } catch (error) {
       if (error.response?.status === 401) {
