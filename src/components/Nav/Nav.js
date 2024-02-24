@@ -21,12 +21,12 @@ const Nav = () => {
             <Link>
               <li className="nav__item">Home</li>
             </Link>
-            <Link>
+            {/* <Link>
               <li className="nav__item">About</li>
             </Link>
             <Link>
               <li className="nav__item">Contact</li>
-            </Link>
+            </Link> */}
             <Link>
               <li className="nav__item">Profile</li>
             </Link>
