@@ -16,9 +16,9 @@ const ProfileEditForm = () => {
   const token = localStorage.getItem('JWTtoken');
 
   const turnStringtoArray = (data) => {
-    const splitArr = data.split(',');
+    const splitArr = data?.split(',');
     let result = [];
-    splitArr.forEach((item) => {
+    splitArr?.forEach((item) => {
       result.push({ label: item, value: item.toLowerCase() });
     });
     return result;
@@ -26,7 +26,7 @@ const ProfileEditForm = () => {
 
   const turnArryToString = (objArr) => {
     const valueArr = objArr.map((obj) => obj.value);
-    return valueArr.join(',');
+    return valueArr?.join(',');
   };
 
   useEffect(() => {
@@ -45,7 +45,8 @@ const ProfileEditForm = () => {
           }
         );
 
-        setUserProfile({ ...response.data, username: userName });
+        const displayname = response.data.displayname || userName;
+        setUserProfile({ ...response.data, displayname: displayname });
         setSelectedGenres(turnStringtoArray(response.data.genres));
         setSelectedSnacks(turnStringtoArray(response.data.snacks));
         setSelectedDays(turnStringtoArray(response.data.preferdays));
@@ -83,8 +84,9 @@ const ProfileEditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let updatedUserProfile = {
-      ...userProfile,
-      displayname: userProfile.username,
+      postalcode: userProfile.postalcode,
+      bio: userProfile.bio,
+      displayname: userProfile.displayname,
       genres: turnArryToString(selectedGenres),
       snacks: turnArryToString(selectedSnacks),
       preferdays: turnArryToString(selectedDays),
@@ -120,12 +122,12 @@ const ProfileEditForm = () => {
           <div className="profile-form__input-container--tablet">
             <div className="profile-form__input-container">
               <label className="profile-form__label" htmlFor="username">
-                Username
+                Display Name
               </label>
               <input
                 className="profile-form__input"
-                name="username"
-                value={userProfile.username}
+                name="displayname"
+                value={userProfile.displayname || userProfile.username}
                 onChange={handleChange}
               />
             </div>
@@ -211,7 +213,7 @@ const ProfileEditForm = () => {
               <textarea
                 className="profile-form__input profile-form__input--about"
                 name="bio"
-                value={userProfile.bio}
+                value={userProfile.bio || ''}
                 onChange={handleChange}
               />
             </div>
