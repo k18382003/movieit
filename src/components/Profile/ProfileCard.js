@@ -13,11 +13,15 @@ import axios from 'axios';
 import Metrics from './Metrics/Metrics';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileCard = () => {
+const ProfileCard = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const [profileDeatil, setProfileDetail] = useState();
   const [currentUser, setCurrentUser] = useState();
   const { id } = useParams();
+
+  useEffect(() => {
+    setShowNavFooter(true);
+  }, []);
 
   const reStructureString = (input) => {
     let newString = '';

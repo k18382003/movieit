@@ -3,7 +3,10 @@ import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
 import './EventList.scss';
 
-const EventList = () => {
+const EventList = ({ setShowNavFooter }) => {
+  useEffect(() => {
+    setShowNavFooter(true);
+  }, []);
   const tempData = [
     {
       showtime: '02/12/2024 18:45:00',

@@ -3,7 +3,10 @@ import ProfilePhotoUpload from '../Profile/ProfileEdit/ProfilePhotoUpload';
 import Button from '../Button/Button';
 import './EventCreate.scss';
 
-const EventCreate = () => {
+const EventCreate = ({ setShowNavFooter }) => {
+  useEffect(() => {
+    setShowNavFooter(true);
+  }, []);
   return (
     <form className="event-create">
       <p className="event-create__label">Movie Photo</p>

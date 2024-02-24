@@ -14,7 +14,7 @@ const WelcomePage = ({ setShowNavFooter }) => {
   const [showSignUp, setShowSignUp] = useState(false);
 
   useEffect(() => {
-    setShowNavFooter();
+    setShowNavFooter(false);
   }, []);
 
   const showModal = () => {

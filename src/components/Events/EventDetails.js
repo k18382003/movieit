@@ -8,7 +8,11 @@ import attendees from '../../assets/images/temp-attendees.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
 
-const EventDetail = () => {
+const EventDetail = ({ setShowNavFooter }) => {
+  useEffect(() => {
+    setShowNavFooter(true);
+  }, []);
+
   const tempData = {
     showtime: '02/12/2024 18:45:00',
     moviename: 'The Batman',

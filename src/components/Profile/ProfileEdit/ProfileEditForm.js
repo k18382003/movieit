@@ -5,15 +5,21 @@ import './ProfileEditForm.scss';
 import { genres, snacks, days } from '../DropDownData';
 import ProfilePhotoUpload from './ProfilePhotoUpload';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileEditForm = () => {
+const ProfileEditForm = ({ setShowNavFooter }) => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedSnacks, setSelectedSnacks] = useState([]);
   const [selectedDays, setSelectedDays] = useState([]);
   const [userProfile, setUserProfile] = useState();
   const [errMsg, setErrMsg] = useState();
   const token = localStorage.getItem('JWTtoken');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setShowNavFooter(true);
+  }, []);
 
   const turnStringtoArray = (data) => {
     const splitArr = data?.split(',');
@@ -93,7 +99,7 @@ const ProfileEditForm = () => {
     };
 
     try {
-      const response = await axios.patch(
+      await axios.patch(
         `${REACT_APP_API_BASE_PATH}/profile/${userProfile.user_id}`,
         updatedUserProfile,
         {
@@ -102,7 +108,7 @@ const ProfileEditForm = () => {
           },
         }
       );
-      console.log('Updated profile', response);
+      navigate(`/profile/${userProfile.user_id}`);
     } catch (error) {
       if (error.response?.status === 400) {
         setErrMsg(`${error.response?.data?.message}`);
