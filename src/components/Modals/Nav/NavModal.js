@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import close from '../../../assets/icons/close.png';
 import Button from '../../Button/Button';
 import './NavModal.scss';
@@ -10,6 +10,9 @@ import SignIn from '../SignIn/SignIn';
 const NavModal = ({ showModal }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+
+  const navigate = useNavigate();
 
   const closeNav = () => {
     showModal();
@@ -21,6 +24,13 @@ const NavModal = ({ showModal }) => {
 
   const showSignInFrom = () => {
     setShowSignIn(!showSignIn);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('JWTtoken');
+    setToken(undefined);
+    navigate('/');
+    closeNav();
   };
 
   return (
@@ -51,18 +61,26 @@ const NavModal = ({ showModal }) => {
             <SearchBar />
           </div>
         </div>
-        <div className="nav-modal__button-container">
+        {token ? (
           <Button
-            buttonText="SIGN UP"
+            buttonText="SIGN OUT"
             UniqueStyleClass={'nav-modal__button nav-modal__button--signup'}
-            onClick={showSignUpForm}
+            onClick={() => handleSignOut()}
           />
-          <Button
-            buttonText="SIGN IN"
-            UniqueStyleClass={'nav-modal__button nav-modal__button--signin'}
-            onClick={showSignInFrom}
-          />
-        </div>
+        ) : (
+          <div className="nav-modal__button-container">
+            <Button
+              buttonText="SIGN UP"
+              UniqueStyleClass={'nav-modal__button nav-modal__button--signup'}
+              onClick={showSignUpForm}
+            />
+            <Button
+              buttonText="SIGN IN"
+              UniqueStyleClass={'nav-modal__button nav-modal__button--signin'}
+              onClick={showSignInFrom}
+            />
+          </div>
+        )}
       </section>
       {showSignUp && <SignUp showModal={setShowSignUp} />}
       {showSignIn && <SignIn showModal={showSignInFrom} />}

@@ -4,7 +4,7 @@ import collapseNav from '../../assets/icons/collapse-nav.png';
 import brand from '../../assets/images/MovieIt-white.svg';
 import NavModal from '../../components/Modals/Nav/NavModal';
 import Button from '../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SignIn from '../../components/Modals/SignIn/SignIn';
 import SignUp from '../../components/Modals/SignUp/SignUp';
 
@@ -12,6 +12,9 @@ const WelcomePage = ({ setShowNavFooter }) => {
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowNavFooter(false);
@@ -25,6 +28,11 @@ const WelcomePage = ({ setShowNavFooter }) => {
   };
   const showSignUpForm = () => {
     setShowSignUp(!showSignUp);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('JWTtoken');
+    setToken(undefined);
   };
 
   return (
@@ -41,22 +49,24 @@ const WelcomePage = ({ setShowNavFooter }) => {
           <div className="welcome-mobile__signing-inner-container welcome-mobile__signing-inner-container--brand">
             <img src={brand} />
           </div>
-          <div className="welcome-mobile__signing-inner-container welcome-mobile__signing-inner-container--button">
-            <Button
-              buttonText="SIGN UP"
-              UniqueStyleClass={
-                'welcome-mobile__button welcome-mobile__button--signup'
-              }
-              onClick={setShowSignUp}
-            />
-            <Button
-              buttonText="SIGN IN"
-              UniqueStyleClass={
-                'welcome-mobile__button welcome-mobile__button--signin'
-              }
-              onClick={setShowSignIn}
-            />
-          </div>
+          {!token && (
+            <div className="welcome-mobile__signing-inner-container welcome-mobile__signing-inner-container--button">
+              <Button
+                buttonText="SIGN UP"
+                UniqueStyleClass={
+                  'welcome-mobile__button welcome-mobile__button--signup'
+                }
+                onClick={setShowSignUp}
+              />
+              <Button
+                buttonText="SIGN IN"
+                UniqueStyleClass={
+                  'welcome-mobile__button welcome-mobile__button--signin'
+                }
+                onClick={setShowSignIn}
+              />
+            </div>
+          )}
         </div>
       </section>
       <section className="welcome-tablet">
@@ -68,29 +78,52 @@ const WelcomePage = ({ setShowNavFooter }) => {
                 alt="MovieIt"
                 className="welcome-tablet__nav-brand"
               />
-              {/* <ul className="welcome-tablet__nav-list">
-                <Link>
+              <ul className="welcome-tablet__nav-list">
+                {/* <Link>
                   <li className="welcome-tablet__nav-item">About</li>
                 </Link>
                 <Link>
                   <li className="welcome-tablet__nav-item">Contact</li>
-                </Link>
-              </ul> */}
+                </Link> */}
+                {token && (
+                  <>
+                    <Link>
+                      <li className="welcome-tablet__nav-item">Profile</li>
+                    </Link>
+                    <Link>
+                      <li className="welcome-tablet__nav-item">Events</li>
+                    </Link>
+                    <Link>
+                      <li className="welcome-tablet__nav-item">Message</li>
+                    </Link>
+                  </>
+                )}
+              </ul>
             </div>
-            <Button
-              buttonText={'SING IN'}
-              UniqueStyleClass={'welcome-tablet__signin-button'}
-              onClick={setShowSignIn}
-            />
+            {token ? (
+              <Button
+                buttonText={'SING OUT'}
+                UniqueStyleClass={'welcome-tablet__signout-button'}
+                onClick={handleSignOut}
+              />
+            ) : (
+              <Button
+                buttonText={'SING IN'}
+                UniqueStyleClass={'welcome-tablet__signin-button'}
+                onClick={setShowSignIn}
+              />
+            )}
           </div>
         </div>
         <div className="welcome-tablet__title-container">
           <h1 className="welcome-tablet__title">Let's Movie It</h1>
-          <Button
-            buttonText={'SIGN UP'}
-            UniqueStyleClass={'welcome-tablet__signup-button'}
-            onClick={setShowSignUp}
-          />
+          {!token && (
+            <Button
+              buttonText={'SIGN UP'}
+              UniqueStyleClass={'welcome-tablet__signup-button'}
+              onClick={setShowSignUp}
+            />
+          )}
         </div>
       </section>
       {show && <NavModal showModal={showModal} />}

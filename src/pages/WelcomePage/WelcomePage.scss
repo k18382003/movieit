@@ -142,7 +142,7 @@
     }
 
     &__signin-button {
-      padding: 0rem 3rem;
+      padding: 0rem 3rem !important;
       border-radius: 20px;
       font-weight: $demi;
       background-color: $movieit-white;
@@ -179,6 +179,18 @@
       width: 40%;
       border-radius: 20px;
       margin: 0 auto;
+    }
+
+    &__signout-button {
+      padding: 0rem 3rem !important;
+      color: $movieit-white;
+      border-radius: 20px;
+      font-weight: $demi;
+      background-color: $movieit-red;
+
+      &:hover {
+        color: $movieit-dark-red;
+      }
     }
   }
 }

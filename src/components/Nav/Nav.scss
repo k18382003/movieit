@@ -8,6 +8,15 @@
   background-color: $movieit-dark-grey;
   @include paddings(2rem, $mobile);
 
+  &__item {
+    &--signout {
+      display: none;
+      @include tablet {
+        display: block;
+      }
+    }
+  }
+
   @include tablet {
     &__brand-list {
       display: flex;
@@ -27,6 +36,7 @@
       font-size: 1.8rem;
       font-weight: $demi;
       color: $movieit-white;
+      cursor: pointer;
 
       &:hover {
         color: $movieit-black;

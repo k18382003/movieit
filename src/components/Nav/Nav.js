@@ -3,13 +3,24 @@ import collapseNav from '../../assets/icons/collapse-nav.png';
 import './Nav.scss';
 import { useState } from 'react';
 import NavModal from '../Modals/Nav/NavModal';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from '../SerachBar/SearchBar';
+import Button from '../Button/Button';
 
 const Nav = () => {
   const [show, setShow] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+
+  const navigate = useNavigate();
+
   const showModal = () => {
     setShow(!show);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('JWTtoken');
+    setToken(undefined);
+    navigate('/');
   };
 
   return (
@@ -27,17 +38,28 @@ const Nav = () => {
             <Link>
               <li className="nav__item">Contact</li>
             </Link> */}
-            <Link>
-              <li className="nav__item">Profile</li>
-            </Link>
-            <Link>
-              <li className="nav__item">Message</li>
-            </Link>
+            {token && (
+              <>
+                <Link>
+                  <li className="nav__item">Profile</li>
+                </Link>
+                <Link>
+                  <li className="nav__item">Message</li>
+                </Link>
+              </>
+            )}
           </ul>
         </div>
-        <div className="nav__search-bar">
-          <SearchBar />
-        </div>
+        {token && (
+          <>
+            <div className="nav__search-bar">
+              <SearchBar />
+            </div>
+            <p className="nav__item nav__item--signout" onClick={handleSignOut}>
+              Sign Out
+            </p>
+          </>
+        )}
         <img
           className="nav__collapse"
           alt="Show Navigation"
