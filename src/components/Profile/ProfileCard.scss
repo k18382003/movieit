@@ -93,6 +93,7 @@
     line-height: 2rem;
     height: 13rem;
     overflow-y: scroll;
+    width: 100%;
 
     @include tablet {
       font-size: 1.3rem;
