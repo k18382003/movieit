@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventList = ({ setShowNavFooter }) => {
-  const token = localStorage.getItem('JWTtoken');
+  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
   const [eventList, setEventList] = useState();
 
   useEffect(() => {
@@ -55,7 +55,6 @@ const EventList = ({ setShowNavFooter }) => {
             authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data);
         setEventList(response.data);
       } catch (error) {
         console.log(error);
@@ -71,10 +70,12 @@ const EventList = ({ setShowNavFooter }) => {
           <h1 className="eventlist__greeting">Welcome back, Summer</h1>
           <div className="eventlist__title-container">
             <p className="eventlist__next-event-text">All Events</p>
-            <Button
-              buttonText={'My Events'}
-              UniqueStyleClass={'eventlist__my-events-button'}
-            />
+            <Link to={'/myevents'}>
+              <Button
+                buttonText={'My Events'}
+                UniqueStyleClass={'eventlist__my-events-button'}
+              />
+            </Link>
           </div>
           <div className="eventlist__tablet-outter-container">
             <CalendarWithNextEvent movie={tempData[0]} />
@@ -82,7 +83,9 @@ const EventList = ({ setShowNavFooter }) => {
               {eventList.map((movie) => {
                 return <EventItem key={movie.id} movie={movie} />;
               })}
-              <p className="eventlist__load-more">Load More</p>
+              {eventList.length > 2 && (
+                <p className="eventlist__load-more">Load More</p>
+              )}
             </div>
           </div>
         </section>

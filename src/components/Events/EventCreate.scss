@@ -57,7 +57,8 @@
     }
 
     &--notes {
-        height: 10rem;
+      height: 10rem;
+      text-wrap: wrap;
     }
   }
 
@@ -128,4 +129,26 @@
   --rmsc-p: 1rem; /* Spacing */
   --rmsc-radius: 10px; /* Radius */
   --rmsc-h: 4.5rem; /* Height */
+}
+
+/*Date time picker*/
+.react-datetime-picker__wrapper {
+  border: none !important;
+
+  & * {
+    font-size: 1.3rem;
+    font-weight: 700 !important;
+  }
+}
+
+.react-datetime-picker__button {
+  display: none;
+}
+
+.react-datetime-picker__clock {
+  display: none;
+}
+
+.react-datetime-picker__calendar {
+  inset: 3rem auto 100% 0px !important;
 }

@@ -49,7 +49,6 @@ const ProfileCard = ({ setShowNavFooter, currentUser}) => {
           }
         );
 
-        console.log('detail', response.data);
         setProfileDetail({
           ...response.data,
           genres: reStructureString(response.data.genres),

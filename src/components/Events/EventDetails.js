@@ -77,146 +77,143 @@ const EventDetail = ({ setShowNavFooter }) => {
 
   return (
     <>
-      {eventDetail &&
-        evetntHost && (
-          <section className="event-detail">
-            <div className="event-detail__tablet-left">
-              <h1 className="event-detail__movie-name">
-                {eventDetail.movie_name}
-              </h1>
-              <p className="event-detail__host-by">
-                Host by {evetntHost.hostName}
-              </p>
-              <img className="event-detail__movie-image" src={batman} />
-              <div className="event-detail__info">
+      {eventDetail && evetntHost && (
+        <section className="event-detail">
+          <div className="event-detail__tablet-left">
+            <h1 className="event-detail__movie-name">
+              {eventDetail.movie_name}
+            </h1>
+            <p className="event-detail__host-by">
+              Host by {evetntHost.hostName}
+            </p>
+            <img className="event-detail__movie-image" src={batman} />
+            <div className="event-detail__info">
+              <div className="event-detail__data">
+                <img className="event-detail__icon" src={time} />
+                <p className="event-detail__content event-detail__content--showtime">
+                  {eventDetail.show_time}
+                </p>
+              </div>
+              <div className="event-detail__data">
+                <img className="event-detail__icon" src={location} />
+                <p className="event-detail__content">
+                  {eventDetail.cinema +
+                    ' ' +
+                    eventDetail.address +
+                    ' ' +
+                    eventDetail.postal_code}
+                </p>
+              </div>
+              <div className="event-detail__attend-max-attend">
                 <div className="event-detail__data">
-                  <img className="event-detail__icon" src={time} />
-                  <p className="event-detail__content event-detail__content--showtime">
-                    {eventDetail.show_time}
+                  <img className="event-detail__icon" src={people} />
+                  <p className="event-detail__content event-detail__content--attendee">
+                    {tempData.attendees} ppl going
                   </p>
                 </div>
-                <div className="event-detail__data">
-                  <img className="event-detail__icon" src={location} />
-                  <p className="event-detail__content">
-                    {eventDetail.cinema +
-                      ' ' +
-                      eventDetail.address +
-                      ' ' +
-                      eventDetail.postal_code}
-                  </p>
+                <p className="event-detail__max-attend">
+                  Max {eventDetail.max_people}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="event-detail__tablet-right">
+            <div className="event-detail__extra-info-container">
+              <div className="event-detail__extra-info event-detail__extra-info--left">
+                <p className="event-detail__extra-info--title">The Host</p>
+                <img
+                  className="event-detail__extra-info--host-photo"
+                  src={host.photo}
+                />
+              </div>
+              <div className="event-detail__extra-info event-detail__extra-info--right">
+                <p className="event-detail__extra-info--title">Notes</p>
+                <div className="event-detail__extra-info--note-container">
+                  <div className="event-detail__extra-info--note">
+                    {eventDetail.notes}
+                  </div>
                 </div>
-                <div className="event-detail__attend-max-attend">
-                  <div className="event-detail__data">
-                    <img className="event-detail__icon" src={people} />
-                    <p className="event-detail__content event-detail__content--attendee">
-                      {tempData.attendees} ppl going
+              </div>
+            </div>
+            <div className="event-detail__who-is-going">
+              <p className="event-detail__who-is-going--title">Who is going</p>
+              <div className="event-detail__who-is-going--attendees-outter-container">
+                <div className="event-detail__who-is-going--attendees-container">
+                  <div className="event-detail__who-is-going--individual-container">
+                    <img
+                      className="event-detail__who-is-going--attendees-img"
+                      src={attendees}
+                    />
+                    <p className="event-detail__who-is-going--attendees-name">
+                      Alice
                     </p>
                   </div>
-                  <p className="event-detail__max-attend">
-                    Max {eventDetail.max_people}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="event-detail__tablet-right">
-              <div className="event-detail__extra-info-container">
-                <div className="event-detail__extra-info event-detail__extra-info--left">
-                  <p className="event-detail__extra-info--title">The Host</p>
-                  <img
-                    className="event-detail__extra-info--host-photo"
-                    src={host.photo}
-                  />
-                </div>
-                <div className="event-detail__extra-info event-detail__extra-info--right">
-                  <p className="event-detail__extra-info--title">Notes</p>
-                  <div className="event-detail__extra-info--note-container">
-                    <div className="event-detail__extra-info--note">
-                      {eventDetail.notes}
-                    </div>
+                  <div className="event-detail__who-is-going--individual-container">
+                    <img
+                      className="event-detail__who-is-going--attendees-img"
+                      src={attendees}
+                    />
+                    <p className="event-detail__who-is-going--attendees-name">
+                      Alice
+                    </p>
+                  </div>
+                  <div className="event-detail__who-is-going--individual-container">
+                    <img
+                      className="event-detail__who-is-going--attendees-img"
+                      src={attendees}
+                    />
+                    <p className="event-detail__who-is-going--attendees-name">
+                      Alice
+                    </p>
+                  </div>
+                  <div className="event-detail__who-is-going--individual-container">
+                    <img
+                      className="event-detail__who-is-going--attendees-img"
+                      src={attendees}
+                    />
+                    <p className="event-detail__who-is-going--attendees-name">
+                      Alice
+                    </p>
+                  </div>
+                  <div className="event-detail__who-is-going--individual-container">
+                    <img
+                      className="event-detail__who-is-going--attendees-img"
+                      src={attendees}
+                    />
+                    <p className="event-detail__who-is-going--attendees-name">
+                      Alice
+                    </p>
+                  </div>
+                  <div className="event-detail__who-is-going--individual-container">
+                    <img
+                      className="event-detail__who-is-going--attendees-img"
+                      src={attendees}
+                    />
+                    <p className="event-detail__who-is-going--attendees-name">
+                      Alice
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="event-detail__who-is-going">
-                <p className="event-detail__who-is-going--title">
-                  Who is going
-                </p>
-                <div className="event-detail__who-is-going--attendees-outter-container">
-                  <div className="event-detail__who-is-going--attendees-container">
-                    <div className="event-detail__who-is-going--individual-container">
-                      <img
-                        className="event-detail__who-is-going--attendees-img"
-                        src={attendees}
-                      />
-                      <p className="event-detail__who-is-going--attendees-name">
-                        Alice
-                      </p>
-                    </div>
-                    <div className="event-detail__who-is-going--individual-container">
-                      <img
-                        className="event-detail__who-is-going--attendees-img"
-                        src={attendees}
-                      />
-                      <p className="event-detail__who-is-going--attendees-name">
-                        Alice
-                      </p>
-                    </div>
-                    <div className="event-detail__who-is-going--individual-container">
-                      <img
-                        className="event-detail__who-is-going--attendees-img"
-                        src={attendees}
-                      />
-                      <p className="event-detail__who-is-going--attendees-name">
-                        Alice
-                      </p>
-                    </div>
-                    <div className="event-detail__who-is-going--individual-container">
-                      <img
-                        className="event-detail__who-is-going--attendees-img"
-                        src={attendees}
-                      />
-                      <p className="event-detail__who-is-going--attendees-name">
-                        Alice
-                      </p>
-                    </div>
-                    <div className="event-detail__who-is-going--individual-container">
-                      <img
-                        className="event-detail__who-is-going--attendees-img"
-                        src={attendees}
-                      />
-                      <p className="event-detail__who-is-going--attendees-name">
-                        Alice
-                      </p>
-                    </div>
-                    <div className="event-detail__who-is-going--individual-container">
-                      <img
-                        className="event-detail__who-is-going--attendees-img"
-                        src={attendees}
-                      />
-                      <p className="event-detail__who-is-going--attendees-name">
-                        Alice
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="event-detail__button-container">
-                <Button
-                  buttonText={'Invite More'}
-                  UniqueStyleClass={
-                    'event-detail__button event-detail__button--invite'
-                  }
-                />
-                <Button
-                  buttonText={'Cancel Event'}
-                  UniqueStyleClass={
-                    'event-detail__button event-detail__button--cancel'
-                  }
-                />
-              </div>
             </div>
-            <img className="event-detail__action-icon" src={attend} />
-          </section>
-        )}
+            <div className="event-detail__button-container">
+              <Button
+                buttonText={'Invite More'}
+                UniqueStyleClass={
+                  'event-detail__button event-detail__button--invite'
+                }
+              />
+              <Button
+                buttonText={'Cancel Event'}
+                UniqueStyleClass={
+                  'event-detail__button event-detail__button--cancel'
+                }
+              />
+            </div>
+          </div>
+          <img className="event-detail__action-icon" src={attend} />
+        </section>
+      )}
     </>
   );
 };
