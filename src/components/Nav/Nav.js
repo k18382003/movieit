@@ -5,9 +5,8 @@ import { useState } from 'react';
 import NavModal from '../Modals/Nav/NavModal';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from '../SerachBar/SearchBar';
-import Button from '../Button/Button';
 
-const Nav = () => {
+const Nav = ({ currentUser }) => {
   const [show, setShow] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
 
@@ -29,7 +28,7 @@ const Nav = () => {
         <div className="nav__brand-list">
           <img className="nav__brand" src={brand} alt="MovieIt" />
           <ul className="nav__list">
-            <Link>
+            <Link to="/">
               <li className="nav__item">Home</li>
             </Link>
             {/* <Link>
@@ -40,8 +39,11 @@ const Nav = () => {
             </Link> */}
             {token && (
               <>
-                <Link>
+                <Link to={`/profile/${currentUser?.userId}`}>
                   <li className="nav__item">Profile</li>
+                </Link>
+                <Link to={`/events`}>
+                  <li className="nav__item">Events</li>
                 </Link>
                 <Link>
                   <li className="nav__item">Message</li>

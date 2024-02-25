@@ -13,10 +13,9 @@ import axios from 'axios';
 import Metrics from './Metrics/Metrics';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileCard = ({ setShowNavFooter }) => {
+const ProfileCard = ({ setShowNavFooter, currentUser}) => {
   const token = localStorage.getItem('JWTtoken');
   const [profileDeatil, setProfileDetail] = useState();
-  const [currentUser, setCurrentUser] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -34,19 +33,6 @@ const ProfileCard = ({ setShowNavFooter }) => {
     return newString.slice(0, newString.length - 2);
   };
 
-  const getCurrentUser = async () => {
-    try {
-      const response = await axios.get(`${REACT_APP_API_BASE_PATH}/account/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setCurrentUser(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
     if (!token) {
       return;
@@ -54,7 +40,6 @@ const ProfileCard = ({ setShowNavFooter }) => {
 
     const fetchProfileDetail = async () => {
       try {
-        await getCurrentUser();
         const response = await axios.get(
           `${REACT_APP_API_BASE_PATH}/profile/${id}`,
           {

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import SignUp from '../SignUp/SignUp';
 import SignIn from '../SignIn/SignIn';
 
-const NavModal = ({ showModal }) => {
+const NavModal = ({ showModal, currentUser }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
@@ -41,7 +41,7 @@ const NavModal = ({ showModal }) => {
             <img src={close} alt="Close Navigation" onClick={closeNav} />
           </div>
           <ul className="nav-modal__list">
-            <Link>
+            <Link to={`/`}>
               <li className="nav-modal__item">Home</li>
             </Link>
             {/* <Link>
@@ -50,7 +50,10 @@ const NavModal = ({ showModal }) => {
             <Link>
               <li className="nav-modal__item">Contact</li>
             </Link> */}
-            <Link>
+            <Link to={`profile/${currentUser.userId}`}>
+              <li className="nav-modal__item">Profile</li>
+            </Link>
+            <Link to={'events'}>
               <li className="nav-modal__item">Profile</li>
             </Link>
             <Link>

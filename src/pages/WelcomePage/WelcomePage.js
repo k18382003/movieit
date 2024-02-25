@@ -7,14 +7,15 @@ import Button from '../../components/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import SignIn from '../../components/Modals/SignIn/SignIn';
 import SignUp from '../../components/Modals/SignUp/SignUp';
+import axios from 'axios';
+const { REACT_APP_API_BASE_PATH } = process.env;
 
-const WelcomePage = ({ setShowNavFooter }) => {
+const WelcomePage = ({ setShowNavFooter, currentUser}) => {
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     setShowNavFooter(false);
@@ -34,6 +35,7 @@ const WelcomePage = ({ setShowNavFooter }) => {
     localStorage.removeItem('JWTtoken');
     setToken(undefined);
   };
+
 
   return (
     <>
@@ -87,10 +89,10 @@ const WelcomePage = ({ setShowNavFooter }) => {
                 </Link> */}
                 {token && (
                   <>
-                    <Link>
+                    <Link to={`/profile/${currentUser?.userId}`}>
                       <li className="welcome-tablet__nav-item">Profile</li>
                     </Link>
-                    <Link>
+                    <Link to={`/events`}>
                       <li className="welcome-tablet__nav-item">Events</li>
                     </Link>
                     <Link>
@@ -126,7 +128,7 @@ const WelcomePage = ({ setShowNavFooter }) => {
           )}
         </div>
       </section>
-      {show && <NavModal showModal={showModal} />}
+      {show && <NavModal showModal={showModal} currentUser={currentUser}/>}
       {showSignIn && <SignIn showModal={showSignInForm} />}
       {showSignUp && (
         <SignUp showModal={showSignUpForm} showSignIn={setShowSignIn} />
