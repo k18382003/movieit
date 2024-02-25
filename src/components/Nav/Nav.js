@@ -69,7 +69,7 @@ const Nav = ({ currentUser }) => {
           onClick={showModal}
         />
       </nav>
-      {show && <NavModal showModal={showModal} />}
+      {show && <NavModal showModal={showModal} currentUser={currentUser} />}
     </>
   );
 };

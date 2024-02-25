@@ -50,7 +50,12 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
             },
           }
         );
-
+        if (
+          Date.parse(response.data.updated_at) >
+          Date.parse(response.data.created_at)
+        ) {
+          navigate('/events');
+        }
         const displayname = response.data.displayname || userName;
         setUserProfile({ ...response.data, displayname: displayname });
         setSelectedGenres(turnStringtoArray(response.data.genres));

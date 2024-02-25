@@ -29,7 +29,6 @@ const NavModal = ({ showModal, currentUser }) => {
   const handleSignOut = () => {
     localStorage.removeItem('JWTtoken');
     setToken(undefined);
-    navigate('/');
     closeNav();
   };
 
@@ -50,19 +49,25 @@ const NavModal = ({ showModal, currentUser }) => {
             <Link>
               <li className="nav-modal__item">Contact</li>
             </Link> */}
-            <Link to={`profile/${currentUser.userId}`}>
-              <li className="nav-modal__item">Profile</li>
-            </Link>
-            <Link to={'events'}>
-              <li className="nav-modal__item">Profile</li>
-            </Link>
-            <Link>
-              <li className="nav-modal__item">Message</li>
-            </Link>
+            {token && currentUser && (
+              <>
+                <Link to={`profile/${currentUser?.userId}`}>
+                  <li className="nav-modal__item">Profile</li>
+                </Link>
+                <Link to={'events'}>
+                  <li className="nav-modal__item">Events</li>
+                </Link>
+                <Link>
+                  <li className="nav-modal__item">Message</li>
+                </Link>
+              </>
+            )}
           </ul>
-          <div className="nav-modal__search-bar">
-            <SearchBar />
-          </div>
+          {token && (
+            <div className="nav-modal__search-bar">
+              <SearchBar />
+            </div>
+          )}
         </div>
         {token ? (
           <Button
