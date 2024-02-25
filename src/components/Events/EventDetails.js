@@ -49,9 +49,7 @@ const EventDetail = ({ setShowNavFooter }) => {
             },
           }
         );
-        console.log('123', response.data);
         setEventDetail(response.data);
-        console.log('response.data', response.data);
         fetchHost(response.data.host);
       } catch (error) {
         console.log(error);
