@@ -30,6 +30,19 @@ const ProfileCard = () => {
     return newString.slice(0, newString.length - 2);
   };
 
+  const getCurrentUser = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_API_BASE_PATH}/account/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCurrentUser(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (!token) {
       return;
@@ -37,6 +50,7 @@ const ProfileCard = () => {
 
     const fetchProfileDetail = async () => {
       try {
+        await getCurrentUser();
         const response = await axios.get(
           `${REACT_APP_API_BASE_PATH}/profile/${id}`,
           {
@@ -61,34 +75,9 @@ const ProfileCard = () => {
     fetchProfileDetail();
   }, [id]);
 
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
-
-    const getCurrentUser = async () => {
-      try {
-        const response = await axios.get(
-          `${REACT_APP_API_BASE_PATH}/account/`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(response.data);
-        setCurrentUser(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getCurrentUser();
-  }, [id]);
-
   return (
     <>
-      {profileDeatil && (
+      {profileDeatil && currentUser && (
         <section className="profile-card">
           <div className="profile-card__card-container">
             <div
