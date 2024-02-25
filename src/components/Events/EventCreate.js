@@ -14,7 +14,6 @@ const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventCreate = ({ setShowNavFooter, currentUser }) => {
   const [eventData, setEventData] = useState({});
-  // const [currentUser, setCurrentUser] = useState();
   const [errMsg, setErrMsg] = useState();
   const token = localStorage.getItem('JWTtoken');
   const navigate = useNavigate();
@@ -23,26 +22,6 @@ const EventCreate = ({ setShowNavFooter, currentUser }) => {
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
-
-  // useEffect(() => {
-  //   if (!token) return;
-  //   const getCurrentUser = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `${REACT_APP_API_BASE_PATH}/account/`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
-  //       setCurrentUser(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   getCurrentUser();
-  // }, []);
 
   const handleChange = (e) => {
     setEventData({
