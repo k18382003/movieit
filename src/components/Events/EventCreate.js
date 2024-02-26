@@ -83,7 +83,6 @@ const EventCreate = ({ setShowNavFooter }) => {
           },
         }
       );
-      console.log('ConvertedShowTime', ConvertedShowTime);
       let cinemaCode = eventData.postalcode.replace(' ', '');
       let homeCode = profile.data.postalcode.replace(' ', '');
 

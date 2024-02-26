@@ -50,7 +50,6 @@ const ProfileCardInvite = ({ setShowNavFooter, currentUser }) => {
             },
           }
         );
-        console.log(response.data);
         setProfileList(response.data);
       } catch (error) {
         console.error(error);

@@ -80,7 +80,6 @@ const EventDetail = ({ setShowNavFooter }) => {
             },
           }
         );
-        console.log(response.data);
         setEvetntHost({
           userId: response.data.user_id,
           hostName: response.data.displayname,
@@ -100,7 +99,6 @@ const EventDetail = ({ setShowNavFooter }) => {
             },
           }
         );
-        console.log(reponse.data);
         setParticipantsList(reponse.data);
       } catch (error) {
         console.log(error);
@@ -134,19 +132,16 @@ const EventDetail = ({ setShowNavFooter }) => {
           },
         }
       );
-      console.log('profile.data', profile.data);
+      'profile.data', profile.data;
       let newParticipantsList = [
         ...participantsList,
         { user_id: currentUser.userId, displayname: profile.data.displayname },
       ];
-      console.log('newParticipantsList', newParticipantsList);
       setParticipantsList(newParticipantsList);
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log('currentUser', currentUser);
 
   return (
     <>
