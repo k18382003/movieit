@@ -13,19 +13,40 @@ import PostalCodeMsg from '../Modals/PostalCode/PostalCodeMsg';
 
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const EventCreate = ({ setShowNavFooter, currentUser }) => {
+const EventCreate = ({ setShowNavFooter }) => {
   const [eventData, setEventData] = useState({});
   const [errMsg, setErrMsg] = useState();
   const token = localStorage.getItem('JWTtoken');
   const navigate = useNavigate();
   const [showTime, setShowTime] = useState(new Date());
   const [showPostalCodeModal, setShowPostalCodeModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
   // const [cinemaCode, setCinemaCode] = useState('');
   // const [homeCode, setHomeCode] = useState('');
 
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
+
+  useEffect(() => {
+    if (!token) return;
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCurrentUser();
+  }, [token]);
 
   const handleChange = (e) => {
     setEventData({
@@ -67,7 +88,9 @@ const EventCreate = ({ setShowNavFooter, currentUser }) => {
       let homeCode = profile.data.postalcode.replace(' ', '');
 
       navigate(
-        `/profile/event/${response.data.eventId}/area/${cinemaCode + '&' + homeCode}`
+        `/profile/event/${response.data.eventId}/area/${
+          cinemaCode + '&' + homeCode
+        }`
       );
     } catch (error) {
       console.error(error);

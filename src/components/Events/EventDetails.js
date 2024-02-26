@@ -111,6 +111,43 @@ const EventDetail = ({ setShowNavFooter }) => {
     fetchParticipante();
   }, []);
 
+  const handleJoin = async () => {
+    try {
+      const response = await axios.post(
+        `${REACT_APP_API_BASE_PATH}/participants/`,
+        {
+          user_id: currentUser.userId,
+          event_id: eventId,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const profile = await axios.get(
+        `${REACT_APP_API_BASE_PATH}/profile/${currentUser.userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log('profile.data', profile.data);
+      let newParticipantsList = [
+        ...participantsList,
+        { user_id: currentUser.userId, displayname: profile.data.displayname },
+      ];
+      console.log('newParticipantsList', newParticipantsList);
+      setParticipantsList(newParticipantsList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log('currentUser', currentUser);
+
   return (
     <>
       {eventDetail && evetntHost && (
@@ -223,6 +260,7 @@ const EventDetail = ({ setShowNavFooter }) => {
                     UniqueStyleClass={
                       'event-detail__button event-detail__button--invite'
                     }
+                    onClick={handleJoin}
                   />
                 )}
               </div>
