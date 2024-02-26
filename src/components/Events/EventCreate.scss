@@ -1,6 +1,14 @@
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variable' as *;
 
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color:  $movieit-black, $alpha: 0.5);
+  position: fixed;
+  top: 0;
+}
+
 .event-create {
   width: 100%;
   @include paddings(2rem, $mobile);

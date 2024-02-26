@@ -12,6 +12,8 @@ import 'react-calendar/dist/Calendar.css';
 import EventDetail from './components/Events/EventDetails';
 import EventCreate from './components/Events/EventCreate';
 import axios from 'axios';
+import PostalCodeMsg from './components/Modals/PostalCode/PostalCodeMsg';
+import ProfileCardInvite from './components/Profile/ProfileCardInvite';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 function App() {
@@ -60,6 +62,15 @@ function App() {
             path="/profile/:id"
             element={
               <ProfileCard
+                setShowNavFooter={handleShowState}
+                currentUser={currentUser}
+              />
+            }
+          />
+          <Route
+            path="/profile/event/:eventId/area/:code"
+            element={
+              <ProfileCardInvite
                 setShowNavFooter={handleShowState}
                 currentUser={currentUser}
               />

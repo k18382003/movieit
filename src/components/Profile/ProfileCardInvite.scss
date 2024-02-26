@@ -128,3 +128,10 @@
 .hidden {
   visibility: hidden !important;
 }
+
+.back-button {
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  color: $movieit-white;
+  background-color: $movieit-light-pink;
+}
