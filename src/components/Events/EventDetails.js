@@ -13,7 +13,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const EventDetail = ({ setShowNavFooter }) => {
+const EventDetail = ({ setShowNavFooter, currentUser }) => {
   const token = localStorage.getItem('JWTtoken');
   const { eventId } = useParams();
   const [eventDetail, setEventDetail] = useState();
@@ -88,6 +88,7 @@ const EventDetail = ({ setShowNavFooter }) => {
     fetchParticipante();
   }, []);
 
+  console.log(currentUser);
   return (
     <>
       {eventDetail && evetntHost && (
@@ -121,7 +122,7 @@ const EventDetail = ({ setShowNavFooter }) => {
                 <div className="event-detail__data">
                   <img className="event-detail__icon" src={people} />
                   <p className="event-detail__content event-detail__content--attendee">
-                    {participantsList.length} ppl going
+                    {participantsList?.length} ppl going
                   </p>
                 </div>
                 <p className="event-detail__max-attend">
@@ -157,7 +158,10 @@ const EventDetail = ({ setShowNavFooter }) => {
                   {participantsList &&
                     participantsList.map((p) => {
                       return (
-                        <div className="event-detail__who-is-going--individual-container">
+                        <div
+                          key={p.user_id}
+                          className="event-detail__who-is-going--individual-container"
+                        >
                           <Link to={`/profile/${p.user_id}`}>
                             <img
                               className="event-detail__who-is-going--attendees-img"
@@ -174,18 +178,31 @@ const EventDetail = ({ setShowNavFooter }) => {
               </div>
             </div>
             <div className="event-detail__button-container">
-              <Button
-                buttonText={'Invite More'}
-                UniqueStyleClass={
-                  'event-detail__button event-detail__button--invite'
-                }
-              />
-              <Button
-                buttonText={'Cancel Event'}
-                UniqueStyleClass={
-                  'event-detail__button event-detail__button--cancel'
-                }
-              />
+              <div>
+                {currentUser.userId === evetntHost.userId ? (
+                  <>
+                    <Button
+                      buttonText={'Invite More'}
+                      UniqueStyleClass={
+                        'event-detail__button event-detail__button--invite'
+                      }
+                    />
+                    <Button
+                      buttonText={'Cancel Event'}
+                      UniqueStyleClass={
+                        'event-detail__button event-detail__button--cancel'
+                      }
+                    />
+                  </>
+                ) : (
+                  <Button
+                    buttonText={'Join'}
+                    UniqueStyleClass={
+                      'event-detail__button event-detail__button--invite'
+                    }
+                  />
+                )}
+              </div>
             </div>
           </div>
           <img className="event-detail__action-icon" src={attend} />
