@@ -15,38 +15,7 @@ const EventList = ({ setShowNavFooter }) => {
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
-  const tempData = [
-    {
-      showtime: '02/12/2024 18:45',
-      moviename: 'The Batman',
-      cinema: 'Cineplex Cinemas Metropolis',
-    },
-    {
-      showtime: '02/12/2024 18:45',
-      moviename: 'The Batman',
-      cinema: 'Cineplex Cinemas Metropolis',
-    },
-    {
-      showtime: '02/13/2024 20:45',
-      moviename: 'Spider Man: Home coming',
-      cinema: 'Cineplex Cinemas Metropolis',
-    },
-    {
-      showtime: '02/22/2024 09:45',
-      moviename: 'Scream: I’m Back',
-      cinema: 'Cineplex Cinemas Metropolis',
-    },
-    {
-      showtime: '03/02/2024 10:45',
-      moviename: 'Minions 3',
-      cinema: 'Cineplex Cinemas Metropolis',
-    },
-    {
-      showtime: '03/05/2024 21:30',
-      moviename: 'Aquaman',
-      cinema: 'Cineplex Cinemas Metropolis',
-    },
-  ];
+
   useEffect(() => {
     if (!token) return;
     const getCurrentUser = async () => {
@@ -111,7 +80,7 @@ const EventList = ({ setShowNavFooter }) => {
             </Link>
           </div>
           <div className="eventlist__tablet-outter-container">
-            <CalendarWithNextEvent movie={tempData[0]} />
+            <CalendarWithNextEvent userId={currentUser?.userId} />
             <div className="eventlist__tablet-list-container">
               {eventList.map((movie) => {
                 return <EventItem key={movie.id} movie={movie} />;
