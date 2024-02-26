@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import DeleteEvent from '../Modals/Event/DeleteEvent';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventDetail = ({ setShowNavFooter }) => {
@@ -20,6 +21,7 @@ const EventDetail = ({ setShowNavFooter }) => {
   const [evetntHost, setEvetntHost] = useState();
   const [participantsList, setParticipantsList] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const [showDelete, setShowDelete] = useState(false);
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -212,6 +214,7 @@ const EventDetail = ({ setShowNavFooter }) => {
                       UniqueStyleClass={
                         'event-detail__button event-detail__button--cancel'
                       }
+                      onClick={() => setShowDelete(true)}
                     />
                   </>
                 ) : (
@@ -227,6 +230,12 @@ const EventDetail = ({ setShowNavFooter }) => {
           </div>
           <img className="event-detail__action-icon" src={attend} />
         </section>
+      )}
+      {showDelete && (
+        <>
+          <div className="overlay"></div>
+          <DeleteEvent showModal={setShowDelete} eventId={eventId} />
+        </>
       )}
     </>
   );
