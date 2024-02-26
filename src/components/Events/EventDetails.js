@@ -3,6 +3,7 @@ import time from '../../assets/icons/time-line.png';
 import location from '../../assets/icons/location.png';
 import people from '../../assets/icons/people.png';
 import attend from '../../assets/icons/attend.png';
+import edit from '../../assets/icons/edit.png';
 import batman from '../../assets/images/Batman.png';
 import attendees from '../../assets/images/temp-attendees.png';
 import './EventDetails.scss';
@@ -169,9 +170,14 @@ const EventDetail = ({ setShowNavFooter }) => {
       {eventDetail && evetntHost && (
         <section className="event-detail">
           <div className="event-detail__tablet-left">
-            <h1 className="event-detail__movie-name">
-              {eventDetail.movie_name}
-            </h1>
+            <div className="event-detail__name-button">
+              <h1 className="event-detail__movie-name">
+                {eventDetail.movie_name}
+              </h1>
+              <Link to={`/events/edit/${eventId}`}>
+                <img className="event-detail__edit-button" src={edit} />
+              </Link>
+            </div>
             <p className="event-detail__host-by">
               Host by {evetntHost.hostName}
             </p>

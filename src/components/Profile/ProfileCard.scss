@@ -20,6 +20,7 @@
     }
   }
 
+
   &__image {
     display: block;
     width: 100%;
@@ -37,6 +38,18 @@
       height: auto;
       min-height: 60vh;
     }
+  }
+
+  
+  &__edit-button {
+    width: 3rem;
+    position: absolute;
+    right: 1rem;
+  }
+
+  &__link {
+    position: relative;
+    display: block;
   }
 
   &__info {

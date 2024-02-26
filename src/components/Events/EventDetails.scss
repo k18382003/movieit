@@ -31,6 +31,18 @@
     width: 60%;
   }
 
+  &__name-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__edit-button {
+    width: 3rem;
+    margin-right: 1.5rem;
+  }
+
+
   &__movie-name {
     font-size: 2.4rem;
     @include paddings(0, $mobile);

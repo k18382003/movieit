@@ -3,12 +3,10 @@ import like from '../../assets/icons/like.png';
 import location from '../../assets/icons/location.png';
 import timeLine from '../../assets/icons/time-line.png';
 import profilePhoto from '../../assets/images/tempPhoto.jpg';
-import left from '../../assets/icons/swipe-left.png';
-import invitation from '../../assets/icons/send-invitation.png';
-import right from '../../assets/icons/swipe-right.png';
+import edit from '../../assets/icons/edit.png';
 import './ProfileCard.scss';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Metrics from './Metrics/Metrics';
 const { REACT_APP_API_BASE_PATH } = process.env;
@@ -34,7 +32,6 @@ const ProfileCard = ({ setShowNavFooter }) => {
     return newString.slice(0, newString.length - 2);
   };
 
-  
   useEffect(() => {
     if (!token) return;
     const getCurrentUser = async () => {
@@ -95,6 +92,9 @@ const ProfileCard = ({ setShowNavFooter }) => {
               style={{ backgroundImage: `url(${profilePhoto})` }}
             ></div>
             <div className="profile-card__info">
+              <Link to={`/profile/edit`} className="profile-card__link">
+                <img className="profile-card__edit-button" src={edit} />
+              </Link>
               <h2 className="profile-card__username">
                 {profileDeatil.displayname}
               </h2>
