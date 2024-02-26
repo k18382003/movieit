@@ -1,14 +1,17 @@
 import brand from '../../assets/images/MovieIt-white.svg';
 import collapseNav from '../../assets/icons/collapse-nav.png';
 import './Nav.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavModal from '../Modals/Nav/NavModal';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from '../SerachBar/SearchBar';
+import axios from 'axios';
 
-const Nav = ({ currentUser }) => {
+const Nav = () => {
   const [show, setShow] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+  const { REACT_APP_API_BASE_PATH } = process.env;
 
   const navigate = useNavigate();
 
@@ -22,11 +25,33 @@ const Nav = ({ currentUser }) => {
     navigate('/');
   };
 
+  useEffect(() => {
+    if (!token) return;
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCurrentUser();
+  }, [token]);
+
   return (
     <>
       <nav className="nav">
         <div className="nav__brand-list">
-          <img className="nav__brand" src={brand} alt="MovieIt" />
+          <Link to="/">
+            <img className="nav__brand" src={brand} alt="MovieIt" />
+          </Link>
           <ul className="nav__list">
             <Link to="/">
               <li className="nav__item">Home</li>
@@ -44,6 +69,9 @@ const Nav = ({ currentUser }) => {
                 </Link>
                 <Link to={`/events`}>
                   <li className="nav__item">Events</li>
+                </Link>
+                <Link to={`/events/add`}>
+                  <li className="nav__item">New Event</li>
                 </Link>
                 <Link>
                   <li className="nav__item">Message</li>

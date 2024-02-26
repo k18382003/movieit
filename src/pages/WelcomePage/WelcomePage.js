@@ -4,18 +4,15 @@ import collapseNav from '../../assets/icons/collapse-nav.png';
 import brand from '../../assets/images/MovieIt-white.svg';
 import NavModal from '../../components/Modals/Nav/NavModal';
 import Button from '../../components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SignIn from '../../components/Modals/SignIn/SignIn';
 import SignUp from '../../components/Modals/SignUp/SignUp';
-import axios from 'axios';
-const { REACT_APP_API_BASE_PATH } = process.env;
 
-const WelcomePage = ({ setShowNavFooter, currentUser}) => {
+const WelcomePage = ({ setShowNavFooter, currentUser }) => {
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
-
 
   useEffect(() => {
     setShowNavFooter(false);
@@ -36,7 +33,6 @@ const WelcomePage = ({ setShowNavFooter, currentUser}) => {
     setToken(undefined);
   };
 
-
   return (
     <>
       <section className="welcome-mobile">
@@ -47,7 +43,13 @@ const WelcomePage = ({ setShowNavFooter, currentUser}) => {
           src={collapseNav}
           onClick={showModal}
         />
-        <div className="welcome-mobile__signing-container">
+        <div
+          className={
+            !token
+              ? 'welcome-mobile__signing-container'
+              : 'welcome-mobile__signing-container welcome-mobile__signing-container--signed-in'
+          }
+        >
           <div className="welcome-mobile__signing-inner-container welcome-mobile__signing-inner-container--brand">
             <img src={brand} />
           </div>
@@ -75,11 +77,13 @@ const WelcomePage = ({ setShowNavFooter, currentUser}) => {
         <div className="welcome-tablet__ovelay">
           <div className="welcome-tablet__nav-container">
             <div className="welcome-tablet__brand-list">
-              <img
-                src={brand}
-                alt="MovieIt"
-                className="welcome-tablet__nav-brand"
-              />
+              <Link to="/">
+                <img
+                  src={brand}
+                  alt="MovieIt"
+                  className="welcome-tablet__nav-brand"
+                />
+              </Link>
               <ul className="welcome-tablet__nav-list">
                 {/* <Link>
                   <li className="welcome-tablet__nav-item">About</li>
@@ -128,7 +132,7 @@ const WelcomePage = ({ setShowNavFooter, currentUser}) => {
           )}
         </div>
       </section>
-      {show && <NavModal showModal={showModal} currentUser={currentUser}/>}
+      {show && <NavModal showModal={showModal} currentUser={currentUser} />}
       {showSignIn && <SignIn showModal={showSignInForm} />}
       {showSignUp && (
         <SignUp showModal={showSignUpForm} showSignIn={setShowSignIn} />

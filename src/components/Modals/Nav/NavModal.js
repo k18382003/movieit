@@ -40,7 +40,7 @@ const NavModal = ({ showModal, currentUser }) => {
             <img src={close} alt="Close Navigation" onClick={closeNav} />
           </div>
           <ul className="nav-modal__list">
-            <Link to={`/`}>
+            <Link to={`/`} onClick={closeNav}>
               <li className="nav-modal__item">Home</li>
             </Link>
             {/* <Link>
@@ -51,11 +51,14 @@ const NavModal = ({ showModal, currentUser }) => {
             </Link> */}
             {token && currentUser && (
               <>
-                <Link to={`profile/${currentUser?.userId}`}>
+                <Link to={`profile/${currentUser?.userId}`} onClick={closeNav}>
                   <li className="nav-modal__item">Profile</li>
                 </Link>
-                <Link to={'events'}>
+                <Link to={'events'} onClick={closeNav}>
                   <li className="nav-modal__item">Events</li>
+                </Link>
+                <Link to={'events/add'} onClick={closeNav}>
+                  <li className="nav-modal__item">New Event</li>
                 </Link>
                 <Link>
                   <li className="nav-modal__item">Message</li>
