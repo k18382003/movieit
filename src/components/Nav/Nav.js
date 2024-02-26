@@ -54,9 +54,9 @@ const Nav = ({ currentUser }) => {
         </div>
         {token && (
           <>
-            <div className="nav__search-bar">
+            {/* <div className="nav__search-bar">
               <SearchBar />
-            </div>
+            </div> */}
             <p className="nav__item nav__item--signout" onClick={handleSignOut}>
               Sign Out
             </p>

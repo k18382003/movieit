@@ -63,11 +63,11 @@ const NavModal = ({ showModal, currentUser }) => {
               </>
             )}
           </ul>
-          {token && (
+          {/* {token && (
             <div className="nav-modal__search-bar">
               <SearchBar />
             </div>
-          )}
+          )} */}
         </div>
         {token ? (
           <Button
