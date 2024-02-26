@@ -10,6 +10,7 @@ import Button from '../Button/Button';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventDetail = ({ setShowNavFooter }) => {
@@ -17,6 +18,7 @@ const EventDetail = ({ setShowNavFooter }) => {
   const { eventId } = useParams();
   const [eventDetail, setEventDetail] = useState();
   const [evetntHost, setEvetntHost] = useState();
+  const [participantsList, setParticipantsList] = useState();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -66,13 +68,35 @@ const EventDetail = ({ setShowNavFooter }) => {
             },
           }
         );
-        setEvetntHost({ hostName: response.data.displayname });
+        console.log(response.data);
+        setEvetntHost({
+          userId: response.data.user_id,
+          hostName: response.data.displayname,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchParticipante = async () => {
+      try {
+        const reponse = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/participants/${eventId}`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(reponse.data);
+        setParticipantsList(reponse.data);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchEventDetail();
+    fetchParticipante();
   }, []);
 
   return (
@@ -121,10 +145,12 @@ const EventDetail = ({ setShowNavFooter }) => {
             <div className="event-detail__extra-info-container">
               <div className="event-detail__extra-info event-detail__extra-info--left">
                 <p className="event-detail__extra-info--title">The Host</p>
-                <img
-                  className="event-detail__extra-info--host-photo"
-                  src={host.photo}
-                />
+                <Link to={`/profile/${evetntHost.userId}`}>
+                  <img
+                    className="event-detail__extra-info--host-photo"
+                    src={host.photo}
+                  />
+                </Link>
               </div>
               <div className="event-detail__extra-info event-detail__extra-info--right">
                 <p className="event-detail__extra-info--title">Notes</p>
@@ -139,60 +165,22 @@ const EventDetail = ({ setShowNavFooter }) => {
               <p className="event-detail__who-is-going--title">Who is going</p>
               <div className="event-detail__who-is-going--attendees-outter-container">
                 <div className="event-detail__who-is-going--attendees-container">
-                  <div className="event-detail__who-is-going--individual-container">
-                    <img
-                      className="event-detail__who-is-going--attendees-img"
-                      src={attendees}
-                    />
-                    <p className="event-detail__who-is-going--attendees-name">
-                      Alice
-                    </p>
-                  </div>
-                  <div className="event-detail__who-is-going--individual-container">
-                    <img
-                      className="event-detail__who-is-going--attendees-img"
-                      src={attendees}
-                    />
-                    <p className="event-detail__who-is-going--attendees-name">
-                      Alice
-                    </p>
-                  </div>
-                  <div className="event-detail__who-is-going--individual-container">
-                    <img
-                      className="event-detail__who-is-going--attendees-img"
-                      src={attendees}
-                    />
-                    <p className="event-detail__who-is-going--attendees-name">
-                      Alice
-                    </p>
-                  </div>
-                  <div className="event-detail__who-is-going--individual-container">
-                    <img
-                      className="event-detail__who-is-going--attendees-img"
-                      src={attendees}
-                    />
-                    <p className="event-detail__who-is-going--attendees-name">
-                      Alice
-                    </p>
-                  </div>
-                  <div className="event-detail__who-is-going--individual-container">
-                    <img
-                      className="event-detail__who-is-going--attendees-img"
-                      src={attendees}
-                    />
-                    <p className="event-detail__who-is-going--attendees-name">
-                      Alice
-                    </p>
-                  </div>
-                  <div className="event-detail__who-is-going--individual-container">
-                    <img
-                      className="event-detail__who-is-going--attendees-img"
-                      src={attendees}
-                    />
-                    <p className="event-detail__who-is-going--attendees-name">
-                      Alice
-                    </p>
-                  </div>
+                  {participantsList &&
+                    participantsList.map((p) => {
+                      return (
+                        <div className="event-detail__who-is-going--individual-container">
+                          <Link to={`/profile/${p.user_id}`}>
+                            <img
+                              className="event-detail__who-is-going--attendees-img"
+                              src={attendees}
+                            />
+                          </Link>
+                          <p className="event-detail__who-is-going--attendees-name">
+                            {p.displayname}
+                          </p>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>
