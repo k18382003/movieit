@@ -13,8 +13,9 @@ import axios from 'axios';
 import Metrics from './Metrics/Metrics';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileCard = ({ setShowNavFooter, currentUser}) => {
+const ProfileCard = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
+  const [currentUser, setCurrentUser] = useState();
   const [profileDeatil, setProfileDetail] = useState();
   const { id } = useParams();
 
@@ -32,6 +33,27 @@ const ProfileCard = ({ setShowNavFooter, currentUser}) => {
     );
     return newString.slice(0, newString.length - 2);
   };
+
+  
+  useEffect(() => {
+    if (!token) return;
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCurrentUser();
+  }, [token]);
 
   useEffect(() => {
     if (!token) {
@@ -99,19 +121,7 @@ const ProfileCard = ({ setShowNavFooter, currentUser}) => {
               </article>
             </div>
           </div>
-          {currentUser.userId == id ? (
-            <Metrics />
-          ) : (
-            <div className="profile-card__buttons">
-              <img
-                src={left}
-                onClick={() => alert('left123')}
-                className="hidden"
-              />
-              <img src={invitation} onClick={() => alert('middle')} />
-              <img src={right} onClick={() => alert('right')} />
-            </div>
-          )}
+          <Metrics />
         </section>
       )}
     </>

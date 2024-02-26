@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventList = ({ setShowNavFooter }) => {
-  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+  const token = localStorage.getItem('JWTtoken');
   const [eventList, setEventList] = useState();
   const [currentUser, setCurrentUser] = useState();
 
