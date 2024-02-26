@@ -61,7 +61,7 @@ const ProfileCard = ({ setShowNavFooter, currentUser}) => {
     };
 
     fetchProfileDetail();
-  }, [id]);
+  }, [token, id]);
 
   return (
     <>

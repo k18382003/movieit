@@ -42,7 +42,7 @@ function App() {
       }
     };
     getCurrentUser();
-  }, []);
+  }, [token]);
 
   return (
     <BrowserRouter>

@@ -94,7 +94,7 @@ const MyEvents = ({ setShowNavFooter, currentUser }) => {
       }
     };
     fetchMyEvents();
-  }, [currentUser]);
+  }, [token, currentUser]);
 
   return (
     <>

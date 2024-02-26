@@ -61,7 +61,7 @@ const EventList = ({ setShowNavFooter }) => {
       }
     };
     fetchEvents();
-  }, []);
+  }, [token]);
 
   return (
     <>

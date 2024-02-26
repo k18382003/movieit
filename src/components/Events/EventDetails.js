@@ -13,12 +13,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const EventDetail = ({ setShowNavFooter, currentUser }) => {
+const EventDetail = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const { eventId } = useParams();
   const [eventDetail, setEventDetail] = useState();
   const [evetntHost, setEvetntHost] = useState();
   const [participantsList, setParticipantsList] = useState();
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -28,6 +29,26 @@ const EventDetail = ({ setShowNavFooter, currentUser }) => {
     name: 'Summer',
     photo: hostPhoto,
   };
+
+  useEffect(() => {
+    if (!token) return;
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCurrentUser();
+  }, [token]);
 
   useEffect(() => {
     const fetchEventDetail = async () => {
@@ -88,7 +109,6 @@ const EventDetail = ({ setShowNavFooter, currentUser }) => {
     fetchParticipante();
   }, []);
 
-  console.log(currentUser);
   return (
     <>
       {eventDetail && evetntHost && (
@@ -179,7 +199,7 @@ const EventDetail = ({ setShowNavFooter, currentUser }) => {
             </div>
             <div className="event-detail__button-container">
               <div>
-                {currentUser.userId === evetntHost.userId ? (
+                {currentUser.userId == evetntHost.userId ? (
                   <>
                     <Button
                       buttonText={'Invite More'}
