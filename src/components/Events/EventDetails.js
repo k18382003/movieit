@@ -24,17 +24,6 @@ const EventDetail = ({ setShowNavFooter }) => {
     setShowNavFooter(true);
   }, []);
 
-  const tempData = {
-    showtime: '02/12/2024 18:45:00',
-    moviename: 'The Batman',
-    location:
-      'Cineplex Cinemas Metropolis , 4700 Kingsway, Burnaby, BC V5H 4M1',
-    attendees: 2,
-    maxAttend: 4,
-    notes: 'Please meet at the entrance at 6:20 PM',
-    hostId: '001',
-  };
-
   const host = {
     name: 'Summer',
     photo: hostPhoto,
@@ -132,7 +121,7 @@ const EventDetail = ({ setShowNavFooter }) => {
                 <div className="event-detail__data">
                   <img className="event-detail__icon" src={people} />
                   <p className="event-detail__content event-detail__content--attendee">
-                    {tempData.attendees} ppl going
+                    {participantsList.length} ppl going
                   </p>
                 </div>
                 <p className="event-detail__max-attend">
