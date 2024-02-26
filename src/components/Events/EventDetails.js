@@ -132,11 +132,32 @@ const EventDetail = ({ setShowNavFooter }) => {
           },
         }
       );
-      'profile.data', profile.data;
       let newParticipantsList = [
         ...participantsList,
         { user_id: currentUser.userId, displayname: profile.data.displayname },
       ];
+      setParticipantsList(newParticipantsList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCancelAttend = async () => {
+    try {
+      const response = await axios.delete(
+        `${REACT_APP_API_BASE_PATH}/participants/${eventId}/${currentUser.userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response.data);
+      let newParticipantsList = participantsList.filter(
+        (p) => p.user_id !== currentUser.userId
+      );
+      console.log('newParticipantsList', newParticipantsList);
       setParticipantsList(newParticipantsList);
     } catch (error) {
       console.log(error);
@@ -249,6 +270,16 @@ const EventDetail = ({ setShowNavFooter }) => {
                       onClick={() => setShowDelete(true)}
                     />
                   </>
+                ) : participantsList.find(
+                    (p) => p.user_id == currentUser.userId
+                  ) ? (
+                  <Button
+                    buttonText={'Cancel Attend'}
+                    UniqueStyleClass={
+                      'event-detail__button event-detail__button--cancel'
+                    }
+                    onClick={handleCancelAttend}
+                  />
                 ) : (
                   <Button
                     buttonText={'Join'}

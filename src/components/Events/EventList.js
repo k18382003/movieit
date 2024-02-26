@@ -10,6 +10,7 @@ const { REACT_APP_API_BASE_PATH } = process.env;
 const EventList = ({ setShowNavFooter }) => {
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
   const [eventList, setEventList] = useState();
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -46,6 +47,36 @@ const EventList = ({ setShowNavFooter }) => {
       cinema: 'Cineplex Cinemas Metropolis',
     },
   ];
+  useEffect(() => {
+    if (!token) return;
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const profile = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/profile/${response.data.userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser({
+          ...response.data,
+          displayname: profile.data.displayname,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCurrentUser();
+  }, [token]);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -67,7 +98,9 @@ const EventList = ({ setShowNavFooter }) => {
     <>
       {eventList && (
         <section className="eventlist">
-          <h1 className="eventlist__greeting">Welcome back, Summer</h1>
+          <h1 className="eventlist__greeting">
+            Welcome back, {currentUser?.displayname}
+          </h1>
           <div className="eventlist__title-container">
             <p className="eventlist__next-event-text">All Events</p>
             <Link to={'/myevents'}>

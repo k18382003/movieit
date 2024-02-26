@@ -7,9 +7,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const MyEvents = ({ setShowNavFooter, currentUser }) => {
+const MyEvents = ({ setShowNavFooter }) => {
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
   const [myEvents, setMyEvents] = useState();
+  const [currentUser, setCurrentUser] = useState();
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
@@ -78,6 +79,37 @@ const MyEvents = ({ setShowNavFooter, currentUser }) => {
   ];
   useEffect(() => {
     if (!token) return;
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const profile = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/profile/${response.data.userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser({
+          ...response.data,
+          displayname: profile.data.displayname,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCurrentUser();
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) return;
     const fetchMyEvents = async () => {
       try {
         const response = await axios.get(
@@ -101,7 +133,7 @@ const MyEvents = ({ setShowNavFooter, currentUser }) => {
       {myEvents && (
         <section className="myevent">
           <h1 className="myevent__greeting">
-            Welcome back, {currentUser?.username}
+            Welcome back, {currentUser?.displayname}
           </h1>
           <div className="myevent__title-container">
             <p className="myevent__event-text myevent__event-text--next">
