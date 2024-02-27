@@ -8,7 +8,7 @@ import invitation from '../../assets/icons/send-invitation.png';
 import right from '../../assets/icons/swipe-right.png';
 import './ProfileCardInvite.scss';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button/Button';
 const { REACT_APP_API_BASE_PATH } = process.env;
@@ -19,6 +19,7 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
   const [profileIndex, setProfileIndex] = useState(0);
   const { code, eventId } = useParams();
   const [currentUser, setCurrentUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -78,6 +79,48 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
     fetchProfileList();
   }, [token, currentUser]);
 
+  const handleInvite = async (userId) => {
+    try {
+      console.log({
+        sender: currentUser?.userId,
+        receiver: userId,
+        send_time: Date.now(),
+      });
+      const response = await axios.post(
+        `${REACT_APP_API_BASE_PATH}/invitation/`,
+        {
+          sender: currentUser?.userId,
+          receiver: userId,
+          send_time: Date.now(),
+          event_id: eventId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert('Invitation sent!');
+
+      console.log(
+        'p_id',
+        profileList.filter((p) => console.log(p.user_id))
+      );
+      console.log('receiver', console.log(userId));
+      console.log('old');
+      console.log(
+        'new list',
+        profileList.filter((p) => p.user_id != userId)
+      );
+      setProfileList(profileList.filter((p) => p.user_id != userId));
+      if (profileList.length -1 == 0) {
+        navigate(`/events/${eventId}`)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       {profileList && (
@@ -129,7 +172,10 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
               onClick={() => setProfileIndex(profileIndex - 1)}
               className={profileIndex == 0 ? 'hidden' : ''}
             />
-            <img src={invitation} onClick={() => alert('Invited!')} />
+            <img
+              src={invitation}
+              onClick={() => handleInvite(profileList[profileIndex].user_id)}
+            />
             {profileIndex == profileList.length - 1 ? (
               <Link to={`/events/${eventId}`}>
                 <Button
