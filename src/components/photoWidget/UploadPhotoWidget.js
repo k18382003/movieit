@@ -16,7 +16,6 @@ export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
   const onCropper = async () => {
     if (cropper) {
       try {
-        console.log(cropper.getCroppedCanvas().toDataURL());
         const file = await cropper.getCroppedCanvas().toDataURL();
         const response = await axios.post(
           `${REACT_APP_API_BASE_PATH}/profile/uploadPhoto/${userId}`,

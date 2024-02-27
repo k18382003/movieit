@@ -61,7 +61,7 @@ const NavModal = ({ showModal, currentUser }) => {
                   <li className="nav-modal__item">New Event</li>
                 </Link>
                 <Link>
-                  <li className="nav-modal__item">Message</li>
+                  <li className="nav-modal__item">Invitation</li>
                 </Link>
               </>
             )}

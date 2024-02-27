@@ -148,12 +148,9 @@ const EventDetail = ({ setShowNavFooter }) => {
           },
         }
       );
-
-      console.log(response.data);
       let newParticipantsList = participantsList.filter(
         (p) => p.user_id !== currentUser.userId
       );
-      console.log('newParticipantsList', newParticipantsList);
       setParticipantsList(newParticipantsList);
     } catch (error) {
       console.log(error);

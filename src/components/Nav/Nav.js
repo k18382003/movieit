@@ -4,12 +4,12 @@ import './Nav.scss';
 import { useEffect, useState } from 'react';
 import NavModal from '../Modals/Nav/NavModal';
 import { Link, useNavigate } from 'react-router-dom';
-import SearchBar from '../SerachBar/SearchBar';
 import axios from 'axios';
 
-const Nav = () => {
+const Nav = ({ showMessage }) => {
   const [show, setShow] = useState(false);
   const [currentUser, setCurrentUser] = useState();
+  const [unreadMsg, setUnreadMsg] = useState(0);
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
   const { REACT_APP_API_BASE_PATH } = process.env;
 
@@ -24,6 +24,25 @@ const Nav = () => {
     setToken(undefined);
     navigate('/');
   };
+
+  useEffect(() => {
+    const fetchingUnreadMessge = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/invitation/unread/${currentUser?.userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUnreadMsg(response.data.length || 0);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchingUnreadMessge();
+  }, [token, currentUser]);
 
   useEffect(() => {
     if (!token) return;
@@ -42,8 +61,27 @@ const Nav = () => {
         console.error(error);
       }
     };
+
     getCurrentUser();
   }, [token]);
+
+  const UpdateRead = async () => {
+    try {
+      await axios.patch(
+        `${REACT_APP_API_BASE_PATH}/invitation/${currentUser?.userId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      showMessage();
+      setUnreadMsg(0);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -73,9 +111,12 @@ const Nav = () => {
                 <Link to={`/events/add`}>
                   <li className="nav__item">New Event</li>
                 </Link>
-                <Link>
-                  <li className="nav__item">Message</li>
-                </Link>
+                <div className="nav__message-link" onClick={() => UpdateRead()}>
+                  {unreadMsg !== 0 && (
+                    <p className="nav__messages">{unreadMsg}</p>
+                  )}
+                  <li className="nav__item">Invitation</li>
+                </div>
               </>
             )}
           </ul>

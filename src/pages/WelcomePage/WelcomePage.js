@@ -99,9 +99,6 @@ const WelcomePage = ({ setShowNavFooter, currentUser }) => {
                     <Link to={`/events`}>
                       <li className="welcome-tablet__nav-item">Events</li>
                     </Link>
-                    <Link>
-                      <li className="welcome-tablet__nav-item">Message</li>
-                    </Link>
                   </>
                 )}
               </ul>

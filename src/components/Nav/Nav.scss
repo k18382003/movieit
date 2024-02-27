@@ -77,4 +77,22 @@
       display: none;
     }
   }
+
+  &__message-link {
+    position: relative;
+  }
+
+  &__messages {
+    background-color: $movieit-black;
+    width: 1.8rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    border-radius: 50%;
+    position: absolute;
+    right: 1rem;
+    top: -0.2rem;
+    text-align: center;
+    color: $movieit-white;
+    border: 1px $movieit-light-grey solid;
+  }
 }

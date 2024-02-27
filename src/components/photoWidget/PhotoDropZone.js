@@ -26,7 +26,6 @@ export default function PhotoDropZone({ setFile }) {
           )
         );
       }
-      console.log(acceptedFiles);
     },
     [setFile]
   );

@@ -12,17 +12,21 @@ import 'react-calendar/dist/Calendar.css';
 import EventDetail from './components/Events/EventDetails';
 import EventCreate from './components/Events/EventCreate';
 import axios from 'axios';
-import PostalCodeMsg from './components/Modals/PostalCode/PostalCodeMsg';
 import ProfileCardInvite from './components/Profile/ProfileCardInvite';
-import UploadPhotoWidget from './components/photoWidget/UploadPhotoWidget';
+import InvitationList from './components/Modals/Invitation/InvitationList';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 function App() {
   const [showNavFooter, setShowNavFooter] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
   const [currentUser, setCurrentUser] = useState();
   const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
   const handleShowState = (show) => {
     setShowNavFooter(show);
+  };
+
+  const handleShowMessage = () => {
+    setShowMessage(!showMessage);
   };
 
   useEffect(() => {
@@ -47,7 +51,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      {showNavFooter && <Nav currentUser={currentUser} />}
+      {showNavFooter && (
+        <Nav currentUser={currentUser} showMessage={handleShowMessage} />
+      )}
       <main>
         <Routes>
           <Route
@@ -123,8 +129,13 @@ function App() {
             }
           />
         </Routes>
+        {showMessage && (
+          <>
+            <div className="overlay"></div>
+            <InvitationList closeInvitation={setShowMessage} />
+          </>
+        )}
       </main>
-      {/* <Route path="/messages" element={<MessagePage />} /> */}
       {showNavFooter && <Footer />}
     </BrowserRouter>
   );

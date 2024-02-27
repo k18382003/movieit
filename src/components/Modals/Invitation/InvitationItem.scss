@@ -10,6 +10,9 @@
 
   &__image {
     width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 15px;
     margin-right: 1.5rem;
   }
 
