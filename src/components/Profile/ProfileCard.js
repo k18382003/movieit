@@ -2,7 +2,7 @@ import face from '../../assets/icons/face-savoring-food.png';
 import like from '../../assets/icons/like.png';
 import location from '../../assets/icons/location.png';
 import timeLine from '../../assets/icons/time-line.png';
-import profilePhoto from '../../assets/images/tempPhoto.jpg';
+import defaultPhoto from '../../assets/images/Default-Avatar.png';
 import edit from '../../assets/icons/edit.png';
 import './ProfileCard.scss';
 import { useEffect, useState } from 'react';
@@ -89,7 +89,11 @@ const ProfileCard = ({ setShowNavFooter }) => {
           <div className="profile-card__card-container">
             <div
               className="profile-card__image"
-              style={{ backgroundImage: `url(${profileDeatil.photo_url})` }}
+              style={{
+                backgroundImage: `url(${
+                  profileDeatil.photo_url || defaultPhoto
+                })`,
+              }}
             ></div>
             <div className="profile-card__info">
               {currentUser.userId == id && (

@@ -4,11 +4,10 @@
 .overlay {
   width: 100%;
   height: 100vh;
-  background-color: rgba($color:  $movieit-black, $alpha: 0.8);
+  background-color: rgba($color: $movieit-black, $alpha: 0.8);
   position: fixed;
   top: 0;
 }
-
 
 .event-detail {
   @include paddings(2rem, 0);
@@ -41,7 +40,6 @@
     width: 3rem;
     margin-right: 1.5rem;
   }
-
 
   &__movie-name {
     font-size: 2.4rem;
@@ -203,10 +201,15 @@
 
       &--attendees-img {
         width: 6rem;
+        height: 6rem;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
       }
 
       &--individual-container {
         padding-right: 1.5rem;
+        text-align: center;
       }
     }
   }

@@ -1,11 +1,10 @@
-import hostPhoto from '../../assets/images/tempPhoto.jpg';
+import defaultPhoto from '../../assets/images/Default-Avatar.png';
 import time from '../../assets/icons/time-line.png';
 import location from '../../assets/icons/location.png';
 import people from '../../assets/icons/people.png';
 import attend from '../../assets/icons/attend.png';
 import edit from '../../assets/icons/edit.png';
 import batman from '../../assets/images/Batman.png';
-import attendees from '../../assets/images/temp-attendees.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
 import { useEffect, useState } from 'react';
@@ -27,11 +26,6 @@ const EventDetail = ({ setShowNavFooter }) => {
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
-
-  const host = {
-    name: 'Summer',
-    photo: hostPhoto,
-  };
 
   useEffect(() => {
     if (!token) return;
@@ -84,6 +78,7 @@ const EventDetail = ({ setShowNavFooter }) => {
         setEvetntHost({
           userId: response.data.user_id,
           hostName: response.data.displayname,
+          photo: response.data.photo_url,
         });
       } catch (error) {
         console.log(error);
@@ -219,7 +214,7 @@ const EventDetail = ({ setShowNavFooter }) => {
                 <Link to={`/profile/${evetntHost.userId}`}>
                   <img
                     className="event-detail__extra-info--host-photo"
-                    src={host.photo}
+                    src={evetntHost.photo || defaultPhoto}
                   />
                 </Link>
               </div>
@@ -246,7 +241,7 @@ const EventDetail = ({ setShowNavFooter }) => {
                           <Link to={`/profile/${p.user_id}`}>
                             <img
                               className="event-detail__who-is-going--attendees-img"
-                              src={attendees}
+                              src={p.photo_url || defaultPhoto}
                             />
                           </Link>
                           <p className="event-detail__who-is-going--attendees-name">
