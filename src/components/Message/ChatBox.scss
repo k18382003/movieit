@@ -1,0 +1,16 @@
+.chatbox {
+  width: 80%;
+
+  &__message {
+    line-height: 2rem;
+    padding: 1rem 1.5rem;
+    border: 0.6px solid black;
+    border-radius: 10px;
+  }
+
+  &__timestamp {
+    padding-top: 0.2rem;
+    position: relative;
+    left: 70%;
+  }
+}

@@ -1,0 +1,17 @@
+@use '../../../styles/partials/mixin' as *;
+@use '../../../styles/partials/variable' as *;
+
+.invitation-list {
+  width: 100%;
+  @include paddings(2rem, $mobile);
+
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  @include tablet {
+    width: 40%;
+    margin: 0 auto;
+  }
+}
