@@ -10,15 +10,15 @@ import './ProfileCardInvite.scss';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import Metrics from './Metrics/Metrics';
 import Button from '../Button/Button';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileCardInvite = ({ setShowNavFooter, currentUser }) => {
+const ProfileCardInvite = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const [profileList, setProfileList] = useState();
   const [profileIndex, setProfileIndex] = useState(0);
   const { code, eventId } = useParams();
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -40,6 +40,22 @@ const ProfileCardInvite = ({ setShowNavFooter, currentUser }) => {
       return;
     }
 
+    const getCurrentUser = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/account/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     const fetchProfileList = async () => {
       try {
         const response = await axios.get(
@@ -50,14 +66,17 @@ const ProfileCardInvite = ({ setShowNavFooter, currentUser }) => {
             },
           }
         );
-        setProfileList(response.data);
+        await getCurrentUser();
+        setProfileList(
+          response.data.filter((p) => p.user_id != currentUser?.userId)
+        );
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchProfileList();
-  }, []);
+  }, [token, currentUser]);
 
   return (
     <>
@@ -108,7 +127,7 @@ const ProfileCardInvite = ({ setShowNavFooter, currentUser }) => {
             <img
               src={left}
               onClick={() => setProfileIndex(profileIndex - 1)}
-              className={profileIndex == 0 && 'hidden'}
+              className={profileIndex == 0 ? 'hidden' : ''}
             />
             <img src={invitation} onClick={() => alert('Invited!')} />
             {profileIndex == profileList.length - 1 ? (
@@ -122,7 +141,9 @@ const ProfileCardInvite = ({ setShowNavFooter, currentUser }) => {
               <img
                 src={right}
                 onClick={() => setProfileIndex(profileIndex + 1)}
-                className={profileIndex == profileList.length - 1 && 'hidden'}
+                className={
+                  profileIndex == profileList.length - 1 ? 'hidden' : ''
+                }
               />
             )}
           </div>
