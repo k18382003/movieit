@@ -1,7 +1,7 @@
-@use '../../styles/partials/mixin' as *;
-@use '../../styles/partials/variable' as *;
+@use '../../../styles/partials/mixin' as *;
+@use '../../../styles/partials/variable' as *;
 
-.message-item {
+.invitation-item {
   display: flex;
   align-items: center;
   height: 8rem;

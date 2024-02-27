@@ -13,13 +13,21 @@ const MessagePage = () => {
 
   const chatDetail = {
     username: 'Sammie',
-    messages: ['MovieIt invitation: Https://movieit.com/invitation/MV200135'],
+    messages: [
+      `MovieIt invitation: ${(
+        <a href="Https://movieit.com/invitation/MV200135">
+          Https://movieit.com/invitation/MV200135
+        </a>
+      )}`,
+    ],
   };
+
+  
 
   return (
     <>
       <MessageList messageList={tempData} />
-      <ChatRoom chatDetail={chatDetail} />
+      {/* <ChatRoom chatDetail={chatDetail} /> */}
     </>
   );
 };

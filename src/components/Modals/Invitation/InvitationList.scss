@@ -1,7 +1,7 @@
-@use '../../styles/partials/mixin' as *;
-@use '../../styles/partials/variable' as *;
+@use '../../../styles/partials/mixin' as *;
+@use '../../../styles/partials/variable' as *;
 
-.message-list {
+.invitation-list {
   width: 100%;
   @include paddings(2rem, $mobile);
 
