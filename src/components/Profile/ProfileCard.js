@@ -89,7 +89,7 @@ const ProfileCard = ({ setShowNavFooter }) => {
           <div className="profile-card__card-container">
             <div
               className="profile-card__image"
-              style={{ backgroundImage: `url(${profilePhoto})` }}
+              style={{ backgroundImage: `url(${profileDeatil.photo_url})` }}
             ></div>
             <div className="profile-card__info">
               <Link to={`/profile/edit`} className="profile-card__link">

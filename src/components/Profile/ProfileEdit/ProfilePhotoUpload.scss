@@ -10,12 +10,19 @@
   &__container {
     @include paddings(1.5rem, 1.5rem);
     background-color: $movieit-grey;
-    width: fit-content;
+    width: 20rem;
+    height: 20rem;
     margin: 2rem auto;
   }
 
   &__image {
+    background-color: $movieit-grey;
     display: block;
+    margin: 0 auto;
     cursor: pointer;
+    width: 15rem;
+    height: 15rem;
+    object-fit: contain;
+    object-position: center;
   }
 }

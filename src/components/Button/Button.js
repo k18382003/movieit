@@ -1,6 +1,12 @@
 import './Button.scss';
 
-const Button = ({ buttonText, onClick, buttonIcon, UniqueStyleClass }) => {
+const Button = ({
+  buttonText,
+  onClick,
+  buttonIcon,
+  UniqueStyleClass,
+  type,
+}) => {
   return (
     <>
       <button
@@ -8,6 +14,7 @@ const Button = ({ buttonText, onClick, buttonIcon, UniqueStyleClass }) => {
         style={{
           backgroundImage: `url(${buttonIcon})`,
         }}
+        type={type}
         onClick={onClick}
       >
         {buttonText}

@@ -14,6 +14,7 @@ import EventCreate from './components/Events/EventCreate';
 import axios from 'axios';
 import PostalCodeMsg from './components/Modals/PostalCode/PostalCodeMsg';
 import ProfileCardInvite from './components/Profile/ProfileCardInvite';
+import UploadPhotoWidget from './components/photoWidget/UploadPhotoWidget';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 function App() {
@@ -121,9 +122,9 @@ function App() {
               />
             }
           />
-          {/* <Route path="/messages" element={<MessagePage />} /> */}
         </Routes>
       </main>
+      {/* <Route path="/messages" element={<MessagePage />} /> */}
       {showNavFooter && <Footer />}
     </BrowserRouter>
   );
