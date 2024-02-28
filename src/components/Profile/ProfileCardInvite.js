@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button/Button';
+import defaultPhoto from '../../assets/images/Default-Avatar.png';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const ProfileCardInvite = ({ setShowNavFooter }) => {
@@ -37,10 +38,7 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
   };
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
-
+    if (!token) return;
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(
@@ -56,7 +54,13 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
         console.error(error);
       }
     };
+    getCurrentUser();
+  }, [token]);
 
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
     const fetchProfileList = async () => {
       try {
         const response = await axios.get(
@@ -67,7 +71,9 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
             },
           }
         );
-        await getCurrentUser();
+        if (response.data.length == 1) {
+          navigate(`/events/${eventId}`);
+        }
         setProfileList(
           response.data.filter((p) => p.user_id != currentUser?.userId)
         );
@@ -75,9 +81,8 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
         console.error(error);
       }
     };
-
     fetchProfileList();
-  }, [token, currentUser]);
+  }, [currentUser]);
 
   const handleInvite = async (userId) => {
     try {
@@ -85,6 +90,7 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
         sender: currentUser?.userId,
         receiver: userId,
         send_time: Date.now(),
+        event_id: eventId,
       });
       const response = await axios.post(
         `${REACT_APP_API_BASE_PATH}/invitation/`,
@@ -100,22 +106,11 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
           },
         }
       );
-      alert('Invitation sent!');
-
-      console.log(
-        'p_id',
-        profileList.filter((p) => console.log(p.user_id))
-      );
-      console.log('receiver', console.log(userId));
-      console.log('old');
-      console.log(
-        'new list',
-        profileList.filter((p) => p.user_id != userId)
-      );
-      setProfileList(profileList.filter((p) => p.user_id != userId));
-      if (profileList.length -1 == 0) {
-        navigate(`/events/${eventId}`)
+      if (profileList.length - 1 == 0) {
+        navigate(`/events/${eventId}`);
       }
+      setProfileList(profileList.filter((p) => p.user_id != userId));
+      alert('Invitation Sent!');
     } catch (error) {
       console.error(error);
     }
@@ -123,12 +118,16 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
 
   return (
     <>
-      {profileList && (
+      {profileList && profileList[profileIndex] && (
         <section className="profile-card">
           <div className="profile-card__card-container">
             <div
               className="profile-card__image"
-              style={{ backgroundImage: `url(${profilePhoto})` }}
+              style={{
+                backgroundImage: `url(${
+                  profileList[profileIndex].photo_url || defaultPhoto
+                })`,
+              }}
             ></div>
             <div className="profile-card__info">
               <h2 className="profile-card__username">

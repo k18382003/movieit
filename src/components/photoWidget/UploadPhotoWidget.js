@@ -8,7 +8,7 @@ import axios from 'axios';
 import close from '../../assets/icons/close.png';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
+export default function UploadPhotoWidget({ closeUpload, setPhoto, userId, eventId }) {
   const [file, setFile] = useState([]);
   const [cropper, setCropper] = useState();
   const token = localStorage.getItem('JWTtoken');

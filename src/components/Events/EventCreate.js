@@ -9,7 +9,7 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import { formatingDateTimeString } from '../../utils/formatingDateTimeString';
-import PostalCodeMsg from '../Modals/PostalCode/PostalCodeMsg';
+import UploadPhotoWidget from '../photoWidget/UploadPhotoWidget';
 
 const { REACT_APP_API_BASE_PATH } = process.env;
 
@@ -19,10 +19,9 @@ const EventCreate = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const navigate = useNavigate();
   const [showTime, setShowTime] = useState(new Date());
-  const [showPostalCodeModal, setShowPostalCodeModal] = useState(false);
   const [currentUser, setCurrentUser] = useState();
-  // const [cinemaCode, setCinemaCode] = useState('');
-  // const [homeCode, setHomeCode] = useState('');
+  const [showPhotoUpload, setShowPhotoUplod] = useState(false);
+  const [photo, setPhoto] = useState();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -237,6 +236,15 @@ const EventCreate = ({ setShowNavFooter }) => {
           />
         </div>
       </form>
+      {showPhotoUpload && (
+        <>
+          <div className="overlay"></div>
+          <UploadPhotoWidget
+            closeUpload={setShowPhotoUplod}
+            setPhoto={setPhoto}
+          />
+        </>
+      )}
       {/* {showPostalCodeModal && (
         <>
           <div className="overlay"></div>
