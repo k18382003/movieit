@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import batman from '../../assets/images/Batman.png';
+import defaultMoviePhoto from '../../assets/images/default-movie-photo.png';
 import './NextEvent.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -54,7 +54,11 @@ const NextEvent = ({ userId }) => {
           <div className={'calendar-event__next-event-inner-container'}>
             <div
               className="calendar-event__next-event-image"
-              style={{ backgroundImage: `url(${batman})` }}
+              style={{
+                backgroundImage: `url(${
+                  nextEvent.photo_url || defaultMoviePhoto
+                })`,
+              }}
             ></div>
             <div className="calendar-event__next-event-info">
               <p className="calendar-event__next-event-showtime">

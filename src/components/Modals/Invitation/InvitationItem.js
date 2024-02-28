@@ -42,7 +42,9 @@ const InvitationItem = ({
           },
         }
       );
-      setInvitationList(invitationList.filter((i) => i.need_action));
+      setInvitationList(
+        invitationList.filter((i) => i.event_id != invitation.event_id)
+      );
     } catch (error) {
       console.log(error);
     }
