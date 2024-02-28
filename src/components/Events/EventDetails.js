@@ -4,7 +4,6 @@ import location from '../../assets/icons/location.png';
 import people from '../../assets/icons/people.png';
 import attend from '../../assets/icons/attend.png';
 import edit from '../../assets/icons/edit.png';
-import batman from '../../assets/images/Batman.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
 import { useEffect, useState } from 'react';
@@ -12,6 +11,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DeleteEvent from '../Modals/Event/DeleteEvent';
+import defaultMoviePhoto from '../../assets/images/default-movie-photo.png'
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventDetail = ({ setShowNavFooter }) => {
@@ -173,7 +173,10 @@ const EventDetail = ({ setShowNavFooter }) => {
             <p className="event-detail__host-by">
               Host by {evetntHost.hostName}
             </p>
-            <img className="event-detail__movie-image" src={batman} />
+            <img
+              className="event-detail__movie-image"
+              src={eventDetail.photo_url || defaultMoviePhoto}
+            />
             <div className="event-detail__info">
               <div className="event-detail__data">
                 <img className="event-detail__icon" src={time} />

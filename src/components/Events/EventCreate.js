@@ -62,6 +62,7 @@ const EventCreate = ({ setShowNavFooter }) => {
         ...eventData,
         host: currentUser.userId,
         showTime: ConvertedShowTime,
+        photo_url: photo
       };
 
       const response = await axios.post(
@@ -100,7 +101,10 @@ const EventCreate = ({ setShowNavFooter }) => {
       <form className="event-create" onSubmit={handleSubmit}>
         <p className="event-create__label">Movie Photo</p>
         <div className="event-create__photo-upload-container">
-          <ProfilePhotoUpload />
+          <ProfilePhotoUpload
+            openUploadForm={setShowPhotoUplod}
+            photo={photo}
+          />
         </div>
         <div className="event-create__input-container--tablet">
           <div className="event-create__input-container">

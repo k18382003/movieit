@@ -8,7 +8,7 @@ import axios from 'axios';
 import close from '../../assets/icons/close.png';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-export default function UploadPhotoWidget({ closeUpload, setPhoto, userId, eventId }) {
+export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
   const [file, setFile] = useState([]);
   const [cropper, setCropper] = useState();
   const token = localStorage.getItem('JWTtoken');
@@ -16,18 +16,34 @@ export default function UploadPhotoWidget({ closeUpload, setPhoto, userId, event
   const onCropper = async () => {
     if (cropper) {
       try {
-        const file = await cropper.getCroppedCanvas().toDataURL();
-        const response = await axios.post(
-          `${REACT_APP_API_BASE_PATH}/profile/uploadPhoto/${userId}`,
-          {
-            image: file,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        let response = '';
+        if (!userId) {
+          const file = await cropper.getCroppedCanvas().toDataURL();
+          response = await axios.post(
+            `${REACT_APP_API_BASE_PATH}/events/uploadPhoto`,
+            {
+              image: file,
             },
-          }
-        );
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        } else {
+          const file = await cropper.getCroppedCanvas().toDataURL();
+          response = await axios.post(
+            `${REACT_APP_API_BASE_PATH}/profile/uploadPhoto/${userId}`,
+            {
+              image: file,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        }
         setPhoto(response.data);
         alert('Image uploaded!');
         closeUpload(false);
