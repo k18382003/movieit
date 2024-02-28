@@ -1,23 +1,32 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Button from '../Button/Button';
 import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
 import './EventList.scss';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventList = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const [eventList, setEventList] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(

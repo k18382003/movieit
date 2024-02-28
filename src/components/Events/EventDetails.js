@@ -7,11 +7,12 @@ import edit from '../../assets/icons/edit.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DeleteEvent from '../Modals/Event/DeleteEvent';
-import defaultMoviePhoto from '../../assets/images/default-movie-photo.png'
+import defaultMoviePhoto from '../../assets/images/default-movie-photo.png';
+import { toast } from 'react-toastify';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventDetail = ({ setShowNavFooter }) => {
@@ -22,13 +23,19 @@ const EventDetail = ({ setShowNavFooter }) => {
   const [participantsList, setParticipantsList] = useState();
   const [currentUser, setCurrentUser] = useState();
   const [showDelete, setShowDelete] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(

@@ -12,6 +12,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button/Button';
 import defaultPhoto from '../../assets/images/Default-Avatar.png';
+import { toast } from 'react-toastify';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const ProfileCardInvite = ({ setShowNavFooter }) => {
@@ -38,7 +39,12 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
   };
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(

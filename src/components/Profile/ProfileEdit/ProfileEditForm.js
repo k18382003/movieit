@@ -7,6 +7,7 @@ import ProfilePhotoUpload from './ProfilePhotoUpload';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import UploadPhotoWidget from '../../photoWidget/UploadPhotoWidget';
+import { toast } from 'react-toastify';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const ProfileEditForm = ({ setShowNavFooter }) => {
@@ -44,9 +45,11 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
 
   useEffect(() => {
     if (!token) {
-      return;
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
     }
-
     const fetchProfile = async (currentUserId, userName) => {
       try {
         const response = await axios.get(

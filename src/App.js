@@ -30,7 +30,6 @@ function App() {
   };
 
   useEffect(() => {
-    if (!token) return;
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(

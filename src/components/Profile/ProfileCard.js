@@ -6,9 +6,10 @@ import defaultPhoto from '../../assets/images/Default-Avatar.png';
 import edit from '../../assets/icons/edit.png';
 import './ProfileCard.scss';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Metrics from './Metrics/Metrics';
+import { toast } from 'react-toastify';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const ProfileCard = ({ setShowNavFooter }) => {
@@ -16,6 +17,7 @@ const ProfileCard = ({ setShowNavFooter }) => {
   const [currentUser, setCurrentUser] = useState();
   const [profileDeatil, setProfileDetail] = useState();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowNavFooter(true);
@@ -33,7 +35,12 @@ const ProfileCard = ({ setShowNavFooter }) => {
   };
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(

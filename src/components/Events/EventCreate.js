@@ -10,6 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import { formatingDateTimeString } from '../../utils/formatingDateTimeString';
 import UploadPhotoWidget from '../photoWidget/UploadPhotoWidget';
+import { toast } from 'react-toastify';
 
 const { REACT_APP_API_BASE_PATH } = process.env;
 
@@ -28,7 +29,12 @@ const EventCreate = ({ setShowNavFooter }) => {
   }, []);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(
@@ -62,7 +68,7 @@ const EventCreate = ({ setShowNavFooter }) => {
         ...eventData,
         host: currentUser.userId,
         showTime: ConvertedShowTime,
-        photo_url: photo
+        photo_url: photo,
       };
 
       const response = await axios.post(

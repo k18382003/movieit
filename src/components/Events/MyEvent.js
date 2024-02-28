@@ -4,20 +4,27 @@ import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
 import './MyEvent.scss';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NextEvent from './NextEvent';
+import { toast } from 'react-toastify';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const MyEvents = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const [myEvents, setMyEvents] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     setShowNavFooter(true);
   }, []);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(

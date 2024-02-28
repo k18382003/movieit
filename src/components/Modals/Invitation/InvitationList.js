@@ -3,15 +3,23 @@ import './InvitationList.scss';
 import close from '../../../assets/icons/close.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const InvitationList = ({ closeInvitation }) => {
   const token = localStorage.getItem('JWTtoken');
   const [invitationList, setInvitationList] = useState();
   const { REACT_APP_API_BASE_PATH } = process.env;
   const [currentUser, setCurrentUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      toast.error('Unauthorized. Please sign in.', {
+        position: 'top-center',
+      });
+      navigate('/');
+    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(
