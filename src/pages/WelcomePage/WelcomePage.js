@@ -105,13 +105,13 @@ const WelcomePage = ({ setShowNavFooter, currentUser }) => {
             </div>
             {token ? (
               <Button
-                buttonText={'SING OUT'}
+                buttonText={'SIGN OUT'}
                 UniqueStyleClass={'welcome-tablet__signout-button'}
                 onClick={handleSignOut}
               />
             ) : (
               <Button
-                buttonText={'SING IN'}
+                buttonText={'SIGN IN'}
                 UniqueStyleClass={'welcome-tablet__signin-button'}
                 onClick={setShowSignIn}
               />
