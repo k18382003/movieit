@@ -36,7 +36,11 @@ const SignIn = ({ showModal }) => {
         signInData
       );
       localStorage.setItem('JWTtoken', response.data.token);
-      navigate('/profile/edit');
+      if (response.data.first_signin) {
+        navigate('/profile/edit');
+      } else {
+        navigate('/events');
+      }
     } catch (error) {
       if (error.response?.status === 401) {
         setErrMsg('Password is not correct');
