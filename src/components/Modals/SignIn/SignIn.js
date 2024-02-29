@@ -67,6 +67,7 @@ const SignIn = ({ showModal }) => {
           placeholder="email"
           name="email"
           onChange={handleChange}
+          autocomplete="off"
         />
         <input
           className="sign-in__input"
@@ -74,6 +75,7 @@ const SignIn = ({ showModal }) => {
           type="password"
           name="password"
           onChange={handleChange}
+          autocomplete="off"
         />
         <Button buttonText="SIGN IN" UniqueStyleClass={'sign-in__button'} />
       </form>

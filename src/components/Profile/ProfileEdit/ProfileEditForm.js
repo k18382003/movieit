@@ -168,6 +168,7 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
                   name="displayname"
                   value={userProfile.displayname || userProfile.username}
                   onChange={handleChange}
+                  autocomplete="off"
                 />
               </div>
               <div className="profile-form__input-container profile-form__input-container--city-postalcode">
@@ -180,6 +181,7 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
                     name="city"
                     value={userProfile.city}
                     onChange={handleChange}
+                    autocomplete="off"
                   />
                 </div>
                 <div className="profile-form__input-container">
@@ -191,6 +193,7 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
                     name="postalcode"
                     value={userProfile.postalcode}
                     onChange={handleChange}
+                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -273,6 +276,7 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
                   name="bio"
                   value={userProfile.bio || ''}
                   onChange={handleChange}
+                  autocomplete="off"
                 />
               </div>
             </div>

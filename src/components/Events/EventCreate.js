@@ -123,6 +123,7 @@ const EventCreate = ({ setShowNavFooter }) => {
               name="movieName"
               value={eventData.movieName || ''}
               onChange={handleChange}
+              autocomplete="off"
             />
           </div>
           <div className="event-create__input-container">
@@ -147,6 +148,7 @@ const EventCreate = ({ setShowNavFooter }) => {
               name="cinema"
               value={eventData.cinema || ''}
               onChange={handleChange}
+              autocomplete="off"
             />
           </div>
           <div className="event-create__input-container">
@@ -158,6 +160,7 @@ const EventCreate = ({ setShowNavFooter }) => {
               name="address"
               value={eventData.address || ''}
               onChange={handleChange}
+              autocomplete="off"
             />
           </div>
         </div>
@@ -171,6 +174,7 @@ const EventCreate = ({ setShowNavFooter }) => {
               name="postalcode"
               value={eventData.postalcode || ''}
               onChange={handleChange}
+              autocomplete="off"
             />
           </div>
           <div className="event-create__input-container">
@@ -184,6 +188,7 @@ const EventCreate = ({ setShowNavFooter }) => {
               min="1"
               value={eventData.max || 1}
               onChange={handleChange}
+              autocomplete="off"
             />
           </div>
         </div>
@@ -223,6 +228,7 @@ const EventCreate = ({ setShowNavFooter }) => {
               name="notes"
               value={eventData.notes || ''}
               onChange={handleChange}
+              autocomplete="off"
             />
           </div>
         </div>
