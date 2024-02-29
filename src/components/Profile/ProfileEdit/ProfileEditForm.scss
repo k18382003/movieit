@@ -26,6 +26,12 @@
           height: 20rem;
         }
       }
+
+      &--city-postalcode {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
   }
 

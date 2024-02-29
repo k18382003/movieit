@@ -110,6 +110,7 @@ const EventCreate = ({ setShowNavFooter }) => {
           <ProfilePhotoUpload
             openUploadForm={setShowPhotoUplod}
             photo={photo}
+            uniqueStyle={'event-photo-upload'}
           />
         </div>
         <div className="event-create__input-container--tablet">

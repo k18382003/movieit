@@ -47,3 +47,14 @@
     color: $movieit-white;
   }
 }
+
+.loader {
+  position: absolute;
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: $movieit-black, $alpha: 0.0);
+    position: fixed;
+    top: 0;
+  }
+}

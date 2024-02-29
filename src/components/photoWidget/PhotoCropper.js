@@ -8,7 +8,8 @@ export default function PhotoCropper({ setCroper, FileUrl }) {
       src={FileUrl}
       style={{ height: 200, width: '100%' }}
       initialAspectRatio={1}
-      aspectRatio={1}
+      scalable={true}
+      aspectRatio={16 / 9}
       preview={'.image-preview'}
       viewMode={1}
       autoCropArea={1}

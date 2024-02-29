@@ -6,14 +6,17 @@ import Button from '../Button/Button';
 import './UploadPhotoWidget.scss';
 import axios from 'axios';
 import close from '../../assets/icons/close.png';
+import loader from '../../assets/icons/Loader.svg';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
   const [file, setFile] = useState([]);
   const [cropper, setCropper] = useState();
+  const [loading, setloading] = useState(false);
   const token = localStorage.getItem('JWTtoken');
 
   const onCropper = async () => {
+    setloading(true);
     if (cropper) {
       try {
         let response = '';
@@ -46,6 +49,7 @@ export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
         }
         setPhoto(response.data);
         alert('Image uploaded!');
+        setloading(false);
         closeUpload(false);
       } catch (error) {
         console.log(error);
@@ -111,6 +115,12 @@ export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
           </>
         )}
       </div>
+      {loading && (
+        <>
+          <div className="loader__overlay"></div>
+          <img src={loader} className="loader" />
+        </>
+      )}
     </section>
   );
 }

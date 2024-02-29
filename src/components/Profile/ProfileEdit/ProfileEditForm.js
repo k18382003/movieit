@@ -112,6 +112,7 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
     e.preventDefault();
     let updatedUserProfile = {
       postalcode: userProfile.postalcode,
+      city: userProfile.city,
       bio: userProfile.bio,
       displayname: userProfile.displayname,
       genres: turnArryToString(selectedGenres),
@@ -169,16 +170,29 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="profile-form__input-container">
-                <label className="profile-form__label" htmlFor="postalCode">
-                  Postal Code
-                </label>
-                <input
-                  className="profile-form__input"
-                  name="postalcode"
-                  value={userProfile.postalcode}
-                  onChange={handleChange}
-                />
+              <div className="profile-form__input-container profile-form__input-container--city-postalcode">
+                <div className="profile-form__input-container">
+                  <label className="profile-form__label" htmlFor="city">
+                    City
+                  </label>
+                  <input
+                    className="profile-form__input profile-form__input--city"
+                    name="city"
+                    value={userProfile.city}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="profile-form__input-container">
+                  <label className="profile-form__label" htmlFor="postalCode">
+                    Postal Code
+                  </label>
+                  <input
+                    className="profile-form__input"
+                    name="postalcode"
+                    value={userProfile.postalcode}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
             </div>
             <div className="profile-form__input-container--tablet">
