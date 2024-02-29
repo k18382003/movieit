@@ -81,7 +81,11 @@ export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
       <div className="uploadphoto-container__resize-zone">
         <h1>Step 2 - Resize Photo</h1>
         {file && file.length > 0 && (
-          <PhotoCropper setCroper={setCropper} FileUrl={file[0].preview} />
+          <PhotoCropper
+            setCroper={setCropper}
+            FileUrl={file[0].preview}
+            isUser={userId}
+          />
         )}
       </div>
       <div className="uploadphoto-container__preview">

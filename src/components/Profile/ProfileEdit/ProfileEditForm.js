@@ -166,7 +166,7 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
                 <input
                   className="profile-form__input"
                   name="displayname"
-                  value={userProfile.displayname || userProfile.username}
+                  value={userProfile.displayname}
                   onChange={handleChange}
                   autocomplete="off"
                 />
