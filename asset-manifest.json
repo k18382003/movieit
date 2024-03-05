@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/movieit/static/css/main.de0d704f.css",
+    "main.js": "/movieit/static/js/main.b8bf6e42.js",
+    "static/media/tempPhoto.jpg": "/movieit/static/media/tempPhoto.d0919f3fa6e9618865a7.jpg",
+    "static/media/background-tablet.png": "/movieit/static/media/background-tablet.5dbdbd6998fec1ddb789.png",
+    "static/media/background-mobile.png": "/movieit/static/media/background-mobile.b3c27e820a2b6028d504.png",
+    "static/media/Default-Avatar.png": "/movieit/static/media/Default-Avatar.1e5dd16b02c15f12ad89.png",
+    "static/media/ProtestGuerrilla-Regular.ttf": "/movieit/static/media/ProtestGuerrilla-Regular.cb6024c9bca7ab764ca3.ttf",
+    "static/media/default-movie-photo.png": "/movieit/static/media/default-movie-photo.97a6ef5332c767ff2bff.png",
+    "static/media/ProtestGuerrilla-Regular.woff": "/movieit/static/media/ProtestGuerrilla-Regular.7e503178a1e96d5a6f19.woff",
+    "static/media/Bauhaus93-Regular.ttf": "/movieit/static/media/Bauhaus93-Regular.cd36af6251f40c1667c7.ttf",
+    "static/media/ProtestGuerrilla-Regular.woff2": "/movieit/static/media/ProtestGuerrilla-Regular.b5a18d4ae29cf32fe5c8.woff2",
+    "static/media/Bauhaus93-Regular.woff": "/movieit/static/media/Bauhaus93-Regular.d3fdb9ea97a30fe5e8f0.woff",
+    "static/media/Bauhaus93-Regular.woff2": "/movieit/static/media/Bauhaus93-Regular.7e0ead3462cb2a9dd3fc.woff2",
+    "static/media/Loader.svg": "/movieit/static/media/Loader.e95f067e8e76494d22ca393a3a57e78e.svg",
+    "static/media/MovieIt-black.svg": "/movieit/static/media/MovieIt-black.e808137e1e2ed4ccdf54644fb188b05a.svg",
+    "static/media/MovieIt-white.svg": "/movieit/static/media/MovieIt-white.7fc54bb60701c3106e943cbf3816a572.svg",
+    "index.html": "/movieit/index.html",
+    "main.de0d704f.css.map": "/movieit/static/css/main.de0d704f.css.map",
+    "main.b8bf6e42.js.map": "/movieit/static/js/main.b8bf6e42.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.de0d704f.css",
+    "static/js/main.b8bf6e42.js"
+  ]
+}
