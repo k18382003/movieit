@@ -32,7 +32,7 @@ const SignIn = ({ showModal }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${REACT_APP_API_BASE_PATH}/account/signin`,
+        'https://movieit-api.fly.dev/movieit/api/account/signin',
         signInData
       );
       localStorage.setItem('JWTtoken', response.data.token);

@@ -49,7 +49,7 @@ function App() {
   }, [token]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       {showNavFooter && (
         <Nav currentUser={currentUser} showMessage={handleShowMessage} />
       )}
@@ -136,7 +136,7 @@ function App() {
         )}
       </main>
       {showNavFooter && <Footer />}
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
