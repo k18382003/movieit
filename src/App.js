@@ -136,7 +136,7 @@ function App() {
         )}
       </main>
       {showNavFooter && <Footer />}
-    </Bro>
+    </BrowserRouter>
   );
 }
 
