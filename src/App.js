@@ -1,5 +1,5 @@
 import './App.scss';
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import ProfileEditForm from './components/Profile/ProfileEdit/ProfileEditForm';
 import ProfileCard from './components/Profile/ProfileCard';
