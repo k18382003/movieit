@@ -1,5 +1,5 @@
 import './App.scss';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import ProfileEditForm from './components/Profile/ProfileEdit/ProfileEditForm';
 import ProfileCard from './components/Profile/ProfileCard';
@@ -49,7 +49,7 @@ function App() {
   }, [token]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       {showNavFooter && (
         <Nav currentUser={currentUser} showMessage={handleShowMessage} />
       )}
@@ -136,7 +136,7 @@ function App() {
         )}
       </main>
       {showNavFooter && <Footer />}
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
