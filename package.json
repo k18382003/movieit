@@ -1,6 +1,7 @@
 {
   "name": "capstone",
   "version": "0.1.0",
+  "homepage": "http://k18382003.github.io/movieit",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
