@@ -137,7 +137,11 @@ const EventDetail = ({ setShowNavFooter }) => {
       );
       let newParticipantsList = [
         ...participantsList,
-        { user_id: currentUser.userId, displayname: profile.data.displayname },
+        {
+          user_id: currentUser.userId,
+          displayname: profile.data.displayname,
+          photo_url: profile.data.photo_url,
+        },
       ];
       setParticipantsList(newParticipantsList);
     } catch (error) {

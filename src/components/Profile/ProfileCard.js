@@ -25,8 +25,8 @@ const ProfileCard = ({ setShowNavFooter }) => {
 
   const reStructureString = (input) => {
     let newString = '';
-    const arr = input.split(',');
-    arr.forEach(
+    const arr = input?.split(',');
+    arr?.forEach(
       (item) =>
         (newString +=
           item[0].toUpperCase() + item.slice(1).toLowerCase() + ' / ')
