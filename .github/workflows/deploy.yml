@@ -8,8 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      REACT_APP_API_BASE_PATH: https://movieit-api.fly.dev/movieit/api/
 
     steps:
       # checkout the repository content to github runner
