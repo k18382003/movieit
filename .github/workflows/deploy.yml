@@ -24,14 +24,14 @@ jobs:
         with:
           node-version: "18.16.1"
 
-      # cache the dependencies to speed up the build
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # # cache the dependencies to speed up the build
+      # - name: Cache dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
       # install dependencies
       - name: Install dependencies
