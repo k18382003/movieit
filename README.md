@@ -61,6 +61,7 @@ https://www.figma.com/file/nsGT1c7ynfut5u8F6hWE1Y/BrainStation-Capstone---MovieI
 ![ER diagram](https://github.com/k18382003/movieit/assets/54568835/93e30ca6-264a-4878-8e49-06efe44749e5)
 
 ### Auth
+Token-based authentication - JWT
 
 ![Movieit-JWT drawio](https://github.com/k18382003/movieit/assets/54568835/83908563-07cc-4d96-a7de-dda5ca1de083)
 
