@@ -134,7 +134,7 @@ const ProfileCard = ({ setShowNavFooter }) => {
               </article>
             </div>
           </div>
-          <Metrics />
+          <Metrics userId={currentUser.userId} />
         </section>
       )}
     </>
