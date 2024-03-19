@@ -13,6 +13,8 @@ const MyEvents = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const [myEvents, setMyEvents] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const [eventHostNum, setEventHostNum] = useState(3);
+  const [eventInvitedNum, setEventInvitedNum] = useState(3);
   const navigate = useNavigate();
   useEffect(() => {
     setShowNavFooter(true);
@@ -104,7 +106,10 @@ const MyEvents = ({ setShowNavFooter }) => {
                     Events You Host
                   </p>
                   {myEvents
-                    .filter((e) => e.ishost)
+                    .filter(
+                      (e) =>
+                        e.ishost && new Date(e.show_time).getTime() > Date.now()
+                    )
                     .map((movie, index) => {
                       return (
                         <EventItem
@@ -121,7 +126,11 @@ const MyEvents = ({ setShowNavFooter }) => {
                     Events Be Invited
                   </p>
                   {myEvents
-                    .filter((e) => !e.ishost)
+                    .filter(
+                      (e) =>
+                        !e.ishost &&
+                        new Date(e.show_time).getTime() > Date.now()
+                    )
                     .map((movie, index) => {
                       return (
                         <EventItem
@@ -136,6 +145,22 @@ const MyEvents = ({ setShowNavFooter }) => {
               </div>
               <div className="myevent__past-event-container">
                 <p className="myevent__past-event">Past Events</p>
+              </div>
+              <div className="myevent__tablet-past-events-container">
+                {myEvents
+                  .filter(
+                    (e) =>
+                      !e.ishost && new Date(e.show_time).getTime() < Date.now()
+                  )
+                  .map((movie, index) => {
+                    return (
+                      <EventItem
+                        key={index}
+                        movie={movie}
+                        uniqueStyle={'event-item-myevent'}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </div>

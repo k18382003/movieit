@@ -25,7 +25,6 @@
     margin-top: 2rem;
   }
 
-
   &__next-event-image {
     width: 80%;
     margin: 0 auto;
@@ -71,5 +70,10 @@
 
   &__link {
     text-decoration: none;
+  }
+
+  &__no-event-title {
+    text-align: center;
+    color: $movieit-dark-grey;
   }
 }

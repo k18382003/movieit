@@ -12,8 +12,10 @@ const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventList = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
-  const [eventList, setEventList] = useState();
+  const [eventList, setEventList] = useState([]);
   const [currentUser, setCurrentUser] = useState();
+  const [eventNum, setEventNum] = useState(6);
+  const [reachEnd, setReachEnd] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,15 +64,32 @@ const EventList = ({ setShowNavFooter }) => {
         const response = await axios.get(`${REACT_APP_API_BASE_PATH}/events`, {
           headers: {
             authorization: `Bearer ${token}`,
+            eventnum: eventNum,
           },
         });
-        setEventList(response.data);
+        if (response.data.length == 0) {
+          setReachEnd(true);
+          toast.info('Reach the end of the List', {
+            position: 'bottom-center',
+          });
+        }
+        setEventList([...eventList, ...response.data]);
       } catch (error) {
         console.log(error);
       }
     };
     fetchEvents();
-  }, [token]);
+  }, [token, eventNum]);
+
+  const handleLoadMore = () => {
+    if (!reachEnd) {
+      setEventNum(eventNum + 6);
+    } else {
+      toast.info('Reach the end of the List', {
+        position: 'bottom-center',
+      });
+    }
+  };
 
   return (
     <>
@@ -91,11 +110,17 @@ const EventList = ({ setShowNavFooter }) => {
           <div className="eventlist__tablet-outter-container">
             <CalendarWithNextEvent userId={currentUser?.userId} />
             <div className="eventlist__tablet-list-container">
-              {eventList.map((movie) => {
-                return <EventItem key={movie.id} movie={movie} />;
-              })}
-              {eventList.length > 2 && (
-                <p className="eventlist__load-more">Load More</p>
+              {eventList.length > 0 ? (
+                eventList.map((movie) => {
+                  return <EventItem key={movie.id} movie={movie} />;
+                })
+              ) : (
+                <h1>No New Events</h1>
+              )}
+              {eventList.length > 6 && (
+                <p className="eventlist__load-more" onClick={handleLoadMore}>
+                  Load More
+                </p>
               )}
             </div>
           </div>
