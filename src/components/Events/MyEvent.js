@@ -7,14 +7,19 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import NextEvent from './NextEvent';
 import { toast } from 'react-toastify';
+import { fetchItemNum } from './globalVaraibles';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const MyEvents = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
-  const [myEvents, setMyEvents] = useState();
+  const [myHostedEvents, setMyHostedEvents] = useState();
+  const [myInvitedEvents, setMyInvitedEvents] = useState();
+  const [myPastEvents, setMyPastEvents] = useState([]);
+  const [showPastEvents, setShowPastEvents] = useState(false);
   const [currentUser, setCurrentUser] = useState();
-  const [eventHostNum, setEventHostNum] = useState(3);
-  const [eventInvitedNum, setEventInvitedNum] = useState(3);
+  const [totalNumPastEvents, settotalNumPastEvents] = useState(0);
+  const [pastEventNum, setPastEventNum] = useState(fetchItemNum);
+
   const navigate = useNavigate();
   useEffect(() => {
     setShowNavFooter(true);
@@ -68,7 +73,8 @@ const MyEvents = ({ setShowNavFooter }) => {
             },
           }
         );
-        setMyEvents(response.data);
+        setMyHostedEvents(response.data.hostedEvents);
+        setMyInvitedEvents(response.data.invitedEvents);
       } catch (error) {
         console.log(error);
       }
@@ -76,9 +82,30 @@ const MyEvents = ({ setShowNavFooter }) => {
     fetchMyEvents();
   }, [token, currentUser]);
 
+  useEffect(() => {
+    const LoadPastEvents = async () => {
+      try {
+        const response = await axios.get(
+          `${REACT_APP_API_BASE_PATH}/events/mypastevent/${currentUser?.userId}`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+              eventnum: pastEventNum,
+            },
+          }
+        );
+        setMyPastEvents([...myPastEvents, ...response.data?.myPastEvents]);
+        settotalNumPastEvents(response.data?.total);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    LoadPastEvents();
+  }, [pastEventNum, currentUser]);
+
   return (
     <>
-      {myEvents && (
+      {myHostedEvents && myInvitedEvents && (
         <section className="myevent">
           <h1 className="myevent__greeting">
             Welcome back, {currentUser?.displayname}
@@ -105,12 +132,8 @@ const MyEvents = ({ setShowNavFooter }) => {
                   <p className="myevent__event-text myevent__event-text--host">
                     Events You Host
                   </p>
-                  {myEvents
-                    .filter(
-                      (e) =>
-                        e.ishost && new Date(e.show_time).getTime() > Date.now()
-                    )
-                    .map((movie, index) => {
+                  {myHostedEvents.length > 0 ? (
+                    myHostedEvents.map((movie, index) => {
                       return (
                         <EventItem
                           key={index}
@@ -118,20 +141,17 @@ const MyEvents = ({ setShowNavFooter }) => {
                           uniqueStyle={'event-item-myevent'}
                         />
                       );
-                    })}
-                  <p className="myevent__load-more">Load More</p>
+                    })
+                  ) : (
+                    <h1>No events</h1>
+                  )}
                 </div>
                 <div className="myevent__event-container">
                   <p className="myevent__event-text myevent__event-text--invited">
                     Events Be Invited
                   </p>
-                  {myEvents
-                    .filter(
-                      (e) =>
-                        !e.ishost &&
-                        new Date(e.show_time).getTime() > Date.now()
-                    )
-                    .map((movie, index) => {
+                  {myInvitedEvents.length > 0 ? (
+                    myInvitedEvents.map((movie, index) => {
                       return (
                         <EventItem
                           key={index}
@@ -139,28 +159,35 @@ const MyEvents = ({ setShowNavFooter }) => {
                           uniqueStyle={'event-item-myevent'}
                         />
                       );
-                    })}
-                  <p className="myevent__load-more">Load More</p>
+                    })
+                  ) : (
+                    <h1>No events</h1>
+                  )}
                 </div>
               </div>
               <div className="myevent__past-event-container">
                 <p className="myevent__past-event">Past Events</p>
               </div>
               <div className="myevent__tablet-past-events-container">
-                {myEvents
-                  .filter(
-                    (e) =>
-                      !e.ishost && new Date(e.show_time).getTime() < Date.now()
-                  )
-                  .map((movie, index) => {
-                    return (
-                      <EventItem
-                        key={index}
-                        movie={movie}
-                        uniqueStyle={'event-item-myevent'}
-                      />
-                    );
+                {showPastEvents &&
+                  myPastEvents &&
+                  myPastEvents.map((movie, index) => {
+                    return <EventItem key={index} movie={movie} />;
                   })}
+              </div>
+              <div className="myevent__load-more">
+                <span onClick={() => setShowPastEvents(!showPastEvents)}>
+                  {!showPastEvents ? 'View Past Events' : 'Close Past Events'}
+                </span>
+
+                {showPastEvents && pastEventNum < totalNumPastEvents && (
+                  <span
+                    className="myevent__load-more"
+                    onClick={() => setPastEventNum(pastEventNum + fetchItemNum)}
+                  >
+                    Load More
+                  </span>
+                )}
               </div>
             </div>
           </div>

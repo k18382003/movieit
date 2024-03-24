@@ -8,14 +8,15 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { fetchItemNum } from './globalVaraibles';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventList = ({ setShowNavFooter }) => {
   const token = localStorage.getItem('JWTtoken');
   const [eventList, setEventList] = useState([]);
+  const [totalNumEvents, settotalNumEvents] = useState(0);
   const [currentUser, setCurrentUser] = useState();
-  const [eventNum, setEventNum] = useState(6);
-  const [reachEnd, setReachEnd] = useState(false);
+  const [eventNum, setEventNum] = useState(fetchItemNum);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,29 +68,14 @@ const EventList = ({ setShowNavFooter }) => {
             eventnum: eventNum,
           },
         });
-        if (response.data.length == 0) {
-          setReachEnd(true);
-          toast.info('Reach the end of the List', {
-            position: 'bottom-center',
-          });
-        }
-        setEventList([...eventList, ...response.data]);
+        setEventList([...eventList, ...response.data.events]);
+        settotalNumEvents(response.data.totalNumEvents);
       } catch (error) {
         console.log(error);
       }
     };
     fetchEvents();
   }, [token, eventNum]);
-
-  const handleLoadMore = () => {
-    if (!reachEnd) {
-      setEventNum(eventNum + 6);
-    } else {
-      toast.info('Reach the end of the List', {
-        position: 'bottom-center',
-      });
-    }
-  };
 
   return (
     <>
@@ -117,8 +103,11 @@ const EventList = ({ setShowNavFooter }) => {
               ) : (
                 <h1>No New Events</h1>
               )}
-              {eventList.length > 6 && (
-                <p className="eventlist__load-more" onClick={handleLoadMore}>
+              {eventNum <= totalNumEvents && (
+                <p
+                  className="eventlist__load-more"
+                  onClick={() => setEventNum(eventNum + fetchItemNum)}
+                >
                   Load More
                 </p>
               )}

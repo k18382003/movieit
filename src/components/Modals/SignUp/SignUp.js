@@ -62,14 +62,14 @@ const SignUp = ({ showModal, showSignIn }) => {
           placeholder="username"
           name="username"
           onChange={handleChange}
-          autocomplete="off"
+          autoComplete="off"
         />
         <input
           className="sign-up__input"
           placeholder="email"
           name="email"
           onChange={handleChange}
-          autocomplete="off"
+          autoComplete="off"
         />
         <input
           className="sign-up__input"
@@ -77,7 +77,7 @@ const SignUp = ({ showModal, showSignIn }) => {
           type="password"
           name="password"
           onChange={handleChange}
-          autocomplete="off"
+          autoComplete="off"
         />
         <Button buttonText="SIGN UP" UniqueStyleClass={'sign-up__button'} />
       </form>

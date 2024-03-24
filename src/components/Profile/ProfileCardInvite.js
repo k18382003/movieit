@@ -92,12 +92,6 @@ const ProfileCardInvite = ({ setShowNavFooter }) => {
 
   const handleInvite = async (userId) => {
     try {
-      console.log({
-        sender: currentUser?.userId,
-        receiver: userId,
-        send_time: Date.now(),
-        event_id: eventId,
-      });
       const response = await axios.post(
         `${REACT_APP_API_BASE_PATH}/invitation/`,
         {
