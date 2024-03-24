@@ -241,4 +241,12 @@
       color: $movieit-white;
     }
   }
+
+  &__icon-container {
+    // padding-top: 2rem;
+    // padding-bottom: 1.6rem;
+    // padding-left: 5.6rem;
+    display: flex;
+    justify-content: flex-end;
+  }
 }

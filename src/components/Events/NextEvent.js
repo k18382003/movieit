@@ -21,8 +21,10 @@ const NextEvent = ({ userId }) => {
             },
           }
         );
-        setNextEvent(response.data);
-        fetchParticipante(response.data.id);
+        setNextEvent(response.data[0]);
+        if (response.data[0]) {
+          fetchParticipante(response.data[0].id);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +51,7 @@ const NextEvent = ({ userId }) => {
 
   return (
     <>
-      {nextEvent && (
+      {nextEvent ? (
         <Link to={`/events/${nextEvent.id}`} className="calendar-event__link">
           <div className={'calendar-event__next-event-inner-container'}>
             <div
@@ -78,6 +80,8 @@ const NextEvent = ({ userId }) => {
             </div>
           </div>
         </Link>
+      ) : (
+        <h1 className="calendar-event__no-event-title">No Upcoming Event</h1>
       )}
     </>
   );
