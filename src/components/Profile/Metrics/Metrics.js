@@ -13,7 +13,6 @@ const Metrics = ({ userId }) => {
         const result = await axios.get(
           `${REACT_APP_API_BASE_PATH}/profile/metrics/${userId}`
         );
-        console.log(result.data);
         setMetricData(result.data);
       } catch (error) {
         console.log(error);

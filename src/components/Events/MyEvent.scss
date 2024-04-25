@@ -67,6 +67,7 @@
     padding-top: 2rem;
     color: $movieit-blue;
     text-align: center;
+    padding-left: 1rem;
     cursor: pointer;
   }
 
@@ -106,10 +107,19 @@
       cursor: pointer;
     }
   }
+
+  &__tablet-past-events-container {
+    @include tablet {
+      width: 100%;
+      display: flex;
+      align-content: flex-start;
+      flex-wrap: wrap;
+      column-gap: 1rem;
+      @include paddings(0rem, 1.6rem);
+    }
+  }
 }
 
 .event-item-myevent {
-  @include tablet {
-    width: 100%;
-  }
+  width: 100%;
 }

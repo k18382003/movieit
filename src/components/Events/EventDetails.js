@@ -3,6 +3,9 @@ import time from '../../assets/icons/time-line.png';
 import location from '../../assets/icons/location.png';
 import people from '../../assets/icons/people.png';
 import attend from '../../assets/icons/attend.png';
+import cancelEvent from '../../assets/icons/delete-event.png';
+import cancelAttend from '../../assets/icons/not-attend.png';
+import invite from '../../assets/icons/mingcute--invite-fill.svg';
 import edit from '../../assets/icons/edit.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
@@ -265,46 +268,79 @@ const EventDetail = ({ setShowNavFooter }) => {
               </div>
             </div>
             <div className="event-detail__button-container">
-              <div>
-                {currentUser.userId == evetntHost.userId ? (
-                  <>
+              {new Date(eventDetail.show_time).getTime() > Date.now() && (
+                <div>
+                  {currentUser.userId == evetntHost.userId ? (
+                    <>
+                      <Button
+                        buttonText={'Invite More'}
+                        UniqueStyleClass={
+                          'event-detail__button event-detail__button--invite'
+                        }
+                      />
+                      <Button
+                        buttonText={'Cancel Event'}
+                        UniqueStyleClass={
+                          'event-detail__button event-detail__button--cancel'
+                        }
+                        onClick={() => setShowDelete(true)}
+                      />
+                    </>
+                  ) : participantsList.find(
+                      (p) => p.user_id == currentUser.userId
+                    ) ? (
                     <Button
-                      buttonText={'Invite More'}
-                      UniqueStyleClass={
-                        'event-detail__button event-detail__button--invite'
-                      }
-                    />
-                    <Button
-                      buttonText={'Cancel Event'}
+                      buttonText={'Cancel Attend'}
                       UniqueStyleClass={
                         'event-detail__button event-detail__button--cancel'
                       }
-                      onClick={() => setShowDelete(true)}
+                      onClick={handleCancelAttend}
                     />
-                  </>
-                ) : participantsList.find(
-                    (p) => p.user_id == currentUser.userId
-                  ) ? (
-                  <Button
-                    buttonText={'Cancel Attend'}
-                    UniqueStyleClass={
-                      'event-detail__button event-detail__button--cancel'
-                    }
-                    onClick={handleCancelAttend}
-                  />
-                ) : (
-                  <Button
-                    buttonText={'Join'}
-                    UniqueStyleClass={
-                      'event-detail__button event-detail__button--invite'
-                    }
-                    onClick={handleJoin}
-                  />
-                )}
-              </div>
+                  ) : (
+                    <Button
+                      buttonText={'Join'}
+                      UniqueStyleClass={
+                        'event-detail__button event-detail__button--invite'
+                      }
+                      onClick={handleJoin}
+                    />
+                  )}
+                </div>
+              )}
             </div>
           </div>
-          <img className="event-detail__action-icon" src={attend} />
+          {new Date(eventDetail.show_time).getTime() > Date.now() && (
+            <div>
+              {currentUser.userId == evetntHost.userId ? (
+                <div className="event-detail__icon-container">
+                  <img
+                    className="event-detail__action-icon"
+                    src={invite}
+                    onClick={() => {}}
+                  />
+                  <img
+                    className="event-detail__action-icon"
+                    src={cancelEvent}
+                    onClick={() => setShowDelete(true)}
+                  />
+                </div>
+              ) : participantsList.find(
+                  (p) => p.user_id == currentUser.userId
+                ) ? (
+                <img
+                  className="event-detail__action-icon"
+                  src={cancelAttend}
+                  onClick={handleCancelAttend}
+                />
+              ) : (
+                <img
+                  className="event-detail__action-icon"
+                  src={attend}
+                  onClick={handleJoin}
+                />
+              )}
+            </div>
+          )}
         </section>
       )}
       {showDelete && (
