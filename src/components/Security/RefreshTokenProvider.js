@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
+import { router } from '../../routes/route';
 import axios from 'axios';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
@@ -15,13 +15,11 @@ export const RefreshTokenProvider = ({ children }) => {
   const [reminderId, setReminderId] = useState(null);
   const [token, setToken] = useState(null);
 
-  // const navigate = useNavigate();
-
   useEffect(() => {
     if (expiryTime) {
       const timeout = setTimeout(() => {
         localStorage.removeItem('JWTtoken');
-        // navigate('/');
+        router.navigate('/');
         toast.warning('Session expired. Please log in again', {
           position: 'top-center',
           autoClose: false,
