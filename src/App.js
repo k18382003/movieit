@@ -28,7 +28,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/movieit">
       <RefreshTokenProvider>
         {showNavFooter && <Nav showMessage={handleShowMessage} />}
         <main>
