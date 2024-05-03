@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { ToastContainer } from 'react-toastify';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/route';
 import { RefreshTokenProvider } from './components/Security/RefreshTokenProvider';
