@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PhotoDropZone from './PhotoDropZone';
 import PhotoCropper from './PhotoCropper';
 import React from 'react';
@@ -7,13 +7,14 @@ import './UploadPhotoWidget.scss';
 import axios from 'axios';
 import close from '../../assets/icons/close.png';
 import loader from '../../assets/icons/Loader.svg';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 export default function UploadPhotoWidget({ closeUpload, setPhoto, userId }) {
   const [file, setFile] = useState([]);
   const [cropper, setCropper] = useState();
   const [loading, setloading] = useState(false);
-  const token = localStorage.getItem('JWTtoken');
+  const { token } = useContext(refreshTokenContext);
 
   const onCropper = async () => {
     setloading(true);

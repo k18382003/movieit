@@ -3,14 +3,16 @@ import close from '../../../assets/icons/close.png';
 import Button from '../../Button/Button';
 import './NavModal.scss';
 import SearchBar from '../../SerachBar/SearchBar';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import SignUp from '../SignUp/SignUp';
 import SignIn from '../SignIn/SignIn';
+import { refreshTokenContext } from '../../Security/RefreshTokenProvider';
 
 const NavModal = ({ showModal, currentUser }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+  const { token, setToken } = useContext(refreshTokenContext);
+  const { stopTimer } = useContext(refreshTokenContext);
 
   const navigate = useNavigate();
 
@@ -29,6 +31,7 @@ const NavModal = ({ showModal, currentUser }) => {
   const handleSignOut = () => {
     localStorage.removeItem('JWTtoken');
     setToken(undefined);
+    stopTimer();
     closeNav();
   };
 

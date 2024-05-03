@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './WelcomePage.scss';
 import collapseNav from '../../assets/icons/collapse-nav.png';
 import brand from '../../assets/images/MovieIt-white.svg';
@@ -7,12 +7,16 @@ import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import SignIn from '../../components/Modals/SignIn/SignIn';
 import SignUp from '../../components/Modals/SignUp/SignUp';
+import { refreshTokenContext } from '../../components/Security/RefreshTokenProvider';
+import axios from 'axios';
+const { REACT_APP_API_BASE_PATH } = process.env;
 
-const WelcomePage = ({ setShowNavFooter, currentUser }) => {
+const WelcomePage = ({ setShowNavFooter }) => {
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
+  const [currentUser, setCurrentUser] = useState();
+  const { token, setToken } = useContext(refreshTokenContext);
 
   useEffect(() => {
     setShowNavFooter(false);
@@ -32,6 +36,27 @@ const WelcomePage = ({ setShowNavFooter, currentUser }) => {
     localStorage.removeItem('JWTtoken');
     setToken(undefined);
   };
+
+  useEffect(() => {
+    if (token) {
+      const getCurrentUser = async () => {
+        try {
+          const response = await axios.get(
+            `${REACT_APP_API_BASE_PATH}/account/`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setCurrentUser(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getCurrentUser();
+    }
+  }, [token]);
 
   return (
     <>

@@ -1,17 +1,18 @@
 import InvitationItem from './InvitationItem';
 import './InvitationList.scss';
 import close from '../../../assets/icons/close.png';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { refreshTokenContext } from '../../Security/RefreshTokenProvider';
 
 const InvitationList = ({ closeInvitation }) => {
-  const token = localStorage.getItem('JWTtoken');
   const [invitationList, setInvitationList] = useState();
   const { REACT_APP_API_BASE_PATH } = process.env;
   const [currentUser, setCurrentUser] = useState();
   const navigate = useNavigate();
+  const { token } = useContext(refreshTokenContext);
 
   useEffect(() => {
     if (!token) {
