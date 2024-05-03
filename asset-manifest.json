@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/movieit/static/css/main.7af69e16.css",
-    "main.js": "/movieit/static/js/main.50b2902e.js",
+    "main.js": "/movieit/static/js/main.556aab6b.js",
     "static/media/tempPhoto.jpg": "/movieit/static/media/tempPhoto.d0919f3fa6e9618865a7.jpg",
     "static/media/background-tablet.png": "/movieit/static/media/background-tablet.5dbdbd6998fec1ddb789.png",
     "static/media/background-mobile.png": "/movieit/static/media/background-mobile.b3c27e820a2b6028d504.png",
@@ -19,10 +19,10 @@
     "static/media/mingcute--invite-fill.svg": "/movieit/static/media/mingcute--invite-fill.f772c0b0471dfa7131fef80841e7cbfa.svg",
     "index.html": "/movieit/index.html",
     "main.7af69e16.css.map": "/movieit/static/css/main.7af69e16.css.map",
-    "main.50b2902e.js.map": "/movieit/static/js/main.50b2902e.js.map"
+    "main.556aab6b.js.map": "/movieit/static/js/main.556aab6b.js.map"
   },
   "entrypoints": [
     "static/css/main.7af69e16.css",
-    "static/js/main.50b2902e.js"
+    "static/js/main.556aab6b.js"
   ]
 }
