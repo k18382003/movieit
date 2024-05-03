@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ToastContainer } from 'react-toastify';
-import { HashRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/route';
+import { RefreshTokenProvider } from './components/Security/RefreshTokenProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-    <App />
-    <ToastContainer />
-  </>
+  <RefreshTokenProvider>
+    <RouterProvider router={router} />
+  </RefreshTokenProvider>
 );

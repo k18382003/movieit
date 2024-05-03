@@ -15,13 +15,13 @@ export const RefreshTokenProvider = ({ children }) => {
   const [reminderId, setReminderId] = useState(null);
   const [token, setToken] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (expiryTime) {
       const timeout = setTimeout(() => {
         localStorage.removeItem('JWTtoken');
-        navigate('/');
+        // navigate('/');
         toast.warning('Session expired. Please log in again', {
           position: 'top-center',
           autoClose: false,
