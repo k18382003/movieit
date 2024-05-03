@@ -1,7 +1,7 @@
 import ProfilePhotoUpload from '../Profile/ProfileEdit/ProfilePhotoUpload';
 import Button from '../Button/Button';
 import './EventCreate.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import DateTimePicker from 'react-datetime-picker';
@@ -11,18 +11,19 @@ import 'react-clock/dist/Clock.css';
 import { formatingDateTimeString } from '../../utils/formatingDateTimeString';
 import UploadPhotoWidget from '../photoWidget/UploadPhotoWidget';
 import { toast } from 'react-toastify';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventCreate = ({ setShowNavFooter }) => {
   const [eventData, setEventData] = useState({});
   const [errMsg, setErrMsg] = useState();
-  const token = localStorage.getItem('JWTtoken');
   const navigate = useNavigate();
   const [showTime, setShowTime] = useState(new Date());
   const [currentUser, setCurrentUser] = useState();
   const [showPhotoUpload, setShowPhotoUplod] = useState(false);
   const [photo, setPhoto] = useState();
+  const { token } = useContext(refreshTokenContext);
 
   useEffect(() => {
     setShowNavFooter(true);

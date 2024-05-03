@@ -39,6 +39,8 @@ MovieIt is designed for individuals of all ages and genders who are seeking some
 2. express.js
 3. Javascript
 
+[api git repository](https://github.com/k18382003/movieit-api)
+
 ##### Database
 
 MySQL

@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import defaultMoviePhoto from '../../assets/images/default-movie-photo.png';
 import './NextEvent.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const NextEvent = ({ userId }) => {
-  const token = localStorage.getItem('JWTtoken');
   const [nextEvent, setNextEvent] = useState();
   const [numParticipants, setNumParticipants] = useState(0);
+  const { token } = useContext(refreshTokenContext);
 
   useEffect(() => {
     const fetchNextEvent = async () => {

@@ -1,17 +1,18 @@
 import brand from '../../assets/images/MovieIt-white.svg';
 import collapseNav from '../../assets/icons/collapse-nav.png';
 import './Nav.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import NavModal from '../Modals/Nav/NavModal';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 
 const Nav = ({ showMessage }) => {
   const [show, setShow] = useState(false);
   const [currentUser, setCurrentUser] = useState();
   const [unreadMsg, setUnreadMsg] = useState(0);
-  const [token, setToken] = useState(localStorage.getItem('JWTtoken'));
   const { REACT_APP_API_BASE_PATH } = process.env;
+  const { stopTimer, setToken, token } = useContext(refreshTokenContext);
 
   const navigate = useNavigate();
 
@@ -22,46 +23,50 @@ const Nav = ({ showMessage }) => {
   const handleSignOut = () => {
     localStorage.removeItem('JWTtoken');
     setToken(undefined);
+    stopTimer();
     navigate('/');
   };
 
   useEffect(() => {
-    const fetchingUnreadMessge = async () => {
-      try {
-        const response = await axios.get(
-          `${REACT_APP_API_BASE_PATH}/invitation/unread/${currentUser?.userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUnreadMsg(response.data.length || 0);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchingUnreadMessge();
+    if (token) {
+      const fetchingUnreadMessge = async () => {
+        try {
+          const response = await axios.get(
+            `${REACT_APP_API_BASE_PATH}/invitation/unread/${currentUser?.userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setUnreadMsg(response.data.length || 0);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchingUnreadMessge();
+    }
   }, [token, currentUser]);
 
   useEffect(() => {
-    const getCurrentUser = async () => {
-      try {
-        const response = await axios.get(
-          `${REACT_APP_API_BASE_PATH}/account/`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setCurrentUser(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getCurrentUser();
+    if (token) {
+      const getCurrentUser = async () => {
+        try {
+          const response = await axios.get(
+            `${REACT_APP_API_BASE_PATH}/account/`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setCurrentUser(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getCurrentUser();
+    }
   }, [token]);
 
   const UpdateRead = async () => {

@@ -7,21 +7,22 @@ import left from '../../assets/icons/swipe-left.png';
 import invitation from '../../assets/icons/send-invitation.png';
 import right from '../../assets/icons/swipe-right.png';
 import './ProfileCardInvite.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button/Button';
 import defaultPhoto from '../../assets/images/Default-Avatar.png';
 import { toast } from 'react-toastify';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const ProfileCardInvite = ({ setShowNavFooter }) => {
-  const token = localStorage.getItem('JWTtoken');
   const [profileList, setProfileList] = useState();
   const [profileIndex, setProfileIndex] = useState(0);
   const { code, eventId } = useParams();
   const [currentUser, setCurrentUser] = useState();
   const navigate = useNavigate();
+  const { token } = useContext(refreshTokenContext);
 
   useEffect(() => {
     setShowNavFooter(true);

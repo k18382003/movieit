@@ -2,11 +2,13 @@ import { useNavigate } from 'react-router';
 import Button from '../../Button/Button';
 import './DeleteEvent.scss';
 import axios from 'axios';
+import { refreshTokenContext } from '../../Security/RefreshTokenProvider';
+import { useContext } from 'react';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const DeleteEvent = ({ showModal, eventId }) => {
-  const token = localStorage.getItem('JWTtoken');
   const navigate = useNavigate();
+  const { token } = useContext(refreshTokenContext);
 
   const handleDelete = async () => {
     try {

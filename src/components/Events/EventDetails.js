@@ -9,17 +9,17 @@ import invite from '../../assets/icons/mingcute--invite-fill.svg';
 import edit from '../../assets/icons/edit.png';
 import './EventDetails.scss';
 import Button from '../Button/Button';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DeleteEvent from '../Modals/Event/DeleteEvent';
 import defaultMoviePhoto from '../../assets/images/default-movie-photo.png';
 import { toast } from 'react-toastify';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventDetail = ({ setShowNavFooter }) => {
-  const token = localStorage.getItem('JWTtoken');
   const { eventId } = useParams();
   const [eventDetail, setEventDetail] = useState();
   const [evetntHost, setEvetntHost] = useState();
@@ -27,6 +27,7 @@ const EventDetail = ({ setShowNavFooter }) => {
   const [currentUser, setCurrentUser] = useState();
   const [showDelete, setShowDelete] = useState(false);
   const navigate = useNavigate();
+  const { token } = useContext(refreshTokenContext);
 
   useEffect(() => {
     setShowNavFooter(true);

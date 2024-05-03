@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import CalendarWithNextEvent from './CalendarWithNextEvent';
 import EventItem from './EventItem';
@@ -8,10 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import NextEvent from './NextEvent';
 import { toast } from 'react-toastify';
 import { fetchItemNum } from './globalVaraibles';
+import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const MyEvents = ({ setShowNavFooter }) => {
-  const token = localStorage.getItem('JWTtoken');
   const [myHostedEvents, setMyHostedEvents] = useState();
   const [myInvitedEvents, setMyInvitedEvents] = useState();
   const [myPastEvents, setMyPastEvents] = useState([]);
@@ -19,7 +19,7 @@ const MyEvents = ({ setShowNavFooter }) => {
   const [currentUser, setCurrentUser] = useState();
   const [totalNumPastEvents, settotalNumPastEvents] = useState(0);
   const [pastEventNum, setPastEventNum] = useState(fetchItemNum);
-
+  const { token } = useContext(refreshTokenContext);
   const navigate = useNavigate();
   useEffect(() => {
     setShowNavFooter(true);

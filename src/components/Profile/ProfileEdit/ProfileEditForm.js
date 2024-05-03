@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from '../../Button/Button';
 import { MultiSelect } from 'react-multi-select-component';
 import './ProfileEditForm.scss';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import UploadPhotoWidget from '../../photoWidget/UploadPhotoWidget';
 import { toast } from 'react-toastify';
+import { refreshTokenContext } from '../../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
 const ProfileEditForm = ({ setShowNavFooter }) => {
@@ -17,13 +18,14 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
   const [userProfile, setUserProfile] = useState();
   const [errMsg, setErrMsg] = useState();
   const [photo, setPhoto] = useState();
-  const token = localStorage.getItem('JWTtoken');
   const navigate = useNavigate();
   const [showPhotoUpload, setShowPhotoUplod] = useState(false);
   const [originalData, setOriginalData] = useState();
   const [originalGenres, setOriginalGenres] = useState();
   const [originalSnacks, setOriginalSnacks] = useState();
   const [originalDays, setOriginalDays] = useState();
+
+  const { token } = useContext(refreshTokenContext);
 
   useEffect(() => {
     setShowNavFooter(true);
