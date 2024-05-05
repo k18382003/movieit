@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, useLoaderData } from 'react-router-dom';
 import App from '../App';
 import EventCreate from '../components/Events/EventCreate';
 import EventDetail from '../components/Events/EventDetails';
@@ -46,5 +46,5 @@ const routes = [
 ];
 
 export const router = createBrowserRouter(routes, {
-    basename: "/movieit"
+  basename: '/movieit',
 });

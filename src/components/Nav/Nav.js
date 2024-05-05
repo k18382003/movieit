@@ -80,7 +80,7 @@ const Nav = ({ showMessage }) => {
           },
         }
       );
-      showMessage();
+      showMessage(true);
       setUnreadMsg(0);
     } catch (error) {
       console.error(error);
