@@ -11,7 +11,7 @@ import { fetchItemNum } from './globalVaraibles';
 import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const MyEvents = ({ setShowNavFooter }) => {
+const MyEvents = () => {
   const [myHostedEvents, setMyHostedEvents] = useState();
   const [myInvitedEvents, setMyInvitedEvents] = useState();
   const [myPastEvents, setMyPastEvents] = useState([]);
@@ -21,9 +21,6 @@ const MyEvents = ({ setShowNavFooter }) => {
   const [pastEventNum, setPastEventNum] = useState(fetchItemNum);
   const { token } = useContext(refreshTokenContext);
   const navigate = useNavigate();
-  useEffect(() => {
-    setShowNavFooter(true);
-  }, []);
 
   useEffect(() => {
     if (!token) {

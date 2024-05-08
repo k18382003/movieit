@@ -16,18 +16,14 @@ import { toast } from 'react-toastify';
 import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileCardInvite = ({ setShowNavFooter }) => {
+const ProfileCardInvite = () => {
   const [profileList, setProfileList] = useState();
   const [profileIndex, setProfileIndex] = useState(0);
   const { code, eventId } = useParams();
   const [currentUser, setCurrentUser] = useState();
   const navigate = useNavigate();
   const { token } = useContext(refreshTokenContext);
-
-  useEffect(() => {
-    setShowNavFooter(true);
-  }, []);
-
+  
   const reStructureString = (input) => {
     let newString = '';
     const arr = input.split(',');

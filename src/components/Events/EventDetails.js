@@ -19,7 +19,7 @@ import { toast } from 'react-toastify';
 import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const EventDetail = ({ setShowNavFooter }) => {
+const EventDetail = () => {
   const { eventId } = useParams();
   const [eventDetail, setEventDetail] = useState();
   const [evetntHost, setEvetntHost] = useState();
@@ -28,10 +28,6 @@ const EventDetail = ({ setShowNavFooter }) => {
   const [showDelete, setShowDelete] = useState(false);
   const navigate = useNavigate();
   const { token } = useContext(refreshTokenContext);
-
-  useEffect(() => {
-    setShowNavFooter(true);
-  }, []);
 
   useEffect(() => {
     if (!token) {

@@ -13,16 +13,12 @@ import { toast } from 'react-toastify';
 import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileCard = ({ setShowNavFooter }) => {
+const ProfileCard = () => {
   const { token } = useContext(refreshTokenContext);
   const [currentUser, setCurrentUser] = useState();
   const [profileDeatil, setProfileDetail] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setShowNavFooter(true);
-  }, []);
 
   const reStructureString = (input) => {
     let newString = '';

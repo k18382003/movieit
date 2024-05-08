@@ -11,16 +11,12 @@ import { refreshTokenContext } from '../../components/Security/RefreshTokenProvi
 import axios from 'axios';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const WelcomePage = ({ setShowNavFooter }) => {
+const WelcomePage = () => {
   const [show, setShow] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [currentUser, setCurrentUser] = useState();
   const { token, setToken } = useContext(refreshTokenContext);
-
-  useEffect(() => {
-    setShowNavFooter(false);
-  }, []);
 
   const showModal = () => {
     setShow(!show);

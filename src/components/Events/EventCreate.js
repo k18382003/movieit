@@ -15,7 +15,7 @@ import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const EventCreate = ({ setShowNavFooter }) => {
+const EventCreate = () => {
   const [eventData, setEventData] = useState({});
   const [errMsg, setErrMsg] = useState();
   const navigate = useNavigate();
@@ -24,10 +24,6 @@ const EventCreate = ({ setShowNavFooter }) => {
   const [showPhotoUpload, setShowPhotoUplod] = useState(false);
   const [photo, setPhoto] = useState();
   const { token } = useContext(refreshTokenContext);
-
-  useEffect(() => {
-    setShowNavFooter(true);
-  }, []);
 
   useEffect(() => {
     if (!token) {

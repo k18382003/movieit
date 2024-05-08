@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { refreshTokenContext } from '../../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
-const ProfileEditForm = ({ setShowNavFooter }) => {
+const ProfileEditForm = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedSnacks, setSelectedSnacks] = useState([]);
   const [selectedDays, setSelectedDays] = useState([]);
@@ -26,10 +26,6 @@ const ProfileEditForm = ({ setShowNavFooter }) => {
   const [originalDays, setOriginalDays] = useState();
 
   const { token } = useContext(refreshTokenContext);
-
-  useEffect(() => {
-    setShowNavFooter(true);
-  }, []);
 
   const turnStringtoArray = (data) => {
     const splitArr = data?.split(',');
