@@ -42,12 +42,6 @@ const ProfileEditForm = () => {
   };
 
   useEffect(() => {
-    if (!token) {
-      toast.error('Unauthorized. Please sign in.', {
-        position: 'top-center',
-      });
-      navigate('/');
-    }
     const fetchProfile = async (currentUserId, userName) => {
       try {
         const response = await axios.get(

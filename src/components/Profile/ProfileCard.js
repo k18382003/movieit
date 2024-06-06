@@ -6,10 +6,9 @@ import defaultPhoto from '../../assets/images/Default-Avatar.png';
 import edit from '../../assets/icons/edit.png';
 import './ProfileCard.scss';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Metrics from './Metrics/Metrics';
-import { toast } from 'react-toastify';
 import { refreshTokenContext } from '../Security/RefreshTokenProvider';
 const { REACT_APP_API_BASE_PATH } = process.env;
 
@@ -18,7 +17,6 @@ const ProfileCard = () => {
   const [currentUser, setCurrentUser] = useState();
   const [profileDeatil, setProfileDetail] = useState();
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const reStructureString = (input) => {
     let newString = '';
@@ -32,12 +30,6 @@ const ProfileCard = () => {
   };
 
   useEffect(() => {
-    if (!token) {
-      toast.error('Unauthorized. Please sign in.', {
-        position: 'top-center',
-      });
-      navigate('/');
-    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(
