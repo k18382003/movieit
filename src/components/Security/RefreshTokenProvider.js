@@ -13,7 +13,9 @@ export const RefreshTokenProvider = ({ children }) => {
   const [timer, setTimer] = useState(null);
   const [timeoutId, setTimeOutId] = useState(null);
   const [reminderId, setReminderId] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(
+    localStorage.getItem('JWTtoken')
+  );
 
   useEffect(() => {
     if (expiryTime) {
