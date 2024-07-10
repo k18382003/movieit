@@ -47,14 +47,6 @@ const routes = [
           },
         ],
       },
-      {
-        path: '/about',
-        element: <About />,
-      },
-      {
-        path: '/contact',
-        element: <Contact />,
-      },
     ],
   },
 ];

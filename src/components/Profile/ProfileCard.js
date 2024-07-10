@@ -49,10 +49,6 @@ const ProfileCard = () => {
   }, [token]);
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
-
     const fetchProfileDetail = async () => {
       try {
         const response = await axios.get(

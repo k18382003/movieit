@@ -53,7 +53,6 @@ const MyEvents = () => {
   }, [token]);
 
   useEffect(() => {
-    if (!token) return;
     const fetchMyEvents = async () => {
       try {
         const response = await axios.get(

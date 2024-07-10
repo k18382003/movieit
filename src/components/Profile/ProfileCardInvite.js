@@ -55,9 +55,6 @@ const ProfileCardInvite = () => {
   }, [token]);
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
     const fetchProfileList = async () => {
       try {
         const response = await axios.get(
