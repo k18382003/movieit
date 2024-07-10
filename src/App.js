@@ -14,6 +14,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       {location.pathname === '/' ? (
         <WelcomePage />
       ) : (
@@ -26,7 +27,6 @@ function App() {
               <InvitationList closeInvitation={setShowMessage} />
             </>
           )}
-          <ToastContainer />
           <Footer />
         </>
       )}

@@ -36,12 +36,6 @@ const ProfileCardInvite = () => {
   };
 
   useEffect(() => {
-    if (!token) {
-      toast.error('Unauthorized. Please sign in.', {
-        position: 'top-center',
-      });
-      navigate('/');
-    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(
@@ -61,9 +55,6 @@ const ProfileCardInvite = () => {
   }, [token]);
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
     const fetchProfileList = async () => {
       try {
         const response = await axios.get(

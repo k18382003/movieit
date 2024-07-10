@@ -7,6 +7,7 @@ import MyEvents from '../components/Events/MyEvent';
 import ProfileCard from '../components/Profile/ProfileCard';
 import ProfileCardInvite from '../components/Profile/ProfileCardInvite';
 import ProfileEditForm from '../components/Profile/ProfileEdit/ProfileEditForm';
+import RequireAuth from '../components/Security/RequireAuth';
 
 const routes = [
   {
@@ -14,32 +15,37 @@ const routes = [
     element: <App />,
     children: [
       {
-        path: '/profile/:id',
-        element: <ProfileCard />,
-      },
-      {
-        path: '/profile/event/:eventId/area/:code',
-        element: <ProfileCardInvite />,
-      },
-      {
-        path: '/profile/edit',
-        element: <ProfileEditForm />,
-      },
-      {
-        path: '/events',
-        element: <EventList />,
-      },
-      {
-        path: '/events/:eventId',
-        element: <EventDetail />,
-      },
-      {
-        path: '/events/add',
-        element: <EventCreate />,
-      },
-      {
-        path: '/myevents',
-        element: <MyEvents />,
+        element: <RequireAuth />,
+        children: [
+          {
+            path: '/profile/:id',
+            element: <ProfileCard />,
+          },
+          {
+            path: '/profile/event/:eventId/area/:code',
+            element: <ProfileCardInvite />,
+          },
+          {
+            path: '/profile/edit',
+            element: <ProfileEditForm />,
+          },
+          {
+            path: '/events',
+            element: <EventList />,
+          },
+          {
+            path: '/events/:eventId',
+            element: <EventDetail />,
+          },
+          {
+            path: '/events/add',
+            element: <EventCreate />,
+          },
+          {
+            path: '/myevents',
+            element: <MyEvents />,
+          },
+        ],
       },
     ],
   },

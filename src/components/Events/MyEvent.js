@@ -23,12 +23,6 @@ const MyEvents = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
-      toast.error('Unauthorized. Please sign in.', {
-        position: 'top-center',
-      });
-      navigate('/');
-    }
     const getCurrentUser = async () => {
       try {
         const response = await axios.get(
@@ -59,7 +53,6 @@ const MyEvents = () => {
   }, [token]);
 
   useEffect(() => {
-    if (!token) return;
     const fetchMyEvents = async () => {
       try {
         const response = await axios.get(
