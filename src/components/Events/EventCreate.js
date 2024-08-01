@@ -17,7 +17,6 @@ const { REACT_APP_API_BASE_PATH } = process.env;
 
 const EventCreate = () => {
   const [eventData, setEventData] = useState({});
-  const [errMsg, setErrMsg] = useState();
   const navigate = useNavigate();
   const [showTime, setShowTime] = useState(new Date());
   const [currentUser, setCurrentUser] = useState();
@@ -82,6 +81,7 @@ const EventCreate = () => {
       );
       let cinemaCode = eventData.postalcode.replace(' ', '');
       let homeCode = profile.data.postalcode.replace(' ', '');
+      if (homeCode === 'N/A') homeCode = 'NA';
 
       navigate(
         `/profile/event/${response.data.eventId}/area/${
@@ -253,12 +253,6 @@ const EventCreate = () => {
           />
         </>
       )}
-      {/* {showPostalCodeModal && (
-        <>
-          <div className="overlay"></div>
-          <PostalCodeMsg cinemaCode={cinemaCode} homeCode={homeCode} />
-        </>
-      )} */}
     </>
   );
 };

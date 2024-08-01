@@ -20,7 +20,9 @@ function App() {
       ) : (
         <>
           <Nav showMessage={setShowMessage} />
-          <Outlet />
+          <main className="main">
+            <Outlet />
+          </main>
           {showMessage && (
             <>
               <div className="overlay"></div>

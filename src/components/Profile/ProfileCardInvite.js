@@ -23,7 +23,7 @@ const ProfileCardInvite = () => {
   const [currentUser, setCurrentUser] = useState();
   const navigate = useNavigate();
   const { token } = useContext(refreshTokenContext);
-  
+
   const reStructureString = (input) => {
     let newString = '';
     const arr = input.split(',');
@@ -65,7 +65,7 @@ const ProfileCardInvite = () => {
             },
           }
         );
-        if (response.data.length == 1) {
+        if (response.data.length <= 1) {
           navigate(`/events/${eventId}`);
         }
         setProfileList(
